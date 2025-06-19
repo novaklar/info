@@ -23,22 +23,22 @@
             background-color: #f8f9fa;
             color: #333;
             line-height: 1.6;
-            overflow-x: hidden; /* Previene desbordamiento horizontal */
+            overflow-x: hidden;
         }
         
         .header {
             width: 100%;
-            padding: 40px 20px; /* Añadido padding lateral */
+            padding: 40px 20px;
             background-color: #00128f;
             color: white;
             margin-bottom: 40px;
             text-align: center;
-            box-sizing: border-box; /* Incluye padding en el ancho */
+            box-sizing: border-box;
         }
         
         .logo {
             width: 180px;
-            max-width: 100%; /* Asegura que no exceda el ancho */
+            max-width: 100%;
             margin-bottom: 20px;
             filter: invert(48%) sepia(95%) saturate(1283%) hue-rotate(202deg) brightness(102%) contrast(101%);
         }
@@ -67,42 +67,35 @@
             max-width: 900px;
             padding: 0 20px;
             box-sizing: border-box;
+            margin-bottom: 40px;
         }
         
-        .content-box {
-            background: white;
-            border-radius: 8px;
-            padding: 40px;
+        .intro-text {
+            background: transparent;
+            padding: 0 20px;
             margin-bottom: 40px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             text-align: center;
-            width: calc(100% - 40px); /* Ajuste para móviles */
+            width: calc(100% - 40px);
             margin-left: auto;
             margin-right: auto;
             box-sizing: border-box;
+        }
+        
+        .intro-text p {
+            font-size: 18px;
+            text-align: justify;
+            color: #333;
+            margin-bottom: 20px;
         }
         
         .roles-section {
             width: 100%;
             background: linear-gradient(135deg, #6c91ff 0%, #00128f 100%);
             color: white;
-            padding: 60px 20px; /* Añadido padding lateral */
-            margin: 40px 0;
+            padding: 60px 20px;
             position: relative;
             overflow: hidden;
             box-sizing: border-box;
-        }
-        
-        .roles-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80') center/cover;
-            opacity: 0.1;
-            z-index: 0;
         }
         
         .roles-container {
@@ -132,7 +125,7 @@
             transition: all 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.2);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
-            width: calc(100% - 60px); /* Ajuste para padding */
+            width: calc(100% - 60px);
             margin: 0 auto;
             box-sizing: border-box;
         }
@@ -143,17 +136,13 @@
             box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.25);
         }
         
-        h1, h2 {
-            color: #00128f;
+        h2 {
+            color: white;
             font-size: 32px;
             margin-top: 0;
             margin-bottom: 25px;
             font-weight: 600;
             text-align: center;
-        }
-        
-        h2 {
-            color: white;
             position: relative;
             padding-bottom: 15px;
         }
@@ -174,15 +163,6 @@
             margin-bottom: 15px;
             text-align: center;
             font-weight: 600;
-        }
-        
-        h1:after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background: #6c91ff;
-            margin: 15px auto 0;
         }
         
         p {
@@ -227,38 +207,19 @@
             border: none;
         }
         
-        .cta-button {
-            display: block;
-            background-color: #6c91ff;
-            color: white;
-            padding: 15px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 18px;
-            margin: 30px auto 0;
-            transition: all 0.3s ease;
-            max-width: 300px;
-            box-shadow: 0 4px 8px rgba(108, 145, 255, 0.3);
-            text-align: center;
-        }
-        
-        .cta-button:hover {
-            background-color: #00128f;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 18, 143, 0.4);
-        }
-        
         @media (min-width: 768px) {
             .roles-grid {
                 display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                grid-template-columns: repeat(3, 1fr);
                 gap: 30px;
             }
             
             .role-card {
                 width: 100%;
                 margin: 0;
+                min-height: 400px;
+                display: flex;
+                flex-direction: column;
             }
             
             .header {
@@ -283,12 +244,12 @@
                 font-size: 18px;
             }
             
-            .content-box {
-                padding: 25px 20px;
+            .intro-text {
+                padding: 0 20px;
                 width: calc(100% - 40px);
             }
             
-            h1, h2 {
+            h2 {
                 font-size: 28px;
             }
             
@@ -296,7 +257,7 @@
                 font-size: 20px;
             }
             
-            p {
+            p, .intro-text p {
                 font-size: 16px;
             }
             
@@ -311,6 +272,7 @@
             .role-card {
                 padding: 25px 20px;
                 width: calc(100% - 40px);
+                min-height: auto;
             }
             
             .roles-grid {
@@ -329,15 +291,12 @@
     </div>
     
     <div class="container">
-        <div class="content-box">
-            <h1>¿Qué es novaklar?</h1>
+        <div class="intro-text">
             <p>novaklar es una empresa digital que transforma la forma de generar ingresos en línea. Desde 2023, hemos creado una comunidad que conecta a personas con oportunidades reales y accesibles, ofreciendo productos digitales como streaming, recargas, suscripciones y mucho más.</p>
             
             <p>Nuestro modelo de trabajo es flexible, inclusivo y pensado para todos. Puedes ser revendedor, promotor o reclutador, sin necesidad de inversión previa. En novaklar, creces a tu ritmo y con el respaldo de un equipo comprometido.</p>
             
             <p>Más que una marca, somos un movimiento. Creemos en el poder de la tecnología para cambiar vidas, y cada día trabajamos para que más personas descubran su potencial en el mundo digital.</p>
-            
-            <a href="#contacto" class="cta-button">Únete a nuestro equipo</a>
         </div>
         
         <div class="video-container">
