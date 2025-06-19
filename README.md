@@ -1,1 +1,437 @@
-# info
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>novaklar - Oportunidades Digitales</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @font-face {
+            font-family: 'Waratah';
+            src: url('https://raw.githubusercontent.com/novaklar/web/main/waratah.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        :root {
+            --primary: #00128F;
+            --secondary: #6C91FF;
+            --accent: #FF6584;
+            --light: #F8F9FA;
+            --dark: #212529;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--dark);
+            line-height: 1.6;
+            background: white;
+        }
+        
+        .hero {
+            background: var(--primary);
+            color: white;
+            padding: 5rem 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        .logo-svg {
+            height: 80px;
+            filter: invert(70%) sepia(56%) saturate(618%) hue-rotate(193deg) brightness(104%) contrast(101%);
+        }
+        
+        .logo {
+            font-family: 'Waratah', sans-serif;
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            letter-spacing: 1px;
+            text-transform: lowercase;
+            font-weight: normal;
+            color: white;
+        }
+        
+        .tagline {
+            font-size: 1.8rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            font-weight: 300;
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: none;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            background: var(--primary);
+        }
+        
+        .video-container {
+            max-width: 800px;
+            margin: 4rem auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border: none;
+        }
+        
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+        }
+        
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .section {
+            padding: 5rem 1rem;
+            text-align: center;
+            background: white;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+        
+        .benefits {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .benefit-card {
+            flex: 1 1 300px;
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-top: 5px solid var(--secondary);
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .benefit-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .benefit-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .testimonials {
+            background: #F5F7FF;
+        }
+        
+        .testimonial-card {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--secondary);
+            color: var(--dark);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary);
+            text-align: right;
+        }
+        
+        .roles {
+            background: var(--gradient);
+            color: white;
+        }
+        
+        .roles .section-title {
+            color: white;
+        }
+        
+        .roles .section-title::after {
+            background: white;
+        }
+        
+        .role-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .role-card {
+            flex: 1 1 300px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .role-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+        
+        .footer-logo-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-logo-svg {
+            height: 60px;
+            filter: invert(70%) sepia(56%) saturate(618%) hue-rotate(193deg) brightness(104%) contrast(101%);
+        }
+        
+        .social-links {
+            margin: 2rem 0;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        p {
+            text-align: justify;
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
+            font-size: 1.1rem;
+            padding: 0 1rem;
+        }
+        
+        .justified-text {
+            text-align: justify;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            font-size: 1.2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .logo-svg {
+                height: 60px;
+            }
+            
+            .logo {
+                font-size: 3rem;
+            }
+            
+            .tagline {
+                font-size: 1.4rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            p {
+                padding: 0 0.5rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="container">
+            <div class="logo-container">
+                <img src="https://raw.githubusercontent.com/novaklar/web/main/Novaklar.svg" alt="novaklar" class="logo-svg">
+            </div>
+            <h1 class="logo">novaklar</h1>
+            <p class="tagline">Transformamos la forma de generar ingresos en línea</p>
+            <a href="#unete" class="cta-button">ÚNETE AHORA</a>
+        </div>
+    </section>
+    
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">¿Qué es novaklar?</h2>
+            <p>novaklar es una empresa digital que transforma la forma de generar ingresos en línea. Desde 2023, hemos creado una comunidad que conecta a personas con oportunidades reales y accesibles, ofreciendo productos digitales como streaming, recargas, suscripciones y mucho más.</p>
+            <p>Nuestro modelo de trabajo es flexible, inclusivo y pensado para todos. Puedes ser revendedor, promotor o reclutador, sin necesidad de inversión previa. En novaklar, creces a tu ritmo y con el respaldo de un equipo comprometido.</p>
+            <p style="font-weight: 600; color: var(--primary);">Más que una marca, somos un movimiento. Creemos en el poder de la tecnología para cambiar vidas, y cada día trabajamos para que más personas descubran su potencial en el mundo digital.</p>
+            
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/3slcTVh2pGw?si=Il3XOXt0JkSqvaTO" title="Conoce novaklar" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section testimonials">
+        <div class="container">
+            <h2 class="section-title">Beneficios de unirte</h2>
+            <div class="benefits">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 class="benefit-title">Horario flexible</h3>
+                    <p>Trabaja cuando quieras y desde donde prefieras. Adaptamos el trabajo a tu vida, no al revés.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="benefit-title">Crecimiento ilimitado</h3>
+                    <p>Tu ingreso depende de tu esfuerzo y dedicación. Sin techos ni límites artificiales.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="benefit-title">Comunidad activa</h3>
+                    <p>Acceso a una red de emprendedores digitales que comparten conocimientos y experiencias.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section roles">
+        <div class="container">
+            <h2 class="section-title">Cómo puedes participar</h2>
+            <div class="role-cards">
+                <div class="role-card">
+                    <h3 class="role-title">Revendedor</h3>
+                    <p>Ofrece nuestros productos digitales a tu red de contactos y gana comisiones por cada venta.</p>
+                </div>
+                
+                <div class="role-card">
+                    <h3 class="role-title">Promotor</h3>
+                    <p>Difunde nuestra marca y oportunidades a través de tus redes sociales y canales digitales.</p>
+                </div>
+                
+                <div class="role-card">
+                    <h3 class="role-title">Reclutador</h3>
+                    <p>Forma tu propio equipo y genera ingresos adicionales con el trabajo de tu red.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section testimonials">
+        <div class="container">
+            <h2 class="section-title">Historias de éxito</h2>
+            <div class="testimonial-card">
+                <p class="testimonial-text">"En solo 6 meses con novaklar he logrado triplicar mis ingresos anteriores. Lo mejor es la libertad de horarios y el apoyo constante de la comunidad."</p>
+                <p class="testimonial-author">- María G., Revendedora desde 2023</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="unete" class="section" style="padding-bottom: 8rem;">
+        <div class="container">
+            <h2 class="section-title">¿Listo para comenzar?</h2>
+            <p style="text-align: center;">
+                Regístrate ahora y comienza a construir tu futuro digital. Sin costos iniciales, sin riesgos.
+            </p>
+            <a href="#" class="cta-button">QUIERO UNIRME</a>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-logo-container">
+                <img src="https://raw.githubusercontent.com/novaklar/web/main/Novaklar.svg" alt="novaklar" class="footer-logo-svg">
+            </div>
+            <p style="text-align: center;">Transformando vidas a través de oportunidades digitales</p>
+            
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+            </div>
+            
+            <p style="text-align: center;">© 2023 novaklar. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
