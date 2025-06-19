@@ -23,21 +23,23 @@
             background-color: #f8f9fa;
             color: #333;
             line-height: 1.6;
+            overflow-x: hidden; /* Previene desbordamiento horizontal */
         }
         
         .header {
             width: 100%;
-            padding: 40px 0;
+            padding: 40px 20px; /* Añadido padding lateral */
             background-color: #00128f;
             color: white;
             margin-bottom: 40px;
             text-align: center;
+            box-sizing: border-box; /* Incluye padding en el ancho */
         }
         
         .logo {
             width: 180px;
+            max-width: 100%; /* Asegura que no exceda el ancho */
             margin-bottom: 20px;
-            /* Logo en color #6c91ff */
             filter: invert(48%) sepia(95%) saturate(1283%) hue-rotate(202deg) brightness(102%) contrast(101%);
         }
         
@@ -74,15 +76,104 @@
             margin-bottom: 40px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             text-align: center;
+            width: calc(100% - 40px); /* Ajuste para móviles */
+            margin-left: auto;
+            margin-right: auto;
+            box-sizing: border-box;
         }
         
-        h1 {
+        .roles-section {
+            width: 100%;
+            background: linear-gradient(135deg, #6c91ff 0%, #00128f 100%);
+            color: white;
+            padding: 60px 20px; /* Añadido padding lateral */
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+        
+        .roles-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .roles-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .roles-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            margin-top: 40px;
+            width: 100%;
+        }
+        
+        .role-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+            width: calc(100% - 60px); /* Ajuste para padding */
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+        
+        .role-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.25);
+        }
+        
+        h1, h2 {
             color: #00128f;
             font-size: 32px;
             margin-top: 0;
             margin-bottom: 25px;
             font-weight: 600;
             text-align: center;
+        }
+        
+        h2 {
+            color: white;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        h2:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 2px;
+            background: rgba(255,255,255,0.5);
+            margin: 15px auto 0;
+        }
+        
+        h3 {
+            color: white;
+            font-size: 22px;
+            margin-top: 0;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: 600;
         }
         
         h1:after {
@@ -98,11 +189,31 @@
             margin-bottom: 20px;
             font-size: 18px;
             text-align: justify;
-            color: #333; /* Texto uniforme */
+            color: #333;
+        }
+        
+        .role-card p {
+            color: rgba(255,255,255,0.9);
+            text-align: justify;
+            margin-bottom: 15px;
+        }
+        
+        .role-card .example {
+            background: rgba(0, 0, 0, 0.15);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 16px;
+            text-align: justify;
+            border-left: 3px solid rgba(255,255,255,0.3);
+        }
+        
+        .role-card .example strong {
+            color: white;
         }
         
         .video-container {
-            width: 100%;
+            width: calc(100% - 40px);
             max-width: 800px;
             margin: 0 auto 40px;
             border-radius: 8px;
@@ -135,9 +246,31 @@
         .cta-button:hover {
             background-color: #00128f;
             transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 18, 143, 0.4);
         }
         
-        @media (max-width: 768px) {
+        @media (min-width: 768px) {
+            .roles-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 30px;
+            }
+            
+            .role-card {
+                width: 100%;
+                margin: 0;
+            }
+            
+            .header {
+                padding: 40px 0;
+            }
+            
+            .roles-section {
+                padding: 60px 0;
+            }
+        }
+        
+        @media (max-width: 767px) {
             .logo {
                 width: 140px;
             }
@@ -148,23 +281,40 @@
             
             .slogan {
                 font-size: 18px;
-                padding: 0 20px;
             }
             
             .content-box {
                 padding: 25px 20px;
+                width: calc(100% - 40px);
             }
             
-            h1 {
+            h1, h2 {
                 font-size: 28px;
+            }
+            
+            h3 {
+                font-size: 20px;
             }
             
             p {
                 font-size: 16px;
             }
             
+            .video-container {
+                width: calc(100% - 40px);
+            }
+            
             .video-container iframe {
                 height: 250px;
+            }
+            
+            .role-card {
+                padding: 25px 20px;
+                width: calc(100% - 40px);
+            }
+            
+            .roles-grid {
+                gap: 30px;
             }
         }
     </style>
@@ -175,7 +325,7 @@
         
         <div class="name">novaklar</div>
         
-        <div class="slogan">Transformamos la forma de generar ingresos en línea.</div>
+        <div class="slogan">Ingresos digitales, oportunidades reales</div>
     </div>
     
     <div class="container">
@@ -192,6 +342,38 @@
         
         <div class="video-container">
             <iframe src="https://www.youtube.com/embed/3slcTVh2pGw?si=l7sCSxkG8btxB042" allowfullscreen></iframe>
+        </div>
+    </div>
+    
+    <div class="roles-section">
+        <div class="roles-container">
+            <h2>Cargos</h2>
+            
+            <div class="roles-grid">
+                <div class="role-card">
+                    <h3>Revendedor</h3>
+                    <p>Vende productos digitales directamente al cliente sin necesidad de invertir previamente. Solo pagas cuando ya tienes una venta confirmada, lo que elimina cualquier riesgo financiero inicial. Gestionas tus propias ventas y estableces relaciones directas con tus clientes.</p>
+                    <div class="example">
+                        <strong>Ejemplo:</strong> Si un cliente compra una cuenta de HBO Max por $10.000, tú la adquieres por $5.000 y ganas $5.000 de ganancia inmediata sin tener que comprar el producto por adelantado.
+                    </div>
+                </div>
+                
+                <div class="role-card">
+                    <h3>Promotor</h3>
+                    <p>Promociona productos a través de enlaces o redes sociales sin necesidad de manejar el proceso de venta completo. Ideal para quienes tienen audiencia digital o habilidades en marketing. Ganas comisiones por cada venta generada a través de tus enlaces únicos.</p>
+                    <div class="example">
+                        <strong>Ejemplo:</strong> Si alguien compra Amazon Prime por $10.000 desde tu catálogo o enlace de afiliado, recibes $4.000 de comisión automáticamente, sin tener que atender consultas o procesar pagos.
+                    </div>
+                </div>
+                
+                <div class="role-card">
+                    <h3>Reclutador</h3>
+                    <p>Amplía la red Novaklar invitando a nuevas personas y gana comisiones por sus primeras ventas. Perfecto para networkers y personas con amplios círculos sociales. Tu ingreso crece a medida que ayudas a otros a comenzar su camino en el mundo digital.</p>
+                    <div class="example">
+                        <strong>Ejemplo:</strong> Si reclutas a Laura y ella vende una cuenta de Paramount por $10.000, tú ganas una comisión por esa venta y por las cuatro siguientes que realice, creando así un flujo de ingresos recurrente.
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>
