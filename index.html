@@ -107,6 +107,7 @@
             border: 2px solid var(--primary-color);
             margin: 20px 0;
             text-align: center;
+            cursor: pointer;
         }
         
         .btn:hover {
@@ -476,6 +477,99 @@
             opacity: 0.7;
         }
         
+        /* Modal de contraseña */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            overflow: auto;
+        }
+        
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 30px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        
+        .modal-title {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .password-input {
+            width: 100%;
+            padding: 12px 15px;
+            margin: 15px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            text-align: center;
+            outline: none;
+        }
+        
+        .password-input:focus {
+            border-color: var(--primary-color);
+        }
+        
+        .modal-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            margin: 10px 5px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-btn:hover {
+            background-color: #000d6e;
+        }
+        
+        .keyboard {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .key {
+            background-color: #f1f1f1;
+            border: none;
+            padding: 15px;
+            font-size: 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .key:hover {
+            background-color: #ddd;
+        }
+        
+        .key:active {
+            background-color: #ccc;
+        }
+        
+        .error-message {
+            color: #ff4444;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            display: none;
+        }
+        
         /* Animaciones */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -565,6 +659,10 @@
             .story-content {
                 padding: 25px 20px;
             }
+            
+            .modal-content {
+                padding: 20px;
+            }
         }
     </style>
 </head>
@@ -624,7 +722,7 @@
             </div>
 
             <div class="btn-container animate delay-3">
-                <a href="#" class="btn">Ir a Capacitación</a>
+                <a href="#" class="btn" id="trainingBtn">Ir a Capacitación</a>
             </div>
         </div>
     </section>
@@ -705,35 +803,17 @@
                     <!-- Historia 1 -->
                     <div class="story-card">
                         <div class="story-content animate">
-                            <h3 class="story-name">Carlos, 22 años</h3>
-                            <span class="story-role">Estudiante de Ingeniería</span>
-                            <p class="story-text">"Con Novaklar pago mis gastos universitarios sin descuidar mis estudios. Trabajo unas horas los fines de semana y en mis tiempos libres, generando un ingreso que me permite ser independiente."</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Historia 2 -->
-                    <div class="story-card">
-                        <div class="story-content animate delay-1">
-                            <h3 class="story-name">María, 19 años</h3>
-                            <span class="story-role">Recién graduada</span>
-                            <p class="story-text">"Mientras buscaba mi primer trabajo formal, Novaklar me dio la oportunidad de ganar experiencia y dinero. Ahora que conseguí empleo, sigo con el negocio como ingreso extra."</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Historia 3 -->
-                    <div class="story-card">
-                        <div class="story-content animate delay-2">
-                            <h3 class="story-name">Andrés, 25 años</h3>
-                            <span class="story-role">Trabajador a tiempo completo</span>
-                            <p class="story-text">"Tengo un trabajo estable pero los ingresos no alcanzaban. Con Novaklar complemento mi salario sin interferir con mi horario laboral. Lo mejor es que puedo hacerlo desde mi celular."</p>
+                            <h3 class="story-name">Katherine Cárdenas – 19 años</h3>
+                            <span class="story-role">Revendedora</span>
+                            <p class="story-text">"Yo entré a Novaklar en un momento donde necesitaba sentirme útil. No buscaba ganar millones, solo algo que me ayudara a cubrir mis propios gastos sin depender tanto de mis papás. Al principio no sabía ni cómo hablarle a la gente, pero poco a poco fui aprendiendo, usando los catálogos y viendo qué plataformas se movían más.
+
+Hoy, aunque no vivo de esto, puedo decir que todos los meses me queda algo fijo que llega sin falta. Y más que la plata, es la satisfacción de sentir que algo es mío, que lo muevo yo. Si eres constante, Novaklar te responde."</p>
                         </div>
                     </div>
                 </div>
                 
                 <div class="carousel-nav">
                     <div class="carousel-dot active" data-index="0"></div>
-                    <div class="carousel-dot" data-index="1"></div>
-                    <div class="carousel-dot" data-index="2"></div>
                 </div>
             </div>
         </div>
@@ -767,6 +847,34 @@
             </div>
         </div>
     </footer>
+    
+    <!-- Modal de contraseña -->
+    <div id="passwordModal" class="modal">
+        <div class="modal-content">
+            <h2 class="modal-title">Ingresa la contraseña</h2>
+            <input type="password" id="passwordInput" class="password-input" placeholder="Ingresa la contraseña" maxlength="4" inputmode="numeric">
+            <p id="errorMessage" class="error-message">Contraseña incorrecta. Intenta nuevamente.</p>
+            
+            <div class="keyboard">
+                <button class="key" data-key="1">1</button>
+                <button class="key" data-key="2">2</button>
+                <button class="key" data-key="3">3</button>
+                <button class="key" data-key="4">4</button>
+                <button class="key" data-key="5">5</button>
+                <button class="key" data-key="6">6</button>
+                <button class="key" data-key="7">7</button>
+                <button class="key" data-key="8">8</button>
+                <button class="key" data-key="9">9</button>
+                <button class="key" data-key="0">0</button>
+                <button class="key" id="backspace"><i class="fas fa-backspace"></i></button>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <button id="submitPassword" class="modal-btn">Ingresar</button>
+                <button id="cancelPassword" class="modal-btn" style="background-color: #ff4444;">Cancelar</button>
+            </div>
+        </div>
+    </div>
     
     <script>
         // Carrusel de Historias de Éxito
@@ -818,6 +926,74 @@
             
             window.addEventListener('scroll', checkAnimation);
             window.addEventListener('load', checkAnimation);
+            
+            // Lógica para el modal de contraseña
+            const trainingBtn = document.getElementById('trainingBtn');
+            const passwordModal = document.getElementById('passwordModal');
+            const passwordInput = document.getElementById('passwordInput');
+            const submitPassword = document.getElementById('submitPassword');
+            const cancelPassword = document.getElementById('cancelPassword');
+            const errorMessage = document.getElementById('errorMessage');
+            const backspaceBtn = document.getElementById('backspace');
+            const keys = document.querySelectorAll('.key[data-key]');
+            
+            // Mostrar modal al hacer clic en el botón de capacitación
+            trainingBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                passwordModal.style.display = 'block';
+                passwordInput.focus();
+            });
+            
+            // Teclado numérico
+            keys.forEach(key => {
+                key.addEventListener('click', function() {
+                    const value = this.getAttribute('data-key');
+                    passwordInput.value += value;
+                });
+            });
+            
+            // Botón de borrar
+            backspaceBtn.addEventListener('click', function() {
+                passwordInput.value = passwordInput.value.slice(0, -1);
+            });
+            
+            // Validar contraseña
+            submitPassword.addEventListener('click', function() {
+                if (passwordInput.value === '1188') {
+                    // Contraseña correcta, redirigir
+                    window.location.href = 'capa.html';
+                } else {
+                    // Contraseña incorrecta
+                    errorMessage.style.display = 'block';
+                    passwordInput.value = '';
+                    setTimeout(() => {
+                        errorMessage.style.display = 'none';
+                    }, 3000);
+                }
+            });
+            
+            // Permitir enviar con Enter
+            passwordInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    submitPassword.click();
+                }
+            });
+            
+            // Cancelar
+            cancelPassword.addEventListener('click', function() {
+                passwordModal.style.display = 'none';
+                passwordInput.value = '';
+                errorMessage.style.display = 'none';
+            });
+            
+            // Cerrar modal al hacer clic fuera
+            window.addEventListener('click', function(e) {
+                if (e.target === passwordModal) {
+                    passwordModal.style.display = 'none';
+                    passwordInput.value = '';
+                    errorMessage.style.display = 'none';
+                }
+            });
         });
     </script>
 </body>
