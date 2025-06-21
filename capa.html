@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capacitación - Novaklar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comme:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @font-face {
+            font-family: 'Waratah';
+            src: url('https://raw.githubusercontent.com/novaklar/web/main/waratah.ttf') format('truetype');
+        }
+        
+        :root {
+            --primary-color: #00128f;
+            --secondary-color: #6c91ff;
+            --accent-color: #ff6b6b;
+            --light-bg: #F5F7FF;
+            --dark-text: #333;
+            --light-text: #fff;
+            --gray-text: #777;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Comme', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            background-color: #f8f9fa;
+        }
+        
+        /* Header */
+        .header {
+            width: 100%;
+            padding: 20px;
+            background-color: var(--primary-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            width: 120px;
+            filter: invert(48%) sepia(95%) saturate(1283%) hue-rotate(202deg) brightness(102%) contrast(101%);
+        }
+        
+        .back-link {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-link:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* Contenido principal */
+        .main-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .page-title {
+            font-family: 'Comme', sans-serif;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        /* Video */
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .video-container::before {
+            content: '';
+            display: block;
+            padding-top: 56.25%;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Sección de roles */
+        .roles-section {
+            margin-top: 50px;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--secondary-color);
+            margin: 10px auto 0;
+        }
+        
+        .role-container {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid var(--secondary-color);
+        }
+        
+        .role-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .role-title i {
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+        }
+        
+        .role-goal {
+            background: var(--light-bg);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 50px;
+        }
+        
+        .role-goal:before {
+            content: '\f05a';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 15px;
+            top: 15px;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+        
+        .tools-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+            margin: 25px 0 15px;
+            color: var(--primary-color);
+        }
+        
+        .tools-title i {
+            color: var(--secondary-color);
+        }
+        
+        .tools-list {
+            list-style-type: none;
+            margin-left: 20px;
+        }
+        
+        .tools-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .tools-list li:before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+        }
+        
+        .advice-box {
+            background: rgba(108, 145, 255, 0.1);
+            border-left: 4px solid var(--secondary-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .advice-box strong {
+            color: var(--primary-color);
+        }
+        
+        .ideal-for {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+        
+        .ideal-for i {
+            color: var(--secondary-color);
+        }
+        
+        .final-message {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-top: 50px;
+            padding: 20px;
+            background: var(--light-bg);
+            border-radius: 12px;
+            font-style: italic;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        .footer p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .role-container {
+                padding: 20px;
+            }
+            
+            .role-title {
+                font-size: 1.3rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .page-title {
+                font-size: 1.8rem;
+            }
+            
+            .main-content {
+                padding: 30px 15px;
+            }
+            
+            .logo {
+                width: 100px;
+            }
+            
+            .role-goal {
+                padding-left: 40px;
+            }
+            
+            .role-goal:before {
+                left: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <img src="https://raw.githubusercontent.com/novaklar/web/refs/heads/main/Novaklar.svg" alt="Novaklar Logo" class="logo">
+        <a href="index.html" class="back-link">
+            <i class="fas fa-arrow-left"></i>
+            Regresar
+        </a>
+    </header>
+    
+    <!-- Contenido principal -->
+    <main class="main-content">
+        <h1 class="page-title">Capacitación</h1>
+        
+        <!-- Video -->
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/7xWRpFFRzgg?si=yZDkY7p2hAkw9t13" title="Video de capacitación Novaklar" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        
+        <!-- Información de roles -->
+        <div class="roles-section">
+            <h2 class="section-title">¿Qué sigue según el rol que elegiste?</h2>
+            
+            <!-- Revendedor -->
+            <div class="role-container">
+                <div class="role-title">
+                    <i class="fas fa-briefcase"></i>
+                    <h3>Revendedor</h3>
+                </div>
+                
+                <div class="role-goal">
+                    <strong>Tu objetivo:</strong> Vender directamente los productos de Novaklar a clientes finales.
+                </div>
+                
+                <div class="tools-title">
+                    <i class="fas fa-tools"></i>
+                    <h4>Herramientas que usarás:</h4>
+                </div>
+                
+                <ul class="tools-list">
+                    <li>Catálogo para clientes (en formato visual y compartible)</li>
+                    <li>Catálogo para afiliados (dentro de la plataforma web)</li>
+                    <li>Publicidad oficial de Novaklar</li>
+                    <li>Ranking de afiliados (donde se reflejan tus ventas)</li>
+                    <li>App de Novaklar</li>
+                </ul>
+                
+                <div class="advice-box">
+                    <strong>Consejo:</strong> Enfócate en plataformas de alta demanda y buena ganancia como HBO Max, Prime Video y Netflix. Tu trabajo será atender al cliente final, ofrecer productos según su necesidad y mantenerte al día con las promociones.
+                </div>
+                
+                <div class="ideal-for">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Ideal si te gusta vender, tener contacto con personas y obtener ingresos directos sin invertir.</span>
+                </div>
+            </div>
+            
+            <!-- Promotor -->
+            <div class="role-container">
+                <div class="role-title">
+                    <i class="fas fa-bullhorn"></i>
+                    <h3>Promotor</h3>
+                </div>
+                
+                <div class="role-goal">
+                    <strong>Tu objetivo:</strong> Compartir y recomendar los productos de Novaklar para que otros compren desde tu referencia.
+                </div>
+                
+                <div class="tools-title">
+                    <i class="fas fa-tools"></i>
+                    <h4>Herramientas que usarás:</h4>
+                </div>
+                
+                <ul class="tools-list">
+                    <li>Catálogo para clientes (como referencia para lo que compartes)</li>
+                    <li>Publicidad oficial de Novaklar (listo para copiar y pegar)</li>
+                    <li>Ranking de afiliados (para seguimiento interno de tu progreso)</li>
+                    <li>App de Novaklar</li>
+                </ul>
+                
+                <div class="advice-box">
+                    <strong>Consejo:</strong> Comparte desde la experiencia, no desde la presión. Muestra los beneficios de forma natural, utiliza frases preparadas y haz seguimiento a tus contactos.
+                </div>
+                
+                <div class="ideal-for">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Ideal si prefieres recomendar sin tener que atender clientes directamente.</span>
+                </div>
+            </div>
+            
+            <!-- Reclutador -->
+            <div class="role-container">
+                <div class="role-title">
+                    <i class="fas fa-users"></i>
+                    <h3>Reclutador</h3>
+                </div>
+                
+                <div class="role-goal">
+                    <strong>Tu objetivo:</strong> Invitar a nuevos colaboradores para que se unan a Novaklar y empiecen a generar ingresos.
+                </div>
+                
+                <div class="tools-title">
+                    <i class="fas fa-tools"></i>
+                    <h4>Herramientas que usarás:</h4>
+                </div>
+                
+                <ul class="tools-list">
+                    <li>Video de presentación oficial</li>
+                    <li>Página web de admisión y capacitación</li>
+                    <li>Tu experiencia y explicación personal</li>
+                    <li>Apoyo directo de tu asesora para orientar a los nuevos</li>
+                </ul>
+                
+                <div class="advice-box">
+                    <strong>Consejo:</strong> Conecta con las personas desde tu historia. Sé claro, transmite seguridad y ayúdales a entender que este proyecto tiene estructura, herramientas y una comunidad detrás.
+                </div>
+                
+                <div class="ideal-for">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Ideal si te gusta explicar, inspirar y hacer crecer un equipo desde cero.</span>
+                </div>
+            </div>
+            
+            <div class="final-message">
+                "Ya entendiste cómo funciona tu rol. Ahora empieza tu camino en Novaklar con seguridad y decisión."
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2023 Novaklar. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
