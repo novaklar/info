@@ -6,7 +6,7 @@
     <title>Novaklar - Oportunidades Digitales</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comme:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comme:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @font-face {
@@ -14,27 +14,38 @@
             src: url('https://raw.githubusercontent.com/novaklar/web/main/waratah.ttf') format('truetype');
         }
         
-        body {
-            font-family: 'Comme', sans-serif;
+        :root {
+            --primary-color: #00128f;
+            --secondary-color: #6c91ff;
+            --accent-color: #ff6b6b;
+            --light-bg: #F5F7FF;
+            --dark-text: #333;
+            --light-text: #fff;
+            --gray-text: #777;
+        }
+        
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background-color: #f8f9fa;
-            color: #333;
+        }
+        
+        body {
+            font-family: 'Comme', sans-serif;
             line-height: 1.6;
+            color: var(--dark-text);
+            background-color: #f8f9fa;
             overflow-x: hidden;
         }
         
+        /* Header */
         .header {
             width: 100%;
             padding: 40px 20px;
-            background-color: #00128f;
-            color: white;
+            background-color: var(--primary-color);
+            color: var(--light-text);
             margin-bottom: 40px;
             text-align: center;
-            box-sizing: border-box;
         }
         
         .logo {
@@ -50,149 +61,94 @@
             font-weight: normal;
             text-transform: lowercase;
             margin-bottom: 10px;
-            color: white;
+            color: var(--light-text);
             letter-spacing: 1px;
         }
         
-        .container {
+        /* Secciones generales */
+        .section {
             width: 100%;
-            max-width: 900px;
-            padding: 0 20px;
-            box-sizing: border-box;
-            margin-bottom: 40px;
-        }
-        
-        .intro-text {
-            background: transparent;
-            padding: 0 20px;
-            margin-bottom: 40px;
-            text-align: center;
-            width: calc(100% - 40px);
-            margin-left: auto;
-            margin-right: auto;
-            box-sizing: border-box;
-        }
-        
-        .intro-text p {
-            font-size: 18px;
-            text-align: justify;
-            color: #333;
-            margin-bottom: 20px;
-        }
-        
-        .roles-section {
-            width: 100%;
-            background: linear-gradient(135deg, #6c91ff 0%, #00128f 100%);
-            color: white;
             padding: 60px 20px;
-            position: relative;
-            overflow: hidden;
-            box-sizing: border-box;
         }
         
-        .roles-container {
-            max-width: 900px;
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0;
-            position: relative;
-            z-index: 1;
-            width: 100%;
-            box-sizing: border-box;
+            padding: 0 20px;
         }
         
-        .roles-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
-            margin-top: 40px;
-            width: 100%;
-        }
-        
-        .role-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 12px;
-            padding: 30px;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
-            width: calc(100% - 60px);
-            margin: 0 auto;
-            box-sizing: border-box;
-        }
-        
-        .role-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.25);
-            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.25);
-        }
-        
-        h2 {
-            color: white;
-            font-size: 32px;
-            margin-top: 0;
-            margin-bottom: 25px;
-            font-weight: 600;
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2.5rem;
             text-align: center;
             position: relative;
-            padding-bottom: 15px;
+            color: var(--primary-color);
         }
         
-        h2:after {
+        .section-title:after {
             content: '';
             display: block;
             width: 80px;
-            height: 2px;
-            background: rgba(255,255,255,0.5);
+            height: 4px;
+            background: var(--secondary-color);
             margin: 15px auto 0;
         }
         
-        h3 {
+        /* Botones */
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
             color: white;
-            font-size: 22px;
-            margin-top: 0;
-            margin-bottom: 15px;
-            text-align: center;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
             font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary-color);
+            margin: 20px 0;
+            text-align: center;
         }
         
-        p {
+        .btn:hover {
+            background-color: transparent;
+            color: var(--primary-color);
+        }
+        
+        .btn-container {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        /* Sección Introducción */
+        .intro-text {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .intro-text p {
+            font-size: 1.1rem;
+            text-align: justify;
             margin-bottom: 20px;
-            font-size: 18px;
-            text-align: justify;
-            color: #333;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
-        .role-card p {
-            color: rgba(255,255,255,0.9);
-            text-align: justify;
-            margin-bottom: 15px;
-        }
-        
-        .role-card .example {
-            background: rgba(0, 0, 0, 0.15);
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 20px;
-            font-size: 16px;
-            text-align: justify;
-            border-left: 3px solid rgba(255,255,255,0.3);
-        }
-        
-        .role-card .example strong {
-            color: white;
-        }
-        
+        /* Video */
         .video-container {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%; /* Proporción 16:9 */
-            margin: 0 auto 40px;
-            border-radius: 8px;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            background: #f0f0f0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .video-container::before {
+            content: '';
+            display: block;
+            padding-top: 56.25%;
         }
         
         .video-container iframe {
@@ -204,170 +160,482 @@
             border: none;
         }
         
-        /* ESTILOS PARA LA SECCIÓN BENEFICIOS */
-        .benefits-section {
-            background: #F5F7FF;
-            padding: 4rem 1rem;
-            text-align: center;
-            width: 100%;
+        /* Sección Roles */
+        .roles-section {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+            color: var(--light-text);
         }
         
-        .benefits-container {
-            max-width: 1200px;
+        .roles-section .section-title {
+            color: var(--light-text);
+        }
+        
+        .roles-section .section-title:after {
+            display: none;
+        }
+        
+        .roles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .role-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+        
+        .role-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .role-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--light-text);
+        }
+        
+        .role-card p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
+        }
+        
+        .example {
+            background: rgba(0, 0, 0, 0.15);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 3px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .example strong {
+            color: var(--light-text);
+        }
+        
+        /* Sección Cómo Funciona (nueva) */
+        .how-it-works {
+            background-color: var(--light-bg);
+        }
+        
+        .steps-container {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            max-width: 800px;
             margin: 0 auto;
         }
         
-        .benefits-title {
-            font-size: clamp(1.8rem, 6vw, 2.5rem);
-            margin-bottom: 3rem;
-            color: #00128F;
-            position: relative;
+        .step {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
         }
         
-        .benefits-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
-            background: #6C91FF;
-            border-radius: 2px;
+        .step-number {
+            background-color: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .step-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            flex-grow: 1;
+        }
+        
+        .step-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        /* Sección Beneficios */
+        .benefits-section {
+            background-color: white;
         }
         
         .benefits-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
         }
         
         .benefit-card {
-            background: white;
+            background: var(--light-bg);
             border-radius: 12px;
-            padding: 2rem 1.5rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 30px;
             transition: all 0.3s ease;
-            border-top: 4px solid #6C91FF;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid var(--secondary-color);
+            text-align: center;
         }
         
         .benefit-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
         
         .benefit-icon {
             font-size: 2.5rem;
-            color: #00128F;
-            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
         }
         
         .benefit-card h3 {
-            color: #00128F;
+            color: var(--primary-color);
+            margin-bottom: 15px;
             font-size: 1.3rem;
-            margin-bottom: 1rem;
         }
         
-        .benefit-description {
-            color: #333;
-            line-height: 1.6;
+        /* Sección Historias de Éxito */
+        .success-stories {
+            background-color: var(--light-bg);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stories-carousel {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        
+        .stories-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .story-card {
+            min-width: 100%;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        
+        .story-content {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .story-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--secondary-color);
+        }
+        
+        .story-name {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .story-role {
+            color: var(--secondary-color);
+            font-weight: 500;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .story-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .story-text::before,
+        .story-text::after {
+            content: '"';
+            font-size: 2rem;
+            color: var(--secondary-color);
+            opacity: 0.3;
+            position: absolute;
+        }
+        
+        .story-text::before {
+            top: -15px;
+            left: -10px;
+        }
+        
+        .story-text::after {
+            bottom: -25px;
+            right: -10px;
+        }
+        
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+            opacity: 0.3;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .carousel-dot.active {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 60px 0 30px;
             text-align: center;
         }
         
-        @media (min-width: 768px) {
-            .roles-grid {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 30px;
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            width: 150px;
+            margin-bottom: 20px;
+            filter: brightness(0) invert(1);
+        }
+        
+        .footer-about p {
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        
+        .social-link {
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+        
+        .footer-contact {
+            margin-bottom: 30px;
+        }
+        
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+        
+        .footer-contact i {
+            color: var(--secondary-color);
+        }
+        
+        .footer-bottom {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Animaciones */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate {
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+        
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+        
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .section {
+                padding: 50px 20px;
             }
             
-            .role-card {
-                width: 100%;
-                margin: 0;
-                min-height: 400px;
-                display: flex;
-                flex-direction: column;
-            }
-            
-            .header {
-                padding: 40px 0;
-            }
-            
-            .roles-section {
-                padding: 60px 0;
+            .section-title {
+                font-size: 2rem;
             }
         }
         
-        @media (max-width: 767px) {
-            .logo {
-                width: 140px;
+        @media (max-width: 768px) {
+            .header {
+                padding: 30px 20px;
             }
             
             .name {
                 font-size: 36px;
             }
             
-            .intro-text {
-                padding: 0 20px;
-                width: calc(100% - 40px);
+            .section-title {
+                font-size: 1.8rem;
+                margin-bottom: 2rem;
             }
             
-            h2 {
-                font-size: 28px;
+            .intro-text p {
+                font-size: 1rem;
             }
             
-            h3 {
-                font-size: 20px;
+            .role-card,
+            .benefit-card {
+                padding: 25px;
             }
             
-            p, .intro-text p {
-                font-size: 16px;
+            .step {
+                flex-direction: column;
             }
             
-            .role-card {
+            .step-number {
+                margin-bottom: 10px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .header {
+                padding: 25px 15px;
+            }
+            
+            .logo {
+                width: 140px;
+            }
+            
+            .name {
+                font-size: 32px;
+            }
+            
+            .section {
+                padding: 40px 15px;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .story-content {
                 padding: 25px 20px;
-                width: calc(100% - 40px);
-                min-height: auto;
-            }
-            
-            .roles-grid {
-                gap: 30px;
-            }
-            
-            .benefits-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="header">
+    <!-- Header -->
+    <header class="header">
         <img src="https://raw.githubusercontent.com/novaklar/web/refs/heads/main/Novaklar.svg" alt="Novaklar Logo" class="logo">
         <div class="name">novaklar</div>
-    </div>
+    </header>
     
-    <div class="container">
-        <div class="intro-text">
-            <p>novaklar es una empresa digital que transforma la forma de generar ingresos en línea. Desde 2023, hemos creado una comunidad que conecta a personas con oportunidades reales y accesibles, ofreciendo productos digitales como streaming, recargas, suscripciones y mucho más.</p>
+    <!-- Sección Introducción -->
+    <section class="section">
+        <div class="container">
+            <div class="intro-text">
+                <p class="animate">novaklar es una empresa digital que transforma la forma de generar ingresos en línea. Desde 2023, hemos creado una comunidad que conecta a personas con oportunidades reales y accesibles, ofreciendo productos digitales como streaming, recargas, suscripciones y mucho más.</p>
+                
+                <p class="animate delay-1">Nuestro modelo de trabajo es flexible, inclusivo y pensado especialmente para jóvenes, estudiantes y universitarios que buscan un ingreso pasivo. Puedes ser revendedor, promotor o reclutador, sin necesidad de inversión previa. En novaklar, creces a tu ritmo y con el respaldo de un equipo comprometido.</p>
+                
+                <p class="animate delay-2">Es el complemento perfecto para personas con trabajos estables que buscan aumentar sus ingresos. Creemos en el poder de la tecnología para cambiar vidas, y cada día trabajamos para que más personas descubran su potencial en el mundo digital.</p>
+            </div>
             
-            <p>Nuestro modelo de trabajo es flexible, inclusivo y pensado para todos. Puedes ser revendedor, promotor o reclutador, sin necesidad de inversión previa. En novaklar, creces a tu ritmo y con el respaldo de un equipo comprometido.</p>
-            
-            <p>Más que una marca, somos un movimiento. Creemos en el poder de la tecnología para cambiar vidas, y cada día trabajamos para que más personas descubran su potencial en el mundo digital.</p>
+            <div class="video-container animate delay-3">
+                <iframe src="https://www.youtube.com/embed/RGXrXUhM9kU?si=DA7uZ_2sTamxlaHV" title="Video de presentación Novaklar" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
         </div>
-        
-        <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/RGXrXUhM9kU?si=DA7uZ_2sTamxlaHV" title="Video de presentación Novaklar" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-    </div>
+    </section>
     
-    <div class="roles-section">
-        <div class="roles-container">
-            <h2>Cargos</h2>
+    <!-- Sección Cómo Funciona -->
+    <section class="section how-it-works">
+        <div class="container">
+            <h2 class="section-title animate">¿Cómo Funciona?</h2>
+            
+            <div class="steps-container">
+                <div class="step animate">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Regístrate Gratis</h3>
+                        <p>Completa nuestro sencillo formulario de registro sin ningún costo inicial. Recibirás acceso inmediato a tu panel de control con todos los recursos que necesitas.</p>
+                    </div>
+                </div>
+                
+                <div class="step animate delay-1">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Elige tu Rol</h3>
+                        <p>Selecciona el modelo que mejor se adapte a ti: revendedor, promotor o reclutador. Puedes cambiar o combinar roles según tu crecimiento.</p>
+                    </div>
+                </div>
+                
+                <div class="step animate delay-2">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Comienza a Ganar</h3>
+                        <p>Accede a nuestros productos digitales, comparte con tu red y genera ingresos desde el primer día. Te acompañamos en todo el proceso.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="btn-container animate delay-3">
+                <a href="#" class="btn">Ir a Capacitación</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sección Roles -->
+    <section class="section roles-section">
+        <div class="container">
+            <h2 class="section-title animate">Cargos</h2>
             
             <div class="roles-grid">
-                <div class="role-card">
+                <div class="role-card animate">
                     <h3>Revendedor</h3>
                     <p>Vende productos digitales directamente al cliente sin necesidad de invertir previamente. Solo pagas cuando ya tienes una venta confirmada, lo que elimina cualquier riesgo financiero inicial. Gestionas tus propias ventas y estableces relaciones directas con tus clientes.</p>
                     <div class="example">
@@ -375,7 +643,7 @@
                     </div>
                 </div>
                 
-                <div class="role-card">
+                <div class="role-card animate delay-1">
                     <h3>Promotor</h3>
                     <p>Promociona productos a través de enlaces o redes sociales sin necesidad de manejar el proceso de venta completo. Ideal para quienes tienen audiencia digital o habilidades en marketing. Ganas comisiones por cada venta generada a través de tus enlaces únicos.</p>
                     <div class="example">
@@ -383,7 +651,7 @@
                     </div>
                 </div>
                 
-                <div class="role-card">
+                <div class="role-card animate delay-2">
                     <h3>Reclutador</h3>
                     <p>Amplía la red Novaklar invitando a nuevas personas y gana comisiones por sus primeras ventas. Perfecto para networkers y personas con amplios círculos sociales. Tu ingreso crece a medida que ayudas a otros a comenzar su camino en el mundo digital.</p>
                     <div class="example">
@@ -392,42 +660,165 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
     
-    <!-- SECCIÓN BENEFICIOS -->
-    <section class="benefits-section">
-        <div class="benefits-container">
-            <h2 class="benefits-title">Beneficios de unirte</h2>
+    <!-- Sección Beneficios -->
+    <section class="section benefits-section">
+        <div class="container">
+            <h2 class="section-title animate">Beneficios de unirte</h2>
             
             <div class="benefits-grid">
-                <!-- Beneficio 1 -->
-                <div class="benefit-card">
+                <div class="benefit-card animate">
                     <div class="benefit-icon">
                         <i class="fas fa-clock"></i>
                     </div>
                     <h3>Horario flexible</h3>
-                    <p class="benefit-description">Trabaja cuando quieras y desde donde prefieras. Adaptamos el trabajo a tu vida, no al revés.</p>
+                    <p>Trabaja cuando quieras y desde donde prefieras. Perfecto para compatibilizar con estudios u otros trabajos. Adaptamos el trabajo a tu vida, no al revés.</p>
                 </div>
                 
-                <!-- Beneficio 2 -->
-                <div class="benefit-card">
+                <div class="benefit-card animate delay-1">
                     <div class="benefit-icon">
                         <i class="fas fa-chart-line"></i>
                     </div>
                     <h3>Crecimiento ilimitado</h3>
-                    <p class="benefit-description">Tu ingreso depende de tu esfuerzo y dedicación. Sin techos ni límites artificiales.</p>
+                    <p>Tu ingreso depende de tu esfuerzo y dedicación. Sin techos ni límites artificiales. Ideal para jóvenes ambiciosos.</p>
                 </div>
                 
-                <!-- Beneficio 3 -->
-                <div class="benefit-card">
+                <div class="benefit-card animate delay-2">
                     <div class="benefit-icon">
                         <i class="fas fa-users"></i>
                     </div>
                     <h3>Comunidad activa</h3>
-                    <p class="benefit-description">Acceso a una red de emprendedores digitales que comparten conocimientos y experiencias.</p>
+                    <p>Acceso a una red de emprendedores digitales que comparten conocimientos y experiencias. Aprende de otros jóvenes como tú.</p>
                 </div>
             </div>
         </div>
     </section>
+    
+    <!-- Sección Historias de Éxito -->
+    <section class="section success-stories">
+        <div class="container">
+            <h2 class="section-title animate">Historias de Jóvenes Emprendedores</h2>
+            
+            <div class="stories-carousel">
+                <div class="stories-track" id="storiesTrack">
+                    <!-- Historia 1 -->
+                    <div class="story-card">
+                        <div class="story-content animate">
+                            <h3 class="story-name">Carlos, 22 años</h3>
+                            <span class="story-role">Estudiante de Ingeniería</span>
+                            <p class="story-text">"Con Novaklar pago mis gastos universitarios sin descuidar mis estudios. Trabajo unas horas los fines de semana y en mis tiempos libres, generando un ingreso que me permite ser independiente."</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Historia 2 -->
+                    <div class="story-card">
+                        <div class="story-content animate delay-1">
+                            <h3 class="story-name">María, 19 años</h3>
+                            <span class="story-role">Recién graduada</span>
+                            <p class="story-text">"Mientras buscaba mi primer trabajo formal, Novaklar me dio la oportunidad de ganar experiencia y dinero. Ahora que conseguí empleo, sigo con el negocio como ingreso extra."</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Historia 3 -->
+                    <div class="story-card">
+                        <div class="story-content animate delay-2">
+                            <h3 class="story-name">Andrés, 25 años</h3>
+                            <span class="story-role">Trabajador a tiempo completo</span>
+                            <p class="story-text">"Tengo un trabajo estable pero los ingresos no alcanzaban. Con Novaklar complemento mi salario sin interferir con mi horario laboral. Lo mejor es que puedo hacerlo desde mi celular."</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-nav">
+                    <div class="carousel-dot active" data-index="0"></div>
+                    <div class="carousel-dot" data-index="1"></div>
+                    <div class="carousel-dot" data-index="2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <img src="https://raw.githubusercontent.com/novaklar/web/refs/heads/main/Novaklar.svg" alt="Novaklar Logo" class="footer-logo">
+                <div class="footer-about">
+                    <p>Transformando vidas a través de oportunidades digitales desde 2023.</p>
+                </div>
+                
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+                
+                <div class="footer-contact">
+                    <p><i class="fas fa-map-marker-alt"></i> Bogotá, Colombia</p>
+                    <p><i class="fas fa-envelope"></i> novaklar.oficial@gmail.com</p>
+                    <p><i class="fas fa-phone-alt"></i> +57 317 228 0539</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Novaklar. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Carrusel de Historias de Éxito
+        document.addEventListener('DOMContentLoaded', function() {
+            const track = document.getElementById('storiesTrack');
+            const dots = document.querySelectorAll('.carousel-dot');
+            let currentIndex = 0;
+            const totalSlides = document.querySelectorAll('.story-card').length;
+            
+            // Función para mover el carrusel
+            function moveToSlide(index) {
+                currentIndex = index;
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                
+                // Actualizar puntos de navegación
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === currentIndex);
+                });
+            }
+            
+            // Eventos para los puntos de navegación
+            dots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    moveToSlide(index);
+                });
+            });
+            
+            // Auto-rotación del carrusel
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                moveToSlide(currentIndex);
+            }, 5000);
+            
+            // Animaciones al hacer scroll
+            const animateElements = document.querySelectorAll('.animate');
+            
+            function checkAnimation() {
+                animateElements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.2;
+                    
+                    if (elementPosition < screenPosition) {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', checkAnimation);
+            window.addEventListener('load', checkAnimation);
+        });
+    </script>
 </body>
 </html>
