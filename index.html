@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comme:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @font-face {
             font-family: 'Waratah';
@@ -191,6 +192,7 @@
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background: #f0f0f0;
         }
         
         .video-container iframe {
@@ -200,6 +202,77 @@
             width: 100%;
             height: 100%;
             border: none;
+        }
+        
+        /* ESTILOS PARA LA SECCIÓN BENEFICIOS */
+        .benefits-section {
+            background: #F5F7FF;
+            padding: 4rem 1rem;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .benefits-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .benefits-title {
+            font-size: clamp(1.8rem, 6vw, 2.5rem);
+            margin-bottom: 3rem;
+            color: #00128F;
+            position: relative;
+        }
+        
+        .benefits-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: #6C91FF;
+            border-radius: 2px;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .benefit-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border-top: 4px solid #6C91FF;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .benefit-icon {
+            font-size: 2.5rem;
+            color: #00128F;
+            margin-bottom: 1.5rem;
+        }
+        
+        .benefit-card h3 {
+            color: #00128F;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .benefit-description {
+            color: #333;
+            line-height: 1.6;
+            text-align: center;
         }
         
         @media (min-width: 768px) {
@@ -261,6 +334,11 @@
             .roles-grid {
                 gap: 30px;
             }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -280,7 +358,7 @@
         </div>
         
         <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/3slcTVh2pGw?si=l7sCSxkG8btxB042" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/RGXrXUhM9kU?si=DA7uZ_2sTamxlaHV" title="Video de presentación Novaklar" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
     </div>
     
@@ -315,5 +393,41 @@
             </div>
         </div>
     </div>
+    
+    <!-- SECCIÓN BENEFICIOS -->
+    <section class="benefits-section">
+        <div class="benefits-container">
+            <h2 class="benefits-title">Beneficios de unirte</h2>
+            
+            <div class="benefits-grid">
+                <!-- Beneficio 1 -->
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Horario flexible</h3>
+                    <p class="benefit-description">Trabaja cuando quieras y desde donde prefieras. Adaptamos el trabajo a tu vida, no al revés.</p>
+                </div>
+                
+                <!-- Beneficio 2 -->
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Crecimiento ilimitado</h3>
+                    <p class="benefit-description">Tu ingreso depende de tu esfuerzo y dedicación. Sin techos ni límites artificiales.</p>
+                </div>
+                
+                <!-- Beneficio 3 -->
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Comunidad activa</h3>
+                    <p class="benefit-description">Acceso a una red de emprendedores digitales que comparten conocimientos y experiencias.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
