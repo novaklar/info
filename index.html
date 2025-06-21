@@ -487,86 +487,53 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.7);
-            overflow: auto;
+            align-items: center;
+            justify-content: center;
         }
         
         .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto;
+            background-color: white;
             padding: 30px;
-            border-radius: 12px;
+            border-radius: 10px;
             width: 90%;
             max-width: 400px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         
-        .modal-title {
+        .modal h3 {
             color: var(--primary-color);
             margin-bottom: 20px;
-            font-size: 1.5rem;
         }
         
-        .password-input {
+        .modal input {
             width: 100%;
-            padding: 12px 15px;
-            margin: 15px 0;
+            padding: 12px;
+            margin-bottom: 20px;
             border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 1.2rem;
+            border-radius: 5px;
+            font-size: 16px;
             text-align: center;
-            outline: none;
         }
         
-        .password-input:focus {
-            border-color: var(--primary-color);
-        }
-        
-        .modal-btn {
+        .modal button {
             background-color: var(--primary-color);
             color: white;
             border: none;
             padding: 12px 25px;
-            margin: 10px 5px;
-            border-radius: 8px;
+            border-radius: 5px;
             cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s ease;
+            font-size: 16px;
+            transition: background-color 0.3s;
         }
         
-        .modal-btn:hover {
-            background-color: #000d6e;
-        }
-        
-        .keyboard {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-top: 15px;
-        }
-        
-        .key {
-            background-color: #f1f1f1;
-            border: none;
-            padding: 15px;
-            font-size: 1.2rem;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        
-        .key:hover {
-            background-color: #ddd;
-        }
-        
-        .key:active {
-            background-color: #ccc;
+        .modal button:hover {
+            background-color: var(--secondary-color);
         }
         
         .error-message {
-            color: #ff4444;
+            color: #ff6b6b;
             margin-top: 10px;
-            font-size: 0.9rem;
             display: none;
         }
         
@@ -658,10 +625,6 @@
             
             .story-content {
                 padding: 25px 20px;
-            }
-            
-            .modal-content {
-                padding: 20px;
             }
         }
     </style>
@@ -803,17 +766,35 @@
                     <!-- Historia 1 -->
                     <div class="story-card">
                         <div class="story-content animate">
-                            <h3 class="story-name">Katherine Cárdenas – 19 años</h3>
+                            <h3 class="story-name">🧍‍♀️ Catherine Trigliño — 19 años</h3>
                             <span class="story-role">Revendedora</span>
-                            <p class="story-text">"Yo entré a Novaklar en un momento donde necesitaba sentirme útil. No buscaba ganar millones, solo algo que me ayudara a cubrir mis propios gastos sin depender tanto de mis papás. Al principio no sabía ni cómo hablarle a la gente, pero poco a poco fui aprendiendo, usando los catálogos y viendo qué plataformas se movían más.
-
-Hoy, aunque no vivo de esto, puedo decir que todos los meses me queda algo fijo que llega sin falta. Y más que la plata, es la satisfacción de sentir que algo es mío, que lo muevo yo. Si eres constante, Novaklar te responde."</p>
+                            <p class="story-text">"Entré a Novaklar buscando algo sencillo para generar ingresos sin dejar mis estudios. Con los catálogos, la publicidad y la app, empecé a mover productos poco a poco. No es un sueldo fijo, pero cada venta suma, y al final del mes siempre tengo algo extra. Lo mejor es que lo manejo desde el celular, sin horarios, a mi ritmo. Me ha dado más de lo que esperaba."</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Historia 2 -->
+                    <div class="story-card">
+                        <div class="story-content animate delay-1">
+                            <h3 class="story-name">🧍‍♂️ Diego Uribe — 16 años</h3>
+                            <span class="story-role">Promotor</span>
+                            <p class="story-text">"Con Novaklar descubrí que podía ganar dinero sin necesidad de atender clientes directamente. Solo comparto el catálogo con mi enlace, y cuando alguien compra, gano. Es práctico, todo se hace por WhatsApp o redes. Me gusta porque puedo estudiar y hacer esto a la vez, sin presión. No es mucho, pero cada semana algo cae, y eso ya es motivación."</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Historia 3 -->
+                    <div class="story-card">
+                        <div class="story-content animate delay-2">
+                            <h3 class="story-name">🧍‍♀️ Ana Moreno — 20 años</h3>
+                            <span class="story-role">Revendedora</span>
+                            <p class="story-text">"Trabajo medio tiempo en una tienda, pero quería tener otra entrada de dinero sin complicarme. Con Novaklar vendo plataformas desde el celular, usando el catálogo y la app. Hay semanas flojas, otras mejores, pero siempre saco algo para mí. No he tenido que invertir, ni seguir horarios. Es perfecto como ingreso pasivo, y más cuando uno lo combina con otro trabajo."</p>
                         </div>
                     </div>
                 </div>
                 
                 <div class="carousel-nav">
                     <div class="carousel-dot active" data-index="0"></div>
+                    <div class="carousel-dot" data-index="1"></div>
+                    <div class="carousel-dot" data-index="2"></div>
                 </div>
             </div>
         </div>
@@ -849,30 +830,13 @@ Hoy, aunque no vivo de esto, puedo decir que todos los meses me queda algo fijo 
     </footer>
     
     <!-- Modal de contraseña -->
-    <div id="passwordModal" class="modal">
+    <div class="modal" id="passwordModal">
         <div class="modal-content">
-            <h2 class="modal-title">Ingresa la contraseña</h2>
-            <input type="password" id="passwordInput" class="password-input" placeholder="Ingresa la contraseña" maxlength="4" inputmode="numeric">
-            <p id="errorMessage" class="error-message">Contraseña incorrecta. Intenta nuevamente.</p>
-            
-            <div class="keyboard">
-                <button class="key" data-key="1">1</button>
-                <button class="key" data-key="2">2</button>
-                <button class="key" data-key="3">3</button>
-                <button class="key" data-key="4">4</button>
-                <button class="key" data-key="5">5</button>
-                <button class="key" data-key="6">6</button>
-                <button class="key" data-key="7">7</button>
-                <button class="key" data-key="8">8</button>
-                <button class="key" data-key="9">9</button>
-                <button class="key" data-key="0">0</button>
-                <button class="key" id="backspace"><i class="fas fa-backspace"></i></button>
-            </div>
-            
-            <div style="margin-top: 20px;">
-                <button id="submitPassword" class="modal-btn">Ingresar</button>
-                <button id="cancelPassword" class="modal-btn" style="background-color: #ff4444;">Cancelar</button>
-            </div>
+            <h3>Acceso a Capacitación</h3>
+            <p>Ingresa la contraseña para continuar:</p>
+            <input type="password" id="passwordInput" placeholder="Contraseña">
+            <p class="error-message" id="errorMessage">Contraseña incorrecta. Intenta nuevamente.</p>
+            <button id="submitPassword">Acceder</button>
         </div>
     </div>
     
@@ -932,66 +896,36 @@ Hoy, aunque no vivo de esto, puedo decir que todos los meses me queda algo fijo 
             const passwordModal = document.getElementById('passwordModal');
             const passwordInput = document.getElementById('passwordInput');
             const submitPassword = document.getElementById('submitPassword');
-            const cancelPassword = document.getElementById('cancelPassword');
             const errorMessage = document.getElementById('errorMessage');
-            const backspaceBtn = document.getElementById('backspace');
-            const keys = document.querySelectorAll('.key[data-key]');
             
-            // Mostrar modal al hacer clic en el botón de capacitación
             trainingBtn.addEventListener('click', function(e) {
                 e.preventDefault();
-                passwordModal.style.display = 'block';
+                passwordModal.style.display = 'flex';
                 passwordInput.focus();
             });
             
-            // Teclado numérico
-            keys.forEach(key => {
-                key.addEventListener('click', function() {
-                    const value = this.getAttribute('data-key');
-                    passwordInput.value += value;
-                });
-            });
-            
-            // Botón de borrar
-            backspaceBtn.addEventListener('click', function() {
-                passwordInput.value = passwordInput.value.slice(0, -1);
-            });
-            
-            // Validar contraseña
             submitPassword.addEventListener('click', function() {
                 if (passwordInput.value === '1188') {
-                    // Contraseña correcta, redirigir
                     window.location.href = 'capa.html';
                 } else {
-                    // Contraseña incorrecta
                     errorMessage.style.display = 'block';
                     passwordInput.value = '';
-                    setTimeout(() => {
-                        errorMessage.style.display = 'none';
-                    }, 3000);
+                    passwordInput.focus();
                 }
             });
             
-            // Permitir enviar con Enter
             passwordInput.addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') {
                     submitPassword.click();
                 }
             });
             
-            // Cancelar
-            cancelPassword.addEventListener('click', function() {
-                passwordModal.style.display = 'none';
-                passwordInput.value = '';
-                errorMessage.style.display = 'none';
-            });
-            
-            // Cerrar modal al hacer clic fuera
-            window.addEventListener('click', function(e) {
+            // Cerrar modal al hacer clic fuera del contenido
+            passwordModal.addEventListener('click', function(e) {
                 if (e.target === passwordModal) {
                     passwordModal.style.display = 'none';
-                    passwordInput.value = '';
                     errorMessage.style.display = 'none';
+                    passwordInput.value = '';
                 }
             });
         });
