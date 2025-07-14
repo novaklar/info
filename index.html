@@ -1,934 +1,328 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Novaklar - Oportunidades Digitales</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comme:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @font-face {
-            font-family: 'Waratah';
-            src: url('https://raw.githubusercontent.com/novaklar/web/main/waratah.ttf') format('truetype');
-        }
-        
-        :root {
-            --primary-color: #00128f;
-            --secondary-color: #6c91ff;
-            --accent-color: #ff6b6b;
-            --light-bg: #F5F7FF;
-            --dark-text: #333;
-            --light-text: #fff;
-            --gray-text: #777;
-        }
-        
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
-        body {
-            font-family: 'Comme', sans-serif;
-            line-height: 1.6;
-            color: var(--dark-text);
-            background-color: #f8f9fa;
-            overflow-x: hidden;
-        }
-        
-        /* Header */
-        .header {
-            width: 100%;
-            padding: 40px 20px;
-            background-color: var(--primary-color);
-            color: var(--light-text);
-            margin-bottom: 40px;
-            text-align: center;
-        }
-        
-        .logo {
-            width: 180px;
-            max-width: 100%;
-            margin-bottom: 20px;
-            filter: invert(48%) sepia(95%) saturate(1283%) hue-rotate(202deg) brightness(102%) contrast(101%);
-        }
-        
-        .name {
-            font-family: 'Waratah', sans-serif;
-            font-size: 42px;
-            font-weight: normal;
-            text-transform: lowercase;
-            margin-bottom: 10px;
-            color: var(--light-text);
-            letter-spacing: 1px;
-        }
-        
-        /* Secciones generales */
-        .section {
-            width: 100%;
-            padding: 60px 20px;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 2.5rem;
-            text-align: center;
-            position: relative;
-            color: var(--primary-color);
-        }
-        
-        .section-title:after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: var(--secondary-color);
-            margin: 15px auto 0;
-        }
-        
-        /* Botones */
-        .btn {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: 2px solid var(--primary-color);
-            margin: 20px 0;
-            text-align: center;
-            cursor: pointer;
-        }
-        
-        .btn:hover {
-            background-color: transparent;
-            color: var(--primary-color);
-        }
-        
-        .btn-container {
-            text-align: center;
-            margin: 40px 0;
-        }
-        
-        /* Sección Introducción */
-        .intro-text {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        
-        .intro-text p {
-            font-size: 1.1rem;
-            text-align: justify;
-            margin-bottom: 20px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        /* Video */
-        .video-container {
-            position: relative;
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto 60px;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .video-container::before {
-            content: '';
-            display: block;
-            padding-top: 56.25%;
-        }
-        
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        
-        /* Sección Roles */
-        .roles-section {
-            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
-            color: var(--light-text);
-        }
-        
-        .roles-section .section-title {
-            color: var(--light-text);
-        }
-        
-        .roles-section .section-title:after {
-            display: none;
-        }
-        
-        .roles-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .role-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 12px;
-            padding: 30px;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-        }
-        
-        .role-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-        }
-        
-        .role-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--light-text);
-        }
-        
-        .role-card p {
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 20px;
-        }
-        
-        .example {
-            background: rgba(0, 0, 0, 0.15);
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 20px;
-            border-left: 3px solid rgba(255, 255, 255, 0.3);
-        }
-        
-        .example strong {
-            color: var(--light-text);
-        }
-        
-        /* Sección Cómo Funciona (nueva) */
-        .how-it-works {
-            background-color: var(--light-bg);
-        }
-        
-        .steps-container {
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .step {
-            display: flex;
-            gap: 20px;
-            align-items: flex-start;
-        }
-        
-        .step-number {
-            background-color: var(--primary-color);
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-        
-        .step-content {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            flex-grow: 1;
-        }
-        
-        .step-content h3 {
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-        
-        /* Sección Beneficios */
-        .benefits-section {
-            background-color: white;
-        }
-        
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .benefit-card {
-            background: var(--light-bg);
-            border-radius: 12px;
-            padding: 30px;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            border-top: 4px solid var(--secondary-color);
-            text-align: center;
-        }
-        
-        .benefit-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .benefit-icon {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-        }
-        
-        .benefit-card h3 {
-            color: var(--primary-color);
-            margin-bottom: 15px;
-            font-size: 1.3rem;
-        }
-        
-        /* Sección Historias de Éxito */
-        .success-stories {
-            background-color: var(--light-bg);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .stories-carousel {
-            position: relative;
-            max-width: 1000px;
-            margin: 0 auto;
-            overflow: hidden;
-        }
-        
-        .stories-track {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-        
-        .story-card {
-            min-width: 100%;
-            padding: 0 20px;
-            box-sizing: border-box;
-        }
-        
-        .story-content {
-            background: white;
-            border-radius: 12px;
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .story-content::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: var(--secondary-color);
-        }
-        
-        .story-name {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            margin-bottom: 5px;
-        }
-        
-        .story-role {
-            color: var(--secondary-color);
-            font-weight: 500;
-            margin-bottom: 20px;
-            display: block;
-        }
-        
-        .story-text {
-            font-style: italic;
-            margin-bottom: 20px;
-            position: relative;
-        }
-        
-        .story-text::before,
-        .story-text::after {
-            content: '"';
-            font-size: 2rem;
-            color: var(--secondary-color);
-            opacity: 0.3;
-            position: absolute;
-        }
-        
-        .story-text::before {
-            top: -15px;
-            left: -10px;
-        }
-        
-        .story-text::after {
-            bottom: -25px;
-            right: -10px;
-        }
-        
-        .carousel-nav {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 30px;
-        }
-        
-        .carousel-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--secondary-color);
-            opacity: 0.3;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .carousel-dot.active {
-            opacity: 1;
-            transform: scale(1.2);
-        }
-        
-        /* Footer */
-        .footer {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 60px 0 30px;
-            text-align: center;
-        }
-        
-        .footer-content {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .footer-logo {
-            width: 150px;
-            margin-bottom: 20px;
-            filter: brightness(0) invert(1);
-        }
-        
-        .footer-about p {
-            margin-bottom: 20px;
-            opacity: 0.8;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-bottom: 30px;
-        }
-        
-        .social-link {
-            color: white;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-        }
-        
-        .social-link:hover {
-            color: var(--secondary-color);
-            transform: translateY(-3px);
-        }
-        
-        .footer-contact {
-            margin-bottom: 30px;
-        }
-        
-        .footer-contact p {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 15px;
-            opacity: 0.8;
-        }
-        
-        .footer-contact i {
-            color: var(--secondary-color);
-        }
-        
-        .footer-bottom {
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9rem;
-            opacity: 0.7;
-        }
-        
-        /* Modal de contraseña */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .modal-content {
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 400px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        
-        .modal h3 {
-            color: var(--primary-color);
-            margin-bottom: 20px;
-        }
-        
-        .modal input {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-            text-align: center;
-        }
-        
-        .modal button {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s;
-        }
-        
-        .modal button:hover {
-            background-color: var(--secondary-color);
-        }
-        
-        .error-message {
-            color: #ff6b6b;
-            margin-top: 10px;
-            display: none;
-        }
-        
-        /* Animaciones */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .animate {
-            animation: fadeIn 0.8s ease forwards;
-        }
-        
-        .delay-1 {
-            animation-delay: 0.2s;
-        }
-        
-        .delay-2 {
-            animation-delay: 0.4s;
-        }
-        
-        .delay-3 {
-            animation-delay: 0.6s;
-        }
-        
-        /* Responsive */
-        @media (max-width: 992px) {
-            .section {
-                padding: 50px 20px;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .header {
-                padding: 30px 20px;
-            }
-            
-            .name {
-                font-size: 36px;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-                margin-bottom: 2rem;
-            }
-            
-            .intro-text p {
-                font-size: 1rem;
-            }
-            
-            .role-card,
-            .benefit-card {
-                padding: 25px;
-            }
-            
-            .step {
-                flex-direction: column;
-            }
-            
-            .step-number {
-                margin-bottom: 10px;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .header {
-                padding: 25px 15px;
-            }
-            
-            .logo {
-                width: 140px;
-            }
-            
-            .name {
-                font-size: 32px;
-            }
-            
-            .section {
-                padding: 40px 15px;
-            }
-            
-            .section-title {
-                font-size: 1.6rem;
-            }
-            
-            .story-content {
-                padding: 25px 20px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Onboarding Afiliados | Novaklar</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <img src="https://raw.githubusercontent.com/novaklar/web/refs/heads/main/Novaklar.svg" alt="Novaklar Logo" class="logo">
-        <div class="name">novaklar</div>
-    </header>
-    
-    <!-- Sección Introducción -->
-    <section class="section">
-        <div class="container">
-            <div class="intro-text">
-                <p class="animate">novaklar es una empresa digital que transforma la forma de generar ingresos en línea. Desde 2023, hemos creado una comunidad que conecta a personas con oportunidades reales y accesibles, ofreciendo productos digitales como streaming, recargas, suscripciones y mucho más.</p>
-                
-                <p class="animate delay-1">Nuestro modelo de trabajo es flexible, inclusivo y pensado especialmente para jóvenes, estudiantes y universitarios que buscan un ingreso pasivo. Puedes ser revendedor, promotor o reclutador, sin necesidad de inversión previa. En novaklar, creces a tu ritmo y con el respaldo de un equipo comprometido.</p>
-                
-                <p class="animate delay-2">Es el complemento perfecto para personas con trabajos estables que buscan aumentar sus ingresos. Creemos en el poder de la tecnología para cambiar vidas, y cada día trabajamos para que más personas descubran su potencial en el mundo digital.</p>
-            </div>
-            
-            <div class="video-container animate delay-3">
-                <iframe src="https://www.youtube.com/embed/RGXrXUhM9kU?si=DA7uZ_2sTamxlaHV" title="Video de presentación Novaklar" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
+  <div class="onboarding-container" id="onboardingContainer">
+    <!-- Slide 1: Bienvenida -->
+    <div class="slide">
+      <div class="slide-content">
+        <div class="logo-container">
+          <img src="https://raw.githubusercontent.com/novaklar/web/refs/heads/main/Novaklar.svg" alt="Novaklar Logo" class="logo-white">
         </div>
-    </section>
-    
-    <!-- Sección Cómo Funciona -->
-    <section class="section how-it-works">
-        <div class="container">
-            <h2 class="section-title animate">¿Cómo Funciona?</h2>
-            
-            <div class="steps-container">
-                <div class="step animate">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>Regístrate Gratis</h3>
-                        <p>Completa nuestro sencillo formulario de registro sin ningún costo inicial. Recibirás acceso inmediato a tu panel de control con todos los recursos que necesitas.</p>
-                    </div>
-                </div>
-                
-                <div class="step animate delay-1">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>Elige tu Rol</h3>
-                        <p>Selecciona el modelo que mejor se adapte a ti: revendedor, promotor o reclutador. Puedes cambiar o combinar roles según tu crecimiento.</p>
-                    </div>
-                </div>
-                
-                <div class="step animate delay-2">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>Comienza a Ganar</h3>
-                        <p>Accede a nuestros productos digitales, comparte con tu red y genera ingresos desde el primer día. Te acompañamos en todo el proceso.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="btn-container animate delay-3">
-                <a href="#" class="btn" id="trainingBtn">Ir a Capacitación</a>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Sección Roles -->
-    <section class="section roles-section">
-        <div class="container">
-            <h2 class="section-title animate">Cargos</h2>
-            
-            <div class="roles-grid">
-                <div class="role-card animate">
-                    <h3>Revendedor</h3>
-                    <p>Vende productos digitales directamente al cliente sin necesidad de invertir previamente. Solo pagas cuando ya tienes una venta confirmada, lo que elimina cualquier riesgo financiero inicial. Gestionas tus propias ventas y estableces relaciones directas con tus clientes.</p>
-                    <div class="example">
-                        <strong>Ejemplo:</strong> Si un cliente compra una cuenta de HBO Max por $10.000, tú la adquieres por $5.000 y ganas $5.000 de ganancia inmediata sin tener que comprar el producto por adelantado.
-                    </div>
-                </div>
-                
-                <div class="role-card animate delay-1">
-                    <h3>Promotor</h3>
-                    <p>Promociona productos a través de enlaces o redes sociales sin necesidad de manejar el proceso de venta completo. Ideal para quienes tienen audiencia digital o habilidades en marketing. Ganas comisiones por cada venta generada a través de tus enlaces únicos.</p>
-                    <div class="example">
-                        <strong>Ejemplo:</strong> Si alguien compra Amazon Prime por $10.000 desde tu catálogo o enlace de afiliado, recibes $4.000 de comisión automáticamente, sin tener que atender consultas o procesar pagos.
-                    </div>
-                </div>
-                
-                <div class="role-card animate delay-2">
-                    <h3>Reclutador</h3>
-                    <p>Amplía la red Novaklar invitando a nuevas personas y gana comisiones por sus primeras ventas. Perfecto para networkers y personas con amplios círculos sociales. Tu ingreso crece a medida que ayudas a otros a comenzar su camino en el mundo digital.</p>
-                    <div class="example">
-                        <strong>Ejemplo:</strong> Si reclutas a Laura y ella vende una cuenta de Paramount por $10.000, tú ganas una comisión por esa venta y por las cuatro siguientes que realice, creando así un flujo de ingresos recurrente.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Sección Beneficios -->
-    <section class="section benefits-section">
-        <div class="container">
-            <h2 class="section-title animate">Beneficios de unirte</h2>
-            
-            <div class="benefits-grid">
-                <div class="benefit-card animate">
-                    <div class="benefit-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <h3>Horario flexible</h3>
-                    <p>Trabaja cuando quieras y desde donde prefieras. Perfecto para compatibilizar con estudios u otros trabajos. Adaptamos el trabajo a tu vida, no al revés.</p>
-                </div>
-                
-                <div class="benefit-card animate delay-1">
-                    <div class="benefit-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Crecimiento ilimitado</h3>
-                    <p>Tu ingreso depende de tu esfuerzo y dedicación. Sin techos ni límites artificiales. Ideal para jóvenes ambiciosos.</p>
-                </div>
-                
-                <div class="benefit-card animate delay-2">
-                    <div class="benefit-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Comunidad activa</h3>
-                    <p>Acceso a una red de emprendedores digitales que comparten conocimientos y experiencias. Aprende de otros jóvenes como tú.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Sección Historias de Éxito -->
-    <section class="section success-stories">
-        <div class="container">
-            <h2 class="section-title animate">Historias de Jóvenes Emprendedores</h2>
-            
-            <div class="stories-carousel">
-                <div class="stories-track" id="storiesTrack">
-                    <!-- Historia 1 -->
-                    <div class="story-card">
-                        <div class="story-content animate">
-                            <h3 class="story-name">🧍‍♀️ Catherine Trigliño — 19 años</h3>
-                            <span class="story-role">Revendedora</span>
-                            <p class="story-text">"Entré a Novaklar buscando algo sencillo para generar ingresos sin dejar mis estudios. Con los catálogos, la publicidad y la app, empecé a mover productos poco a poco. No es un sueldo fijo, pero cada venta suma, y al final del mes siempre tengo algo extra. Lo mejor es que lo manejo desde el celular, sin horarios, a mi ritmo. Me ha dado más de lo que esperaba."</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Historia 2 -->
-                    <div class="story-card">
-                        <div class="story-content animate delay-1">
-                            <h3 class="story-name">🧍‍♂️ Diego Uribe — 16 años</h3>
-                            <span class="story-role">Promotor</span>
-                            <p class="story-text">"Con Novaklar descubrí que podía ganar dinero sin necesidad de atender clientes directamente. Solo comparto el catálogo con mi enlace, y cuando alguien compra, gano. Es práctico, todo se hace por WhatsApp o redes. Me gusta porque puedo estudiar y hacer esto a la vez, sin presión. No es mucho, pero cada semana algo cae, y eso ya es motivación."</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Historia 3 -->
-                    <div class="story-card">
-                        <div class="story-content animate delay-2">
-                            <h3 class="story-name">🧍‍♀️ Ana Moreno — 20 años</h3>
-                            <span class="story-role">Revendedora</span>
-                            <p class="story-text">"Trabajo medio tiempo en una tienda, pero quería tener otra entrada de dinero sin complicarme. Con Novaklar vendo plataformas desde el celular, usando el catálogo y la app. Hay semanas flojas, otras mejores, pero siempre saco algo para mí. No he tenido que invertir, ni seguir horarios. Es perfecto como ingreso pasivo, y más cuando uno lo combina con otro trabajo."</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="carousel-nav">
-                    <div class="carousel-dot active" data-index="0"></div>
-                    <div class="carousel-dot" data-index="1"></div>
-                    <div class="carousel-dot" data-index="2"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <img src="https://raw.githubusercontent.com/novaklar/web/refs/heads/main/Novaklar.svg" alt="Novaklar Logo" class="footer-logo">
-                <div class="footer-about">
-                    <p>Transformando vidas a través de oportunidades digitales desde 2023.</p>
-                </div>
-                
-                <div class="social-links">
-                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
-                </div>
-                
-                <div class="footer-contact">
-                    <p><i class="fas fa-map-marker-alt"></i> Bogotá, Colombia</p>
-                    <p><i class="fas fa-envelope"></i> novaklar.oficial@gmail.com</p>
-                    <p><i class="fas fa-phone-alt"></i> +57 317 228 0539</p>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2023 Novaklar. Todos los derechos reservados.</p>
-            </div>
-        </div>
-    </footer>
-    
-    <!-- Modal de contraseña -->
-    <div class="modal" id="passwordModal">
-        <div class="modal-content">
-            <h3>Acceso a Capacitación</h3>
-            <p>Ingresa la contraseña para continuar:</p>
-            <input type="password" id="passwordInput" placeholder="Contraseña">
-            <p class="error-message" id="errorMessage">Contraseña incorrecta. Intenta nuevamente.</p>
-            <button id="submitPassword">Acceder</button>
-        </div>
+        <h1 class="slide-title">¡Bienvenido a Novaklar!</h1>
+        <p class="slide-description">
+          La plataforma que transforma la forma de generar ingresos en línea
+        </p>
+        <button class="btn" onclick="nextSlide()">
+          Comenzar <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
     </div>
-    
-    <script>
-        // Carrusel de Historias de Éxito
-        document.addEventListener('DOMContentLoaded', function() {
-            const track = document.getElementById('storiesTrack');
-            const dots = document.querySelectorAll('.carousel-dot');
-            let currentIndex = 0;
-            const totalSlides = document.querySelectorAll('.story-card').length;
+
+    <!-- Slide 2: Información Novaklar -->
+    <div class="slide">
+      <div class="slide-content">
+        <h1 class="slide-title">¿Qué es Novaklar?</h1>
+        <div class="scrollable-content">
+          <p class="justified">Novaklar es una empresa digital que transforma la forma de generar ingresos en línea. Desde 2023, hemos creado una comunidad que conecta a personas con oportunidades reales y accesibles, ofreciendo productos digitales como streaming, recargas, suscripciones y mucho más.</p>
+          
+          <p class="justified">Nuestro modelo de trabajo es flexible, inclusivo y pensado especialmente para jóvenes, estudiantes y universitarios que buscan un ingreso pasivo. Puedes ser revendedor, promotor o reclutador, sin necesidad de inversión previa. En novaklar, creces a tu ritmo y con el respaldo de un equipo comprometido.</p>
+          
+          <p class="justified">Es el complemento perfecto para personas con trabajos estables que buscan aumentar sus ingresos. Creemos en el poder de la tecnología para cambiar vidas, y cada día trabajamos para que más personas descubran su potencial en el mundo digital.</p>
+        </div>
+        <button class="btn" onclick="nextSlide()">
+          Continuar <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Slide 3: Video Presentación -->
+    <div class="slide">
+      <div class="slide-content">
+        <h1 class="slide-title">Conoce Novaklar</h1>
+        <div class="video-container">
+          <iframe src="https://www.youtube.com/embed/RGXrXUhM9kU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <button class="btn" onclick="nextSlide()">
+          Ver Roles <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Slide 4: Revendedor -->
+    <div class="slide">
+      <div class="slide-content">
+        <h1 class="slide-title"><i class="fas fa-store"></i> Revendedor</h1>
+        <div class="scrollable-content">
+          <p class="justified">Vende productos digitales directamente al cliente sin necesidad de invertir previamente. Solo pagas cuando ya tienes una venta confirmada, lo que elimina cualquier riesgo financiero inicial.</p>
+          
+          <p class="justified">Gestionas tus propias ventas y estableces relaciones directas con tus clientes. Tienes control completo sobre tus márgenes de ganancia.</p>
+          
+          <div class="highlight-box">
+            <strong>Ejemplo práctico:</strong> Si un cliente compra una cuenta de HBO Max por $10.000, tú la adquieres por $5.000 y ganas $5.000 de ganancia inmediata sin tener que comprar el producto por adelantado.
+          </div>
+          
+          <h3 class="section-title">Sistema de Pagos</h3>
+          <p class="justified">Como revendedor, recibes el pago directamente de tus clientes. Con una parte de ese dinero adquieres el producto en nuestra plataforma para entregarlo a tu cliente, quedándote con tu ganancia.</p>
+          
+          <ul class="benefits-list">
+            <li><i class="fas fa-check-circle"></i> Sin inversión inicial</li>
+            <li><i class="fas fa-check-circle"></i> Margen de ganancia del 50% en promedio</li>
+            <li><i class="fas fa-check-circle"></i> Control total de tus ventas</li>
+            <li><i class="fas fa-check-circle"></i> Productos digitales de alta demanda</li>
+          </ul>
+        </div>
+        <button class="btn" onclick="nextSlide()">
+          Siguiente Rol <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Slide 5: Promotor -->
+    <div class="slide">
+      <div class="slide-content">
+        <h1 class="slide-title"><i class="fas fa-bullhorn"></i> Promotor</h1>
+        <div class="scrollable-content">
+          <p class="justified">Promociona productos a través de enlaces o redes sociales sin necesidad de manejar el proceso de venta completo. Ideal para quienes tienen audiencia digital o habilidades en marketing.</p>
+          
+          <p class="justified">Ganas comisiones por cada venta generada a través de tus enlaces únicos. No necesitas atender consultas ni procesar pagos, todo es automático.</p>
+          
+          <div class="highlight-box">
+            <strong>Ejemplo práctico:</strong> Si alguien compra Amazon Prime por $10.000 desde tu catálogo o enlace de afiliado, recibes $4.000 de comisión automáticamente, sin tener que atender consultas o procesar pagos.
+          </div>
+          
+          <h3 class="section-title">Sistema de Pagos</h3>
+          <p class="justified">Como promotor, recibes tus comisiones diariamente directamente en tu cuenta bancaria (Nequi, Daviplata, Bancolombia, etc.). Los pagos se procesan automáticamente por cada venta generada.</p>
+          
+          <ul class="benefits-list">
+            <li><i class="fas fa-check-circle"></i> Comisiones automáticas</li>
+            <li><i class="fas fa-check-circle"></i> Sin atención al cliente</li>
+            <li><i class="fas fa-check-circle"></i> Ideal para redes sociales</li>
+            <li><i class="fas fa-check-circle"></i> Herramientas de seguimiento</li>
+          </ul>
+        </div>
+        <button class="btn" onclick="nextSlide()">
+          Siguiente Rol <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Slide 6: Reclutador -->
+    <div class="slide">
+      <div class="slide-content">
+        <h1 class="slide-title"><i class="fas fa-users"></i> Reclutador</h1>
+        <div class="scrollable-content">
+          <p class="justified">Amplía la red Novaklar invitando a nuevas personas y gana comisiones por sus primeras ventas. Perfecto para networkers y personas con amplios círculos sociales.</p>
+          
+          <p class="justified">Tu ingreso crece a medida que ayudas a otros a comenzar su camino en el mundo digital. Obtienes bonos por reclutamiento y porcentajes de las ventas de tu red.</p>
+          
+          <div class="highlight-box">
+            <strong>Ejemplo práctico:</strong> Si reclutas a Laura y ella vende una cuenta de Paramount por $10.000, tú ganas una comisión por esa venta y por las cuatro siguientes que realice, creando así un flujo de ingresos recurrente.
+          </div>
+          
+          <h3 class="section-title">Sistema de Pagos</h3>
+          <p class="justified">Como reclutador, recibes comisiones diarias cada vez que uno de tus reclutados realice una venta. Los pagos se envían automáticamente a tu cuenta bancaria registrada.</p>
+          
+          <ul class="benefits-list">
+            <li><i class="fas fa-check-circle"></i> Ingresos recurrentes</li>
+            <li><i class="fas fa-check-circle"></i> Bonos por reclutamiento</li>
+            <li><i class="fas fa-check-circle"></i> Crecimiento exponencial</li>
+            <li><i class="fas fa-check-circle"></i> Capacitación para tu equipo</li>
+          </ul>
+        </div>
+        <button class="btn" onclick="nextSlide()">
+          Modelo de Negocio <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Slide 7: Modelo de Negocio -->
+    <div class="slide">
+      <div class="slide-content">
+        <h1 class="slide-title">Modelo de Negocio</h1>
+        <div class="scrollable-content">
+          <p class="justified">Cada rol dentro de Novaklar opera con un enfoque distinto. Estos son los tres modelos que usamos:</p>
+          
+          <div class="business-model-card">
+            <div class="model-icon"><i class="fas fa-store"></i></div>
+            <h3>Modelo de Reventa Directa (Revendedores)</h3>
+            <p>Compran productos a precio interno y los venden al cliente final con ganancia propia. Ellos gestionan el cobro y la entrega.</p>
+            <p class="model-highlight">Ingresos controlados 100% por el revendedor.</p>
+          </div>
+          
+          <div class="business-model-card">
+            <div class="model-icon"><i class="fas fa-bullhorn"></i></div>
+            <h3>Modelo de Afiliación por Comisión (Promotores)</h3>
+            <p>Promocionan catálogos o enlaces y ganan una comisión por cada venta generada.</p>
+            <p class="model-highlight">No manejan dinero del cliente. Reciben pagos diarios por medios digitales.</p>
+          </div>
+          
+          <div class="business-model-card">
+            <div class="model-icon"><i class="fas fa-users"></i></div>
+            <h3>Modelo de Red de Afiliados (Reclutadores)</h3>
+            <p>Invitan a nuevas personas y reciben comisiones cada vez que uno de sus afiliados hace una venta.</p>
+            <p class="model-highlight">Ingresos escalables según el rendimiento de su red.</p>
+          </div>
+        </div>
+        <button class="btn" onclick="nextSlide()">
+          Requisitos <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Slide 8: Requisitos -->
+    <div class="slide">
+      <div class="slide-content">
+        <h1 class="slide-title">Requisitos para ingresar</h1>
+        <div class="scrollable-content">
+          <p class="justified">¿Qué necesitas para trabajar con Novaklar?</p>
+          
+          <ul class="requirements-list">
+            <li><i class="fas fa-check-circle"></i> Tener mínimo 14 años</li>
+            <li><i class="fas fa-check-circle"></i> Vivir en Colombia</li>
+            <li><i class="fas fa-check-circle"></i> Tener una cuenta activa en Nequi, Daviplata, Bancolombia o Movii</li>
+            <li><i class="fas fa-check-circle"></i> Ser responsable, respetuoso y cumplido con los clientes</li>
+          </ul>
+          
+          <div class="highlight-box">
+            <p>No necesitas experiencia previa ni invertir dinero. ¡Solo ganas y compromiso!</p>
+          </div>
+
+          <div class="images-grid">
+            <img src="https://raw.githubusercontent.com/novaklar/reclutamiento/refs/heads/main/17_20250714_172109_0001.png" alt="Requisitos Novaklar">
+            <img src="https://raw.githubusercontent.com/novaklar/reclutamiento/refs/heads/main/18_20250714_172109_0002.png" alt="Requisitos Novaklar">
+            <img src="https://raw.githubusercontent.com/novaklar/reclutamiento/refs/heads/main/22098a32-f4be-4049-a2db-67174d1461b5.jpeg" alt="Requisitos Novaklar">
+            <img src="https://raw.githubusercontent.com/novaklar/reclutamiento/refs/heads/main/7f3c157a-fef7-4275-8bb0-acaea1791090.jpeg" alt="Requisitos Novaklar">
+          </div>
+        </div>
+        <button class="btn" onclick="openModal()">
+          Acceder a Capacitación <i class="fas fa-graduation-cap"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Slide 9: Capacitación -->
+    <div class="slide">
+      <div class="slide-content">
+        <h1 class="slide-title">Capacitación</h1>
+        <div class="scrollable-content">
+          <p class="justified">Aprende todo lo necesario para tener éxito en tu rol con nuestro programa completo de capacitación:</p>
+          
+          <div class="video-container" id="trainingVideoContainer">
+            <!-- El video se mostrará aquí después de pasar el modal -->
+          </div>
+        </div>
+        <button class="btn" onclick="nextSlide()">
+          Finalizar <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Slide 10: Finalizar -->
+    <div class="slide">
+      <div class="slide-content">
+        <h1 class="slide-title">¡Estás listo para comenzar!</h1>
+        <div class="scrollable-content">
+          <div class="audio-container">
+            <audio controls autoplay>
+              <source src="https://raw.githubusercontent.com/novaklar/reclutamiento/main/luvvoice.com-20250714-KGWYSW.mp3" type="audio/mpeg">
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </div>
+          
+          <p class="justified">Contáctanos ahora mismo para comenzar tu proceso de afiliación:</p>
+          
+          <div class="contacts-grid">
+            <a href="https://wa.me/573216495733" class="contact-btn whatsapp-btn" target="_blank">
+              <i class="fab fa-whatsapp"></i> Ester
+            </a>
             
-            // Función para mover el carrusel
-            function moveToSlide(index) {
-                currentIndex = index;
-                track.style.transform = `translateX(-${currentIndex * 100}%)`;
-                
-                // Actualizar puntos de navegación
-                dots.forEach((dot, i) => {
-                    dot.classList.toggle('active', i === currentIndex);
-                });
-            }
+            <a href="https://wa.me/573027069328" class="contact-btn whatsapp-btn" target="_blank">
+              <i class="fab fa-whatsapp"></i> Katherin
+            </a>
             
-            // Eventos para los puntos de navegación
-            dots.forEach(dot => {
-                dot.addEventListener('click', function() {
-                    const index = parseInt(this.getAttribute('data-index'));
-                    moveToSlide(index);
-                });
-            });
+            <a href="https://wa.me/573025697553" class="contact-btn whatsapp-btn" target="_blank">
+              <i class="fab fa-whatsapp"></i> Gabriela
+            </a>
             
-            // Auto-rotación del carrusel
-            setInterval(() => {
-                currentIndex = (currentIndex + 1) % totalSlides;
-                moveToSlide(currentIndex);
-            }, 5000);
-            
-            // Animaciones al hacer scroll
-            const animateElements = document.querySelectorAll('.animate');
-            
-            function checkAnimation() {
-                animateElements.forEach(element => {
-                    const elementPosition = element.getBoundingClientRect().top;
-                    const screenPosition = window.innerHeight / 1.2;
-                    
-                    if (elementPosition < screenPosition) {
-                        element.style.opacity = '1';
-                        element.style.transform = 'translateY(0)';
-                    }
-                });
-            }
-            
-            window.addEventListener('scroll', checkAnimation);
-            window.addEventListener('load', checkAnimation);
-            
-            // Lógica para el modal de contraseña
-            const trainingBtn = document.getElementById('trainingBtn');
-            const passwordModal = document.getElementById('passwordModal');
-            const passwordInput = document.getElementById('passwordInput');
-            const submitPassword = document.getElementById('submitPassword');
-            const errorMessage = document.getElementById('errorMessage');
-            
-            trainingBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                passwordModal.style.display = 'flex';
-                passwordInput.focus();
-            });
-            
-            submitPassword.addEventListener('click', function() {
-                if (passwordInput.value === '1188') {
-                    window.location.href = 'capa.html';
-                } else {
-                    errorMessage.style.display = 'block';
-                    passwordInput.value = '';
-                    passwordInput.focus();
-                }
-            });
-            
-            passwordInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    submitPassword.click();
-                }
-            });
-            
-            // Cerrar modal al hacer clic fuera del contenido
-            passwordModal.addEventListener('click', function(e) {
-                if (e.target === passwordModal) {
-                    passwordModal.style.display = 'none';
-                    errorMessage.style.display = 'none';
-                    passwordInput.value = '';
-                }
-            });
-        });
-    </script>
+            <a href="https://wa.me/573027069188" class="contact-btn whatsapp-btn" target="_blank">
+              <i class="fab fa-whatsapp"></i> Neyereht
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navegación -->
+  <div class="navigation">
+    <button class="nav-btn active" onclick="goToSlide(0)"></button>
+    <button class="nav-btn" onclick="goToSlide(1)"></button>
+    <button class="nav-btn" onclick="goToSlide(2)"></button>
+    <button class="nav-btn" onclick="goToSlide(3)"></button>
+    <button class="nav-btn" onclick="goToSlide(4)"></button>
+    <button class="nav-btn" onclick="goToSlide(5)"></button>
+    <button class="nav-btn" onclick="goToSlide(6)"></button>
+    <button class="nav-btn" onclick="goToSlide(7)"></button>
+    <button class="nav-btn" onclick="goToSlide(8)"></button>
+    <button class="nav-btn" onclick="goToSlide(9)"></button>
+  </div>
+
+  <!-- Modal de confirmación -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-icon"><i class="fas fa-graduation-cap"></i></div>
+        <h2 class="modal-title">Confirmar Acceso</h2>
+      </div>
+      <p class="modal-text">
+        Para acceder a la capacitación, confirma que:
+      </p>
+      
+      <div class="checkbox-group">
+        <div class="checkbox-item">
+          <input type="checkbox" id="confirmInfo" onchange="checkConditions()">
+          <label for="confirmInfo">He revisado toda la información</label>
+        </div>
+        
+        <div class="checkbox-item">
+          <input type="checkbox" id="confirmRole" onchange="checkConditions()">
+          <label for="confirmRole">He seleccionado un rol</label>
+        </div>
+      </div>
+      
+      <button class="btn modal-btn" id="modalContinueBtn" disabled onclick="continueToTraining()">
+        ✅ Acceder a Capacitación
+      </button>
+      
+      <p class="contacts-title">¿Necesitas ayuda?</p>
+      
+      <div class="contacts-grid">
+        <a href="https://wa.me/573216495733" class="contact-btn whatsapp-btn" target="_blank">
+          <i class="fab fa-whatsapp"></i> Ester
+        </a>
+        
+        <a href="https://wa.me/573027069328" class="contact-btn whatsapp-btn" target="_blank">
+          <i class="fab fa-whatsapp"></i> Katherin
+        </a>
+        
+        <a href="https://wa.me/573025697553" class="contact-btn whatsapp-btn" target="_blank">
+          <i class="fab fa-whatsapp"></i> Gabriela
+        </a>
+        
+        <a href="https://wa.me/573027069188" class="contact-btn whatsapp-btn" target="_blank">
+          <i class="fab fa-whatsapp"></i> Neyereht
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
