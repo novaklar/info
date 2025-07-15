@@ -27,13 +27,13 @@ body {
   background-color: var(--bg-dark);
   color: var(--text-dark);
   line-height: 1.6;
-  overflow-x: hidden;
-  height: 100vh;
+  position: relative;
 }
 
 .onboarding-container {
   display: flex;
-  height: 100vh;
+  height: auto;
+  min-height: 100vh;
   width: 100vw;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
@@ -45,25 +45,27 @@ body {
 .slide {
   min-width: 100vw;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   scroll-snap-align: start;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   padding: 1rem;
   text-align: center;
   flex-shrink: 0;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .slide-content {
   width: 100%;
   max-width: 95%;
   height: auto;
+  min-height: 80vh;
   max-height: 90vh;
-  margin: 0 auto;
+  margin: 2rem auto;
   background-color: var(--bg-darker);
   padding: 1.5rem;
   border-radius: 15px;
@@ -100,6 +102,8 @@ body {
 
 .justified {
   text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
 }
 
 .logo-container {
@@ -552,7 +556,8 @@ body {
   
   .slide-content {
     padding: 1rem;
-    max-height: 88vh;
+    min-height: 85vh;
+    margin: 1rem auto;
   }
   
   .btn {
@@ -588,8 +593,9 @@ body {
 
 @media (max-height: 500px) {
   .slide-content {
-    max-height: 85vh;
+    min-height: 85vh;
     padding: 1rem;
+    margin: 0.5rem auto;
   }
   
   .slide-title {
@@ -608,16 +614,4 @@ body {
   .images-grid img {
     height: 80px;
   }
-}
-.justified {
-  text-align: justify;
-  text-justify: inter-word; /* Mejor distribución del espacio entre palabras */
-  hyphens: auto; /* Permite división de palabras con guiones cuando sea necesario */
-}
-
-/* Asegurémonos que todos los párrafos dentro del contenido desplazable estén justificados */
-.scrollable-content p {
-  text-align: justify;
-  text-justify: inter-word;
-  hyphens: auto;
 }
