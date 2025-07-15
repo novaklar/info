@@ -12,7 +12,6 @@ const trainingVideoContainer = document.getElementById('trainingVideoContainer')
 document.addEventListener('DOMContentLoaded', function() {
   setupEventListeners();
   updateNavButtons();
-  preventScrollBounce();
   goToSlide(0, false);
 });
 
@@ -21,21 +20,35 @@ function setupEventListeners() {
   // Touch events para navegación en móviles
   let touchStartX = 0;
   let touchEndX = 0;
+  let touchStartY = 0;
+  let touchEndY = 0;
   let isScrolling = false;
   
   onboardingContainer.addEventListener('touchstart', function(e) {
     touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
     isScrolling = false;
   }, { passive: true });
   
-  onboardingContainer.addEventListener('touchmove', function() {
-    isScrolling = true;
+  onboardingContainer.addEventListener('touchmove', function(e) {
+    if (!isScrolling) {
+      const xDiff = Math.abs(e.touches[0].clientX - touchStartX);
+      const yDiff = Math.abs(e.touches[0].clientY - touchStartY);
+      
+      // Determinar si el usuario está haciendo scroll vertical u horizontal
+      if (yDiff > xDiff) {
+        isScrolling = true;
+      }
+    }
   }, { passive: true });
   
   onboardingContainer.addEventListener('touchend', function(e) {
-    if (!isScrolling) return;
-    touchEndX = e.changedTouches[0].clientX;
-    handleSwipe();
+    if (!isScrolling) {
+      touchEndX = e.changedTouches[0].clientX;
+      touchEndY = e.changedTouches[0].clientY;
+      handleSwipe();
+    }
+    isScrolling = false;
   }, { passive: true });
   
   // Detectar scroll manual
@@ -64,15 +77,6 @@ function setupEventListeners() {
   });
 }
 
-// Prevenir bounce scroll en iOS
-function preventScrollBounce() {
-  document.body.addEventListener('touchmove', function(e) {
-    if (onboardingContainer.contains(e.target)) {
-      e.preventDefault();
-    }
-  }, { passive: false });
-}
-
 // Debounce para mejorar rendimiento
 function debounce(func, wait) {
   let timeout;
@@ -88,9 +92,11 @@ function debounce(func, wait) {
 // Manejar gesto de deslizamiento
 function handleSwipe() {
   const threshold = 50;
-  if (touchStartX - touchEndX > threshold) {
+  const deltaX = touchStartX - touchEndX;
+  
+  if (deltaX > threshold) {
     nextSlide();
-  } else if (touchEndX - touchStartX > threshold) {
+  } else if (deltaX < -threshold) {
     prevSlide();
   }
 }
@@ -130,7 +136,6 @@ function updateNavButtons() {
 
 // Modal functions
 function openModal() {
-  // Reset checkboxes
   document.getElementById('confirmInfo').checked = false;
   document.getElementById('confirmRole').checked = false;
   modalContinueBtn.disabled = true;
@@ -160,13 +165,8 @@ function continueToTraining() {
     return;
   }
   
-  // Cargar el video de capacitación
   loadTrainingVideo();
-  
-  // Cerrar el modal
   closeModal();
-  
-  // Ir al slide de capacitación (slide 8)
   goToSlide(8);
 }
 
@@ -177,11 +177,6 @@ function loadTrainingVideo() {
     allowfullscreen></iframe>
   `;
 }
-
-// Prevenir zoom en móviles
-document.addEventListener('gesturestart', function(e) {
-  e.preventDefault();
-});
 
 // Manejar cambios de orientación
 window.addEventListener('orientationchange', function() {
