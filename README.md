@@ -13,7 +13,7 @@
     <div class="slide">
       <div class="slide-content">
         <div class="logo-container">
-          <img src="https://raw.githubusercontent.com/novaklar/web/refs/heads/main/Novaklar.svg" alt="Novaklar Logo" class="logo-white">
+          <img src="https://raw.githubusercontent.com/novaklar/web/refs/heads/main/Novaklar.svg" alt="Novaklar Logo" class="logo">
         </div>
         <h1 class="slide-title">¡Bienvenido a Novaklar!</h1>
         <p class="slide-description">
@@ -195,10 +195,10 @@
           </div>
 
           <div class="images-grid">
-            <img src="https://raw.githubusercontent.com/novaklar/reclutamiento/refs/heads/main/17_20250714_172109_0001.png" alt="Requisitos Novaklar">
-            <img src="https://raw.githubusercontent.com/novaklar/reclutamiento/refs/heads/main/18_20250714_172109_0002.png" alt="Requisitos Novaklar">
-            <img src="https://raw.githubusercontent.com/novaklar/reclutamiento/refs/heads/main/22098a32-f4be-4049-a2db-67174d1461b5.jpeg" alt="Requisitos Novaklar">
-            <img src="https://raw.githubusercontent.com/novaklar/reclutamiento/refs/heads/main/7f3c157a-fef7-4275-8bb0-acaea1791090.jpeg" alt="Requisitos Novaklar">
+            <img src="https://raw.githubusercontent.com/novaklar/info/refs/heads/main/16.png" alt="Requisitos Novaklar">
+            <img src="https://raw.githubusercontent.com/novaklar/info/refs/heads/main/17.png" alt="Requisitos Novaklar">
+            <img src="https://raw.githubusercontent.com/novaklar/info/refs/heads/main/18.png" alt="Requisitos Novaklar">
+            <img src="https://raw.githubusercontent.com/novaklar/info/refs/heads/main/19.png" alt="Requisitos Novaklar">
           </div>
         </div>
         <button class="btn" onclick="openModal()">
