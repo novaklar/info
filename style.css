@@ -27,45 +27,45 @@ body {
   background-color: var(--bg-dark);
   color: var(--text-dark);
   line-height: 1.6;
-  position: relative;
+  overflow-x: hidden;
+  height: 100vh;
+  touch-action: pan-y; /* Permite scroll vertical */
 }
 
 .onboarding-container {
   display: flex;
-  height: auto;
-  min-height: 100vh;
+  height: 100vh;
   width: 100vw;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   position: relative;
+  overscroll-behavior-x: contain;
 }
 
 .slide {
   min-width: 100vw;
   width: 100vw;
-  min-height: 100vh;
-  height: auto;
+  height: 100vh;
   scroll-snap-align: start;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   padding: 1rem;
   text-align: center;
   flex-shrink: 0;
   position: relative;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .slide-content {
   width: 100%;
   max-width: 95%;
   height: auto;
-  min-height: 80vh;
-  max-height: 90vh;
-  margin: 2rem auto;
+  max-height: 85vh;
+  margin: 0 auto;
   background-color: var(--bg-darker);
   padding: 1.5rem;
   border-radius: 15px;
@@ -98,12 +98,6 @@ body {
 
 .scrollable-content::-webkit-scrollbar-track {
   background-color: transparent;
-}
-
-.justified {
-  text-align: justify;
-  text-justify: inter-word;
-  hyphens: auto;
 }
 
 .logo-container {
@@ -549,6 +543,20 @@ body {
   animation: fadeIn 0.5s ease forwards;
 }
 
+/* Mejoras en el texto */
+p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  word-spacing: 0.05em;
+  text-align: left;
+}
+
+.justified {
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: none; /* Eliminamos los guiones automáticos */
+}
+
 @media (max-width: 400px) {
   .slide {
     padding: 0.5rem;
@@ -556,8 +564,7 @@ body {
   
   .slide-content {
     padding: 1rem;
-    min-height: 85vh;
-    margin: 1rem auto;
+    max-height: 85vh;
   }
   
   .btn {
@@ -593,9 +600,8 @@ body {
 
 @media (max-height: 500px) {
   .slide-content {
-    min-height: 85vh;
+    max-height: 80vh;
     padding: 1rem;
-    margin: 0.5rem auto;
   }
   
   .slide-title {
