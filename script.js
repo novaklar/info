@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
   setupEventListeners();
   updateNavButtons();
   preventScrollBounce();
+  goToSlide(0, false);
 });
 
 // Configurar event listeners
@@ -50,6 +51,15 @@ function setupEventListeners() {
   modalOverlay.addEventListener('click', function(e) {
     if (e.target === modalOverlay) {
       closeModal();
+    }
+  });
+  
+  // Teclado
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowLeft') {
+      prevSlide();
+    } else if (e.key === 'ArrowRight') {
+      nextSlide();
     }
   });
 }
@@ -103,10 +113,9 @@ function prevSlide() {
 function goToSlide(index, smooth = true) {
   if (index >= 0 && index < slides.length) {
     currentSlide = index;
-    slides[index].scrollIntoView({
-      behavior: smooth ? 'smooth' : 'auto',
-      block: 'nearest',
-      inline: 'start'
+    onboardingContainer.scrollTo({
+      left: index * window.innerWidth,
+      behavior: smooth ? 'smooth' : 'auto'
     });
     updateNavButtons();
   }
