@@ -20,35 +20,23 @@ function setupEventListeners() {
   // Touch events para navegación en móviles
   let touchStartX = 0;
   let touchEndX = 0;
-  let touchStartY = 0;
-  let touchEndY = 0;
   let isScrolling = false;
   
   onboardingContainer.addEventListener('touchstart', function(e) {
     touchStartX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
     isScrolling = false;
   }, { passive: true });
   
   onboardingContainer.addEventListener('touchmove', function(e) {
-    if (!isScrolling) {
-      const xDiff = Math.abs(e.touches[0].clientX - touchStartX);
-      const yDiff = Math.abs(e.touches[0].clientY - touchStartY);
-      
-      // Determinar si el usuario está haciendo scroll vertical u horizontal
-      if (yDiff > xDiff) {
-        isScrolling = true;
-      }
+    if (Math.abs(e.touches[0].clientX - touchStartX) > 5) {
+      isScrolling = true;
     }
   }, { passive: true });
   
   onboardingContainer.addEventListener('touchend', function(e) {
-    if (!isScrolling) {
-      touchEndX = e.changedTouches[0].clientX;
-      touchEndY = e.changedTouches[0].clientY;
-      handleSwipe();
-    }
-    isScrolling = false;
+    if (!isScrolling) return;
+    touchEndX = e.changedTouches[0].clientX;
+    handleSwipe();
   }, { passive: true });
   
   // Detectar scroll manual
@@ -92,11 +80,9 @@ function debounce(func, wait) {
 // Manejar gesto de deslizamiento
 function handleSwipe() {
   const threshold = 50;
-  const deltaX = touchStartX - touchEndX;
-  
-  if (deltaX > threshold) {
+  if (touchStartX - touchEndX > threshold) {
     nextSlide();
-  } else if (deltaX < -threshold) {
+  } else if (touchEndX - touchStartX > threshold) {
     prevSlide();
   }
 }
@@ -136,6 +122,7 @@ function updateNavButtons() {
 
 // Modal functions
 function openModal() {
+  // Reset checkboxes
   document.getElementById('confirmInfo').checked = false;
   document.getElementById('confirmRole').checked = false;
   modalContinueBtn.disabled = true;
@@ -165,8 +152,13 @@ function continueToTraining() {
     return;
   }
   
+  // Cargar el video de capacitación
   loadTrainingVideo();
+  
+  // Cerrar el modal
   closeModal();
+  
+  // Ir al slide de capacitación (slide 8)
   goToSlide(8);
 }
 
