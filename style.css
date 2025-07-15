@@ -53,12 +53,18 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
+  padding: 2rem;
   text-align: center;
   flex-shrink: 0;
   position: relative;
   overflow: hidden;
   animation: fadeIn 0.5s ease forwards;
+}
+
+/* Primer slide con estilo del primer código */
+.slide:first-child {
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
 }
 
 .slide:first-child .slide-content {
@@ -67,24 +73,51 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-color: var(--bg-darker);
+  color: var(--text-light);
+  padding: 1.5rem;
+  border-radius: 15px;
+  box-shadow: var(--card-shadow);
+  max-width: 95%;
+}
+
+.slide:first-child .logo-container img {
+  filter: brightness(0) invert(94%) sepia(8%) saturate(573%) hue-rotate(116deg) brightness(97%) contrast(89%);
+}
+
+.slide:first-child .slide-title {
+  color: var(--secondary-color);
+}
+
+.slide:first-child .slide-description {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.slide:first-child .btn {
+  background-color: var(--button-color);
+  color: var(--primary-color);
+}
+
+/* Slides siguientes con fondo azul del segundo código */
+.slide:nth-child(n+2) {
+  background-color: var(--bg-darker);
+  color: var(--text-light);
 }
 
 .slide-content {
   width: 100%;
-  max-width: 95%;
+  max-width: 800px;
   height: auto;
-  max-height: 85vh;
   margin: 0 auto;
-  background-color: var(--bg-darker);
-  padding: 1.5rem;
-  border-radius: 15px;
-  box-shadow: var(--card-shadow);
+  padding: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow: hidden;
-  color: var(--text-light);
   text-align: center;
+  background-color: transparent;
+  box-shadow: none;
+  border-radius: 0;
 }
 
 .slide-content p {
@@ -92,13 +125,14 @@ body {
   text-justify: inter-word;
   hyphens: manual;
   width: 100%;
+  margin-bottom: 1.5rem;
 }
 
 .slide-description {
   font-size: clamp(0.9rem, 3vw, 1rem);
-  margin-bottom: 1rem;
-  color: rgba(255, 255, 255, 0.9);
-  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  color: inherit;
+  line-height: 1.6;
   flex-shrink: 0;
   width: 100%;
 }
@@ -106,7 +140,7 @@ body {
 .slide-description.center-text {
   text-align: center !important;
   display: block;
-  margin: 0 auto 1rem;
+  margin: 0 auto 1.5rem;
   padding: 0;
   max-width: 90%;
   align-self: center;
@@ -138,30 +172,35 @@ body {
 }
 
 .logo-container {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   flex-shrink: 0;
 }
 
 .logo-container img {
-  height: 50px;
+  height: 60px;
   width: auto;
   max-width: 100%;
-  filter: brightness(0) invert(94%) sepia(8%) saturate(573%) hue-rotate(116deg) brightness(97%) contrast(89%);
 }
 
-.logo {
+/* Ajuste de colores para slides azules */
+.slide:nth-child(n+2) .logo-container img {
   filter: brightness(0) invert(94%) sepia(8%) saturate(573%) hue-rotate(116deg) brightness(97%) contrast(89%);
 }
 
 .slide-title {
-  font-size: clamp(1.4rem, 4vw, 1.8rem);
-  margin-bottom: 1rem;
-  color: var(--secondary-color);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin-bottom: 1.5rem;
+  color: inherit;
   font-weight: 700;
   line-height: 1.3;
   flex-shrink: 0;
   width: 100%;
   text-align: center;
+}
+
+/* Color de título para slides azules */
+.slide:nth-child(n+2) .slide-title {
+  color: var(--secondary-color);
 }
 
 .slide-title i {
@@ -172,7 +211,7 @@ body {
   background-color: var(--button-color);
   color: var(--primary-color);
   border: none;
-  padding: 0.8rem 1.2rem;
+  padding: 0.9rem 1.5rem;
   border-radius: 50px;
   font-size: clamp(0.9rem, 3vw, 1rem);
   font-weight: 600;
@@ -181,13 +220,19 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 200px;
+  min-width: 220px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  margin-top: auto;
+  margin-top: 1.5rem;
   width: 100%;
   max-width: 300px;
   align-self: center;
   flex-shrink: 0;
+}
+
+/* Botones en slides azules */
+.slide:nth-child(n+2) .btn {
+  background-color: var(--button-color);
+  color: var(--primary-color);
 }
 
 .btn:hover, .btn:focus {
@@ -206,6 +251,7 @@ body {
 
 .finish-btn {
   background-color: var(--success-color);
+  color: white;
 }
 
 .finish-btn:hover {
@@ -214,7 +260,7 @@ body {
 
 .navigation {
   position: fixed;
-  bottom: 0.5rem;
+  bottom: 1rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -247,11 +293,11 @@ body {
   position: relative;
   width: 100%;
   padding-bottom: 56.25%;
-  margin: 1rem 0;
+  margin: 1.5rem 0;
   border-radius: 10px;
   overflow: hidden;
   flex-shrink: 0;
-  background-color: var(--bg-dark);
+  background-color: #000;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -277,27 +323,42 @@ body {
 
 .highlight-box {
   background: rgba(187, 231, 230, 0.1);
-  padding: 0.8rem;
+  padding: 1rem;
   border-radius: 8px;
-  margin: 1rem 0;
+  margin: 1.5rem 0;
   border-left: 3px solid var(--secondary-color);
   font-size: clamp(0.85rem, 3vw, 0.9rem);
+}
+
+/* Highlight box en primer slide */
+.slide:first-child .highlight-box {
+  background: rgba(187, 231, 230, 0.1);
+  border-left: 3px solid var(--secondary-color);
 }
 
 .highlight-box strong {
   color: var(--secondary-color);
 }
 
+/* Color strong en primer slide */
+.slide:first-child .highlight-box strong {
+  color: var(--secondary-color);
+}
+
 .benefits-list {
-  margin: 1rem 0;
+  margin: 1.5rem 0;
 }
 
 .benefits-list li {
-  margin-bottom: 0.8rem;
-  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 1rem;
   display: flex;
   align-items: flex-start;
-  font-size: clamp(0.85rem, 3vw, 0.95rem);
+  font-size: clamp(0.9rem, 3vw, 1rem);
+}
+
+/* Color items en slides azules */
+.slide:nth-child(n+2) .benefits-list li {
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .benefits-list i {
@@ -307,29 +368,47 @@ body {
   margin-top: 0.2rem;
 }
 
+/* Color iconos en primer slide */
+.slide:first-child .benefits-list i {
+  color: var(--secondary-color);
+}
+
 .requirements-list {
   margin: 1.5rem 0;
 }
 
 .requirements-list li {
   margin-bottom: 1rem;
-  color: var(--secondary-color);
   display: flex;
   align-items: center;
   font-size: clamp(0.9rem, 3vw, 1rem);
   font-weight: 500;
 }
 
+/* Color items en slides azules */
+.slide:nth-child(n+2) .requirements-list li {
+  color: var(--secondary-color);
+}
+
 .requirements-list i {
   margin-right: 0.8rem;
   font-size: 1.2rem;
+}
+
+/* Color iconos en slides azules */
+.slide:nth-child(n+2) .requirements-list i {
+  color: var(--secondary-color);
+}
+
+/* Color iconos en primer slide */
+.slide:first-child .requirements-list i {
   color: var(--secondary-color);
 }
 
 .images-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0.8rem;
+  gap: 1rem;
   margin: 1.5rem 0;
 }
 
@@ -338,20 +417,49 @@ body {
   height: 120px;
   object-fit: cover;
   border-radius: 8px;
+}
+
+/* Borde imágenes en slides azules */
+.slide:nth-child(n+2) .images-grid img {
+  border: 1px solid var(--secondary-color);
+}
+
+/* Borde imágenes en primer slide */
+.slide:first-child .images-grid img {
   border: 1px solid var(--secondary-color);
 }
 
 .section-title {
-  color: var(--button-color);
-  margin: 1.5rem 0 1rem;
-  font-size: 1.2rem;
+  margin: 2rem 0 1rem;
+  font-size: 1.3rem;
+}
+
+/* Color section title en slides azules */
+.slide:nth-child(n+2) .section-title {
+  color: var(--secondary-color);
+}
+
+/* Color section title en primer slide */
+.slide:first-child .section-title {
+  color: var(--secondary-color);
 }
 
 .business-model-card {
   background: rgba(187, 231, 230, 0.1);
   border-radius: 12px;
-  padding: 1.2rem;
+  padding: 1.5rem;
   margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+/* Estilo cards en primer slide */
+.slide:first-child .business-model-card {
+  background: rgba(187, 231, 230, 0.1);
+  border: 1px solid var(--secondary-color);
+}
+
+/* Estilo cards en slides azules */
+.slide:nth-child(n+2) .business-model-card {
   border: 1px solid var(--secondary-color);
 }
 
@@ -368,10 +476,25 @@ body {
   font-size: 1.5rem;
 }
 
+/* Estilo iconos en primer slide */
+.slide:first-child .model-icon {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
 .business-model-card h3 {
-  color: var(--secondary-color);
-  margin-bottom: 0.8rem;
+  margin-bottom: 1rem;
   font-size: 1.1rem;
+}
+
+/* Color títulos cards en slides azules */
+.slide:nth-child(n+2) .business-model-card h3 {
+  color: var(--secondary-color);
+}
+
+/* Color títulos cards en primer slide */
+.slide:first-child .business-model-card h3 {
+  color: var(--secondary-color);
 }
 
 .business-model-card p {
@@ -380,16 +503,25 @@ body {
 }
 
 .model-highlight {
-  color: var(--secondary-color) !important;
   font-weight: 500;
-  margin-top: 0.8rem !important;
+  margin-top: 1rem !important;
   font-style: italic;
+}
+
+/* Color model highlight en slides azules */
+.slide:nth-child(n+2) .model-highlight {
+  color: var(--secondary-color) !important;
+}
+
+/* Color model highlight en primer slide */
+.slide:first-child .model-highlight {
+  color: var(--secondary-color) !important;
 }
 
 .contacts-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0.8rem;
+  gap: 1rem;
   margin: 1.5rem 0;
 }
 
@@ -399,7 +531,7 @@ body {
   justify-content: center;
   background-color: var(--whatsapp-color);
   color: white;
-  padding: 0.8rem 1rem;
+  padding: 0.9rem 1rem;
   border-radius: 50px;
   text-decoration: none;
   font-weight: 500;
@@ -423,8 +555,17 @@ body {
 
 .contact-note {
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.6);
   margin-top: 1rem;
+}
+
+/* Color nota contacto en slides azules */
+.slide:nth-child(n+2) .contact-note {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Color nota contacto en primer slide */
+.slide:first-child .contact-note {
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .modal-overlay {
@@ -571,20 +712,25 @@ body {
 
 @media (max-width: 400px) {
   .slide {
+    padding: 1rem;
+  }
+  
+  .slide:first-child {
     padding: 0.5rem;
   }
   
-  .slide-content {
+  .slide:first-child .slide-content {
     padding: 1rem;
     max-height: 85vh;
   }
   
   .btn {
-    padding: 0.7rem 1rem;
+    padding: 0.8rem 1rem;
+    min-width: 180px;
   }
   
   .navigation {
-    bottom: 0.3rem;
+    bottom: 0.5rem;
     padding: 0.4rem 0.6rem;
   }
   
@@ -613,7 +759,6 @@ body {
 @media (max-height: 500px) {
   .slide-content {
     max-height: 80vh;
-    padding: 1rem;
   }
   
   .slide-title {
