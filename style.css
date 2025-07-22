@@ -258,37 +258,6 @@ body {
   background-color: #009951;
 }
 
-.navigation {
-  position: fixed;
-  bottom: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 0.5rem;
-  z-index: 10;
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 0.5rem 0.8rem;
-  border-radius: 50px;
-  flex-shrink: 0;
-}
-
-.nav-btn {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: rgba(20, 122, 128, 0.3);
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  padding: 0;
-  flex-shrink: 0;
-}
-
-.nav-btn.active {
-  background-color: var(--primary-color);
-  transform: scale(1.2);
-}
-
 .video-container {
   position: relative;
   width: 100%;
@@ -729,16 +698,6 @@ body {
     min-width: 180px;
   }
   
-  .navigation {
-    bottom: 0.5rem;
-    padding: 0.4rem 0.6rem;
-  }
-  
-  .nav-btn {
-    width: 6px;
-    height: 6px;
-  }
-  
   .contacts-grid, .images-grid {
     grid-template-columns: 1fr;
   }
@@ -768,10 +727,6 @@ body {
   .btn {
     padding: 0.6rem 0.9rem;
     margin-top: 0.5rem;
-  }
-  
-  .navigation {
-    bottom: 0.2rem;
   }
   
   .images-grid img {
