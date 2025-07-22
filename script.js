@@ -2,7 +2,6 @@
 let currentSlide = 0;
 let selectedRole = null;
 const slides = document.querySelectorAll('.slide');
-const navButtons = document.querySelectorAll('.nav-btn');
 const onboardingContainer = document.getElementById('onboardingContainer');
 const modalOverlay = document.getElementById('modalOverlay');
 const modalContinueBtn = document.getElementById('modalContinueBtn');
@@ -11,7 +10,6 @@ const trainingVideoContainer = document.getElementById('trainingVideoContainer')
 // Inicialización
 document.addEventListener('DOMContentLoaded', function() {
   setupEventListeners();
-  updateNavButtons();
   goToSlide(0, false);
 });
 
@@ -44,7 +42,6 @@ function setupEventListeners() {
     const newSlide = Math.round(this.scrollLeft / window.innerWidth);
     if (newSlide !== currentSlide) {
       currentSlide = newSlide;
-      updateNavButtons();
     }
   }, 100), { passive: true });
   
@@ -109,15 +106,7 @@ function goToSlide(index, smooth = true) {
       left: index * window.innerWidth,
       behavior: smooth ? 'smooth' : 'auto'
     });
-    updateNavButtons();
   }
-}
-
-// Actualizar botones de navegación
-function updateNavButtons() {
-  navButtons.forEach((btn, index) => {
-    btn.classList.toggle('active', index === currentSlide);
-  });
 }
 
 // Modal functions
