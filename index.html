@@ -8,6 +8,11 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Anuncio de horario -->
+  <div class="announcement-banner">
+    <i class="fas fa-clock"></i> Horario de atención: 9:00 am a 10:00 pm
+  </div>
+
   <div class="onboarding-container" id="onboardingContainer">
     <!-- Slide 1: Bienvenida -->
     <div class="slide">
@@ -19,6 +24,12 @@
         <p class="slide-description center-text">
           La plataforma que transforma la forma de generar ingresos en línea
         </p>
+        <div class="audio-container">
+          <audio controls>
+            <source src="https://raw.githubusercontent.com/novaklar/info/main/aud1o.mp3" type="audio/mpeg">
+            Tu navegador no soporta el elemento de audio.
+          </audio>
+        </div>
         <button class="btn" onclick="nextSlide()">
           Comenzar <i class="fas fa-arrow-right"></i>
         </button>
