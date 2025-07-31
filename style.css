@@ -13,6 +13,7 @@
   --text-light: #ffffff;
   --text-dark: #333333;
   --button-color: #ffffff;
+  --announcement-bg: linear-gradient(135deg, #ff4d4d, #990000);
 }
 
 * {
@@ -32,6 +33,31 @@ body {
   touch-action: pan-y;
 }
 
+/* Anuncio de horario */
+.announcement-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--announcement-bg);
+  color: white;
+  padding: 0.8rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  animation: pulse 2s infinite;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.announcement-banner i {
+  font-size: 0.9rem;
+}
+
 .onboarding-container {
   display: flex;
   height: 100vh;
@@ -42,6 +68,7 @@ body {
   -webkit-overflow-scrolling: touch;
   position: relative;
   overscroll-behavior-x: contain;
+  padding-top: 50px; /* Espacio para el banner */
 }
 
 .slide {
@@ -118,6 +145,12 @@ body {
   background-color: transparent;
   box-shadow: none;
   border-radius: 0;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
 }
 
 .slide-content p {
@@ -284,6 +317,8 @@ body {
 .audio-container {
   width: 100%;
   margin: 1.5rem 0;
+  max-width: 300px;
+  align-self: center;
 }
 
 .audio-container audio {
@@ -713,6 +748,11 @@ body {
   .modal-title {
     font-size: 1.1rem;
   }
+  
+  .announcement-banner {
+    font-size: 0.75rem;
+    padding: 0.5rem;
+  }
 }
 
 @media (max-height: 500px) {
@@ -731,5 +771,9 @@ body {
   
   .images-grid img {
     height: 80px;
+  }
+  
+  .announcement-banner {
+    padding: 0.4rem;
   }
 }
