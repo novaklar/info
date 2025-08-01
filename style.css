@@ -33,6 +33,7 @@ body {
   touch-action: pan-y;
 }
 
+/* Anuncio de horario solo en el primer slide */
 .announcement-banner {
   position: absolute;
   top: 0;
@@ -76,6 +77,8 @@ body {
   scroll-snap-align: start;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 2rem;
   text-align: center;
   flex-shrink: 0;
@@ -84,33 +87,31 @@ body {
   animation: fadeIn 0.5s ease forwards;
 }
 
-/* PRIMER SLIDE - CENTRADO PERFECTO */
+/* Primer slide con estilo especial */
 .slide:first-child {
   background-color: var(--bg-dark);
   color: var(--text-dark);
-  padding-top: 3rem;
-  justify-content: center;
-  align-items: center;
+  padding-top: 3rem; /* Espacio para el banner */
 }
 
 .slide:first-child .slide-content {
-  width: 100%;
-  max-width: 800px;
-  height: auto;
-  min-height: auto;
+  min-height: 80vh; /* Aumentamos la altura del contenedor */
+  max-height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: var(--bg-darker);
   color: var(--text-light);
-  padding: 2rem;
+  padding: 1.5rem;
   border-radius: 15px;
   box-shadow: var(--card-shadow);
+  max-width: 95%;
+  position: relative;
   margin: 0 auto;
-  transform: translateY(0); /* Elimina cualquier desplazamiento vertical */
 }
 
+/* Slides siguientes con fondo azul */
 .slide:nth-child(n+2) {
   background-color: var(--bg-darker);
   color: var(--text-light);
@@ -164,28 +165,6 @@ body {
   align-self: center;
 }
 
-/* ÚLTIMO SLIDE - ELEMENTOS CENTRADOS */
-.slide:last-child .slide-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  text-align: center;
-}
-
-.slide:last-child .slide-description.center-text {
-  text-align: center !important;
-  width: 100%;
-  margin: 0 auto 1.5rem;
-}
-
-.slide:last-child .contacts-title {
-  text-align: center;
-  width: 100%;
-  margin: 1.5rem 0;
-}
-
 .scrollable-content {
   overflow-y: auto;
   flex-grow: 1;
@@ -220,7 +199,12 @@ body {
   height: 60px;
   width: auto;
   max-width: 100%;
-  filter: brightness(0) invert(89%) sepia(8%) saturate(573%) hue-rotate(116deg) brightness(97%) contrast(89%);
+  filter: brightness(0) invert(89%) sepia(11%) saturate(748%) hue-rotate(116deg) brightness(97%) contrast(89%);
+}
+
+/* Ajuste de colores para slides azules */
+.slide:nth-child(n+2) .logo-container img {
+  filter: brightness(0) invert(94%) sepia(8%) saturate(573%) hue-rotate(116deg) brightness(97%) contrast(89%);
 }
 
 .slide-title {
@@ -234,6 +218,7 @@ body {
   text-align: center;
 }
 
+/* Color de título para slides azules */
 .slide:nth-child(n+2) .slide-title {
   color: var(--secondary-color);
 }
@@ -257,13 +242,14 @@ body {
   justify-content: center;
   min-width: 220px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   width: 100%;
   max-width: 300px;
   align-self: center;
   flex-shrink: 0;
 }
 
+/* Botones en slides azules */
 .slide:nth-child(n+2) .btn {
   background-color: var(--button-color);
   color: var(--primary-color);
@@ -317,9 +303,11 @@ body {
 
 .audio-container {
   width: 100%;
-  margin: 1.5rem 0;
+  margin: 1.5rem auto;
   max-width: 300px;
-  align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .audio-container audio {
@@ -335,6 +323,7 @@ body {
   font-size: clamp(0.85rem, 3vw, 0.9rem);
 }
 
+/* Highlight box en primer slide */
 .slide:first-child .highlight-box {
   background: rgba(187, 231, 230, 0.1);
   border-left: 3px solid var(--secondary-color);
@@ -344,6 +333,7 @@ body {
   color: var(--secondary-color);
 }
 
+/* Color strong en primer slide */
 .slide:first-child .highlight-box strong {
   color: var(--secondary-color);
 }
@@ -359,6 +349,7 @@ body {
   font-size: clamp(0.9rem, 3vw, 1rem);
 }
 
+/* Color items en slides azules */
 .slide:nth-child(n+2) .benefits-list li {
   color: rgba(255, 255, 255, 0.9);
 }
@@ -370,6 +361,7 @@ body {
   margin-top: 0.2rem;
 }
 
+/* Color iconos en primer slide */
 .slide:first-child .benefits-list i {
   color: var(--secondary-color);
 }
@@ -386,6 +378,7 @@ body {
   font-weight: 500;
 }
 
+/* Color items en slides azules */
 .slide:nth-child(n+2) .requirements-list li {
   color: var(--secondary-color);
 }
@@ -395,10 +388,12 @@ body {
   font-size: 1.2rem;
 }
 
+/* Color iconos en slides azules */
 .slide:nth-child(n+2) .requirements-list i {
   color: var(--secondary-color);
 }
 
+/* Color iconos en primer slide */
 .slide:first-child .requirements-list i {
   color: var(--secondary-color);
 }
@@ -417,10 +412,12 @@ body {
   border-radius: 8px;
 }
 
+/* Borde imágenes en slides azules */
 .slide:nth-child(n+2) .images-grid img {
   border: 1px solid var(--secondary-color);
 }
 
+/* Borde imágenes en primer slide */
 .slide:first-child .images-grid img {
   border: 1px solid var(--secondary-color);
 }
@@ -430,10 +427,12 @@ body {
   font-size: 1.3rem;
 }
 
+/* Color section title en slides azules */
 .slide:nth-child(n+2) .section-title {
   color: var(--secondary-color);
 }
 
+/* Color section title en primer slide */
 .slide:first-child .section-title {
   color: var(--secondary-color);
 }
@@ -446,11 +445,13 @@ body {
   width: 100%;
 }
 
+/* Estilo cards en primer slide */
 .slide:first-child .business-model-card {
   background: rgba(187, 231, 230, 0.1);
   border: 1px solid var(--secondary-color);
 }
 
+/* Estilo cards en slides azules */
 .slide:nth-child(n+2) .business-model-card {
   border: 1px solid var(--secondary-color);
 }
@@ -468,6 +469,7 @@ body {
   font-size: 1.5rem;
 }
 
+/* Estilo iconos en primer slide */
 .slide:first-child .model-icon {
   background-color: var(--secondary-color);
   color: var(--primary-color);
@@ -478,10 +480,12 @@ body {
   font-size: 1.1rem;
 }
 
+/* Color títulos cards en slides azules */
 .slide:nth-child(n+2) .business-model-card h3 {
   color: var(--secondary-color);
 }
 
+/* Color títulos cards en primer slide */
 .slide:first-child .business-model-card h3 {
   color: var(--secondary-color);
 }
@@ -497,10 +501,12 @@ body {
   font-style: italic;
 }
 
+/* Color model highlight en slides azules */
 .slide:nth-child(n+2) .model-highlight {
   color: var(--secondary-color) !important;
 }
 
+/* Color model highlight en primer slide */
 .slide:first-child .model-highlight {
   color: var(--secondary-color) !important;
 }
@@ -509,9 +515,7 @@ body {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
-  margin: 1.5rem auto;
-  max-width: 500px;
-  width: 100%;
+  margin: 1.5rem 0;
 }
 
 .contact-btn {
@@ -545,9 +549,16 @@ body {
 .contact-note {
   font-size: 0.85rem;
   margin-top: 1rem;
+}
+
+/* Color nota contacto en slides azules */
+.slide:nth-child(n+2) .contact-note {
   color: rgba(255, 255, 255, 0.6);
-  text-align: center;
-  width: 100%;
+}
+
+/* Color nota contacto en primer slide */
+.slide:first-child .contact-note {
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .modal-overlay {
@@ -660,10 +671,14 @@ body {
 
 .modal-btn {
   width: 100%;
-  margin: 1.5rem 0;
+  margin: 1.5rem auto;
   background-color: var(--secondary-color);
   color: var(--primary-color);
   font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
 }
 
 .modal-btn:hover {
@@ -685,15 +700,6 @@ body {
   margin: 1.5rem 0 1rem;
   font-size: 1rem;
   color: var(--secondary-color);
-}
-
-.slide:last-child .contacts-grid {
-  margin: 1rem auto;
-}
-
-.slide:last-child .btn {
-  margin-top: 1.5rem;
-  margin-bottom: 1rem;
 }
 
 @keyframes fadeIn {
