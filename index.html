@@ -5,13 +5,780 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Onboarding Afiliados | Novaklar</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #147a80;
+      --secondary-color: #a5ffb7; /* Cambiado de #bbe7e6 a #a5ffb7 */
+      --accent-color: #0d5257;
+      --whatsapp-color: #25D366;
+      --success-color: #00bf63;
+      --warning-color: #ff3131;
+      --text-color: #333333;
+      --light-bg: #ffffff;
+      --card-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      --border-radius: 12px;
+      --text-light: #ffffff;
+      --text-muted: #6b7280;
+      --bg-gradient: linear-gradient(135deg, #147a80 0%, #0d5257 100%);
+      --announcement-bg: linear-gradient(135deg, #ff4d4d, #990000);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background-color: var(--light-bg);
+      color: var(--text-color);
+      line-height: 1.6;
+      overflow-x: hidden;
+      height: 100vh;
+      touch-action: pan-y;
+    }
+
+    /* Anuncio de horario */
+    .announcement-banner {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: var(--announcement-bg);
+      color: white;
+      padding: 0.8rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-align: center;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .announcement-banner i {
+      font-size: 0.9rem;
+    }
+
+    .onboarding-container {
+      display: flex;
+      height: 100vh;
+      width: 100vw;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      position: relative;
+      overscroll-behavior-x: contain;
+    }
+
+    .slide {
+      min-width: 100vw;
+      width: 100vw;
+      height: 100vh;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+      text-align: center;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+      background-color: var(--light-bg);
+    }
+
+    /* Estilo especial para slides con fondo */
+    .slide.with-bg {
+      background: var(--bg-gradient);
+      color: var(--text-light);
+    }
+
+    .slide-content {
+      width: 100%;
+      max-width: 800px;
+      height: auto;
+      max-height: 90vh;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow: hidden;
+      text-align: center;
+      background-color: var(--light-bg);
+      border-radius: var(--border-radius);
+      box-shadow: var(--card-shadow);
+      position: relative;
+    }
+
+    .slide.with-bg .slide-content {
+      background-color: rgba(255, 255, 255, 0.95);
+      color: var(--text-color);
+    }
+
+    .slide-content p {
+      text-align: justify;
+      text-justify: inter-word;
+      hyphens: auto;
+      width: 100%;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .slide-description {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      color: inherit;
+      line-height: 1.6;
+      width: 100%;
+    }
+
+    .slide-description.center-text {
+      text-align: center !important;
+      margin: 0 auto 1.5rem;
+      max-width: 90%;
+    }
+
+    .scrollable-content {
+      overflow-y: auto;
+      flex-grow: 1;
+      padding-right: 0.5rem;
+      margin-bottom: 1rem;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: var(--primary-color) transparent;
+      width: 100%;
+    }
+
+    .scrollable-content::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .scrollable-content::-webkit-scrollbar-thumb {
+      background-color: var(--primary-color);
+      border-radius: 2px;
+    }
+
+    .scrollable-content::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    .logo-container {
+      margin-bottom: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .logo-container img {
+      height: 60px;
+      width: auto;
+      max-width: 100%;
+      filter: invert(48%) sepia(13%) saturate(1518%) hue-rotate(145deg) brightness(90%) contrast(90%);
+    }
+
+    .slide-title {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary-color);
+      font-weight: 600;
+      line-height: 1.3;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    .slide-title:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: var(--secondary-color);
+      border-radius: 3px;
+    }
+
+    .slide.with-bg .slide-title {
+      color: var(--primary-color);
+    }
+
+    .slide-title i {
+      margin-right: 0.5rem;
+      color: var(--secondary-color);
+    }
+
+    .btn {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 1rem 1.5rem;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 220px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      margin-top: 1.5rem;
+      width: 100%;
+      max-width: 300px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.2));
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .btn:hover, .btn:focus {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn:hover:after {
+      opacity: 1;
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn i {
+      margin-left: 0.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .btn:hover i {
+      transform: translateX(3px);
+    }
+
+    .finish-btn {
+      background-color: var(--success-color);
+    }
+
+    .finish-btn:hover {
+      background-color: #009951;
+    }
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      margin: 1.5rem 0;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      background-color: #000;
+      box-shadow: var(--card-shadow);
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .audio-container {
+      width: 100%;
+      margin: 1.5rem auto;
+      max-width: 300px;
+    }
+
+    .audio-container audio {
+      width: 100%;
+    }
+
+    .highlight-box {
+      background: rgba(20, 122, 128, 0.08);
+      padding: 1.2rem;
+      border-radius: var(--border-radius);
+      margin: 1.5rem 0;
+      border-left: 4px solid var(--secondary-color);
+      text-align: left;
+      box-shadow: var(--card-shadow);
+    }
+
+    .highlight-box strong {
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+
+    .benefits-list {
+      margin: 1.5rem 0;
+      text-align: left;
+      width: 100%;
+    }
+
+    .benefits-list li {
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: flex-start;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .benefits-list i {
+      color: var(--primary-color);
+      margin-right: 0.8rem;
+      font-size: 1rem;
+      margin-top: 0.2rem;
+      flex-shrink: 0;
+    }
+
+    .requirements-list {
+      margin: 1.5rem 0;
+      text-align: left;
+      width: 100%;
+    }
+
+    .requirements-list li {
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .requirements-list i {
+      color: var(--primary-color);
+      margin-right: 0.8rem;
+      font-size: 1.2rem;
+    }
+
+    .images-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .images-grid img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: var(--border-radius);
+      box-shadow: var(--card-shadow);
+      transition: var(--transition);
+    }
+
+    .images-grid img:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+    }
+
+    .section-title {
+      margin: 2rem 0 1rem;
+      font-size: 1.3rem;
+      color: var(--primary-color);
+      font-weight: 600;
+      text-align: left;
+      width: 100%;
+    }
+
+    .business-model-card {
+      background: white;
+      border-radius: var(--border-radius);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      width: 100%;
+      box-shadow: var(--card-shadow);
+      border-top: 4px solid var(--secondary-color);
+      transition: var(--transition);
+      text-align: left;
+    }
+
+    .business-model-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    }
+
+    .model-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: var(--secondary-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+      font-size: 1.5rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .business-model-card h3 {
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+      color: var(--primary-color);
+    }
+
+    .business-model-card p {
+      margin-bottom: 0.8rem;
+      font-size: 0.9rem;
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    .model-highlight {
+      font-weight: 500;
+      margin-top: 1rem !important;
+      color: var(--primary-color) !important;
+      font-style: italic;
+    }
+
+    .contacts-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin: 1.5rem 0;
+      width: 100%;
+    }
+
+    .contact-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--whatsapp-color);
+      color: white;
+      padding: 1rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      width: 100%;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-btn:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.2));
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .contact-btn i {
+      margin-right: 0.8rem;
+      font-size: 1.2rem;
+    }
+
+    .contact-btn:hover, .contact-btn:focus {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+    }
+
+    .contact-btn:hover:after {
+      opacity: 1;
+    }
+
+    .contact-note {
+      font-size: 0.85rem;
+      margin-top: 1rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      padding: 1rem;
+      backdrop-filter: blur(5px);
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal {
+      background-color: white;
+      border-radius: var(--border-radius);
+      padding: 2rem;
+      width: 100%;
+      max-width: 500px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      transform: translateY(20px);
+      transition: var(--transition);
+      border-top: 4px solid var(--primary-color);
+    }
+
+    .modal-overlay.active .modal {
+      transform: translateY(0);
+    }
+
+    .modal-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .modal-title {
+      font-size: 1.5rem;
+      margin: 1rem 0 0;
+      color: var(--primary-color);
+    }
+
+    .modal-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: var(--secondary-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary-color);
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .modal-text {
+      margin-bottom: 1.5rem;
+      color: var(--text-color);
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .checkbox-group {
+      margin-bottom: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      padding: 1rem;
+      border-radius: 8px;
+      transition: var(--transition);
+      background-color: rgba(165, 255, 183, 0.2);
+      border: 1px solid rgba(165, 255, 183, 0.3);
+    }
+
+    .checkbox-item:hover {
+      background-color: rgba(165, 255, 183, 0.3);
+    }
+
+    .checkbox-item input {
+      margin-right: 1rem;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      accent-color: var(--secondary-color);
+    }
+
+    .checkbox-item label {
+      color: var(--text-color);
+      font-weight: 500;
+      flex: 1;
+      cursor: pointer;
+    }
+
+    .modal-btn {
+      width: 100%;
+      margin: 1.5rem auto 0;
+      background-color: var(--primary-color);
+      color: white;
+      font-size: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+      border: none;
+      border-radius: 50px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 4px 12px rgba(20, 122, 128, 0.3);
+    }
+
+    .modal-btn:hover {
+      background-color: var(--accent-color);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(20, 122, 128, 0.4);
+    }
+
+    .modal-btn:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+      transform: none !important;
+      box-shadow: none;
+    }
+
+    .contacts-title {
+      text-align: center;
+      margin: 1.5rem 0 1rem;
+      font-size: 1rem;
+      color: var(--primary-color);
+      font-weight: 500;
+    }
+
+    /* Animaciones */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    /* Efecto de aparición para los slides */
+    .slide-content {
+      animation: fadeIn 0.5s ease forwards;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .slide {
+        padding: 1rem;
+      }
+      
+      .slide-content {
+        padding: 1.5rem 1rem;
+        max-height: 85vh;
+      }
+      
+      .slide-title {
+        font-size: 1.5rem;
+      }
+      
+      .btn {
+        padding: 0.9rem 1.2rem;
+        min-width: 180px;
+        font-size: 0.95rem;
+      }
+      
+      .contacts-grid, .images-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .business-model-card {
+        padding: 1.2rem;
+      }
+      
+      .modal {
+        padding: 1.5rem;
+      }
+      
+      .modal-title {
+        font-size: 1.3rem;
+      }
+      
+      .announcement-banner {
+        font-size: 0.8rem;
+        padding: 0.7rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .slide-content {
+        padding: 1.2rem 0.8rem;
+      }
+      
+      .slide-title {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+      }
+      
+      .btn {
+        padding: 0.8rem;
+        margin-top: 1rem;
+      }
+      
+      .images-grid img {
+        height: 100px;
+      }
+      
+      .announcement-banner {
+        padding: 0.6rem;
+        font-size: 0.75rem;
+      }
+      
+      .modal {
+        padding: 1.2rem;
+      }
+    }
+
+    @media (max-height: 600px) {
+      .slide-content {
+        max-height: 80vh;
+        padding: 1rem;
+      }
+      
+      .slide-title {
+        margin-bottom: 0.8rem;
+        font-size: 1.3rem;
+      }
+      
+      .btn {
+        padding: 0.7rem;
+        margin-top: 0.8rem;
+      }
+      
+      .images-grid img {
+        height: 80px;
+      }
+      
+      .announcement-banner {
+        padding: 0.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="onboarding-container" id="onboardingContainer">
     <!-- Slide 1: Bienvenida -->
     <div class="slide">
-      <!-- Anuncio de horario solo en el primer slide -->
       <div class="announcement-banner">
         <i class="fas fa-clock"></i> Horario de atención: 9:00 am a 10:00 pm
       </div>
@@ -37,7 +804,7 @@
     </div>
 
     <!-- Slide 2: Información Novaklar -->
-    <div class="slide">
+    <div class="slide with-bg">
       <div class="slide-content">
         <h1 class="slide-title">¿Qué es Novaklar?</h1>
         <div class="scrollable-content">
@@ -54,7 +821,7 @@
     </div>
 
     <!-- Slide 3: Video Presentación -->
-    <div class="slide">
+    <div class="slide with-bg">
       <div class="slide-content">
         <h1 class="slide-title">Conoce Novaklar</h1>
         <div class="video-container">
@@ -67,7 +834,7 @@
     </div>
 
     <!-- Slide 4: Revendedor -->
-    <div class="slide">
+    <div class="slide with-bg">
       <div class="slide-content">
         <h1 class="slide-title"><i class="fas fa-store"></i> Revendedor</h1>
         <div class="scrollable-content">
@@ -96,7 +863,7 @@
     </div>
 
     <!-- Slide 5: Promotor -->
-    <div class="slide">
+    <div class="slide with-bg">
       <div class="slide-content">
         <h1 class="slide-title"><i class="fas fa-bullhorn"></i> Promotor</h1>
         <div class="scrollable-content">
@@ -125,7 +892,7 @@
     </div>
 
     <!-- Slide 6: Reclutador -->
-    <div class="slide">
+    <div class="slide with-bg">
       <div class="slide-content">
         <h1 class="slide-title"><i class="fas fa-users"></i> Reclutador</h1>
         <div class="scrollable-content">
@@ -154,7 +921,7 @@
     </div>
 
     <!-- Slide 7: Modelo de Negocio -->
-    <div class="slide">
+    <div class="slide with-bg">
       <div class="slide-content">
         <h1 class="slide-title">Modelo de Negocio</h1>
         <div class="scrollable-content">
@@ -188,7 +955,7 @@
     </div>
 
     <!-- Slide 8: Requisitos -->
-    <div class="slide">
+    <div class="slide with-bg">
       <div class="slide-content">
         <h1 class="slide-title">Requisitos para ingresar</h1>
         <div class="scrollable-content">
@@ -219,7 +986,7 @@
     </div>
 
     <!-- Slide 9: Capacitación -->
-    <div class="slide">
+    <div class="slide with-bg">
       <div class="slide-content">
         <h1 class="slide-title">Capacitación</h1>
         <div class="scrollable-content">
@@ -236,7 +1003,7 @@
     </div>
 
     <!-- Slide 10: Finalizar -->
-    <div class="slide">
+    <div class="slide with-bg">
       <div class="slide-content">
         <h1 class="slide-title">¡Estás listo para comenzar!</h1>
         <div class="scrollable-content">
@@ -247,7 +1014,7 @@
             </audio>
           </div>
           
-          <p>Contáctanos ahora mismo para comenzar tu proceso de afiliación:</p>
+          <p class="center-text">Contáctanos ahora mismo para comenzar tu proceso de afiliación:</p>
           
           <div class="contacts-grid">
             <a href="https://wa.me/573216495733" class="contact-btn whatsapp-btn" target="_blank">
@@ -266,6 +1033,8 @@
               <i class="fab fa-whatsapp"></i> Neyereht
             </a>
           </div>
+          
+          <p class="contact-note">Horario de atención: 9:00 am a 10:00 pm</p>
         </div>
       </div>
     </div>
@@ -320,6 +1089,179 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    // Variables globales
+    let currentSlide = 0;
+    let selectedRole = null;
+    const slides = document.querySelectorAll('.slide');
+    const onboardingContainer = document.getElementById('onboardingContainer');
+    const modalOverlay = document.getElementById('modalOverlay');
+    const modalContinueBtn = document.getElementById('modalContinueBtn');
+    const trainingVideoContainer = document.getElementById('trainingVideoContainer');
+
+    // Inicialización
+    document.addEventListener('DOMContentLoaded', function() {
+      setupEventListeners();
+      goToSlide(0, false);
+    });
+
+    // Configurar event listeners
+    function setupEventListeners() {
+      // Touch events para navegación en móviles
+      let touchStartX = 0;
+      let touchEndX = 0;
+      let isScrolling = false;
+      
+      onboardingContainer.addEventListener('touchstart', function(e) {
+        touchStartX = e.touches[0].clientX;
+        isScrolling = false;
+      }, { passive: true });
+      
+      onboardingContainer.addEventListener('touchmove', function(e) {
+        if (Math.abs(e.touches[0].clientX - touchStartX) > 5) {
+          isScrolling = true;
+        }
+      }, { passive: true });
+      
+      onboardingContainer.addEventListener('touchend', function(e) {
+        if (!isScrolling) return;
+        touchEndX = e.changedTouches[0].clientX;
+        handleSwipe();
+      }, { passive: true });
+      
+      // Detectar scroll manual
+      onboardingContainer.addEventListener('scroll', debounce(function() {
+        const newSlide = Math.round(this.scrollLeft / window.innerWidth);
+        if (newSlide !== currentSlide) {
+          currentSlide = newSlide;
+        }
+      }, 100), { passive: true });
+      
+      // Cerrar modal
+      modalOverlay.addEventListener('click', function(e) {
+        if (e.target === modalOverlay) {
+          closeModal();
+        }
+      });
+      
+      // Teclado
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowLeft') {
+          prevSlide();
+        } else if (e.key === 'ArrowRight') {
+          nextSlide();
+        }
+      });
+    }
+
+    // Debounce para mejorar rendimiento
+    function debounce(func, wait) {
+      let timeout;
+      return function() {
+        const context = this, args = arguments;
+        clearTimeout(timeout);
+        timeout = setTimeout(function() {
+          func.apply(context, args);
+        }, wait);
+      };
+    }
+
+    // Manejar gesto de deslizamiento
+    function handleSwipe() {
+      const threshold = 50;
+      if (touchStartX - touchEndX > threshold) {
+        nextSlide();
+      } else if (touchEndX - touchStartX > threshold) {
+        prevSlide();
+      }
+    }
+
+    // Navegación entre slides
+    function nextSlide() {
+      if (currentSlide < slides.length - 1) {
+        currentSlide++;
+        goToSlide(currentSlide);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+        goToSlide(currentSlide);
+      }
+    }
+
+    function goToSlide(index, smooth = true) {
+      if (index >= 0 && index < slides.length) {
+        currentSlide = index;
+        onboardingContainer.scrollTo({
+          left: index * window.innerWidth,
+          behavior: smooth ? 'smooth' : 'auto'
+        });
+      }
+    }
+
+    // Modal functions
+    function openModal() {
+      // Reset checkboxes
+      document.getElementById('confirmInfo').checked = false;
+      document.getElementById('confirmRole').checked = false;
+      modalContinueBtn.disabled = true;
+      
+      modalOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modalOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function checkConditions() {
+      const confirmInfo = document.getElementById('confirmInfo').checked;
+      const confirmRole = document.getElementById('confirmRole').checked;
+      
+      modalContinueBtn.disabled = !(confirmInfo && confirmRole);
+    }
+
+    function continueToTraining() {
+      const confirmInfo = document.getElementById('confirmInfo').checked;
+      const confirmRole = document.getElementById('confirmRole').checked;
+      
+      if (!confirmInfo || !confirmRole) {
+        alert('Debes aceptar todas las condiciones para continuar.');
+        return;
+      }
+      
+      // Cargar el video de capacitación
+      loadTrainingVideo();
+      
+      // Cerrar el modal
+      closeModal();
+      
+      // Ir al slide de capacitación (slide 8)
+      goToSlide(8);
+    }
+
+    function loadTrainingVideo() {
+      trainingVideoContainer.innerHTML = `
+        <iframe src="https://www.youtube.com/embed/7xWRpFFRzgg" frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen></iframe>
+      `;
+    }
+
+    // Manejar cambios de orientación
+    window.addEventListener('orientationchange', function() {
+      setTimeout(() => {
+        goToSlide(currentSlide, false);
+      }, 300);
+    });
+
+    // Manejar cambios de tamaño de ventana
+    window.addEventListener('resize', debounce(function() {
+      goToSlide(currentSlide, false);
+    }, 300));
+  </script>
 </body>
 </html>
