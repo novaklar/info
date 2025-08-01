@@ -9,7 +9,7 @@
   <style>
     :root {
       --primary-color: #147a80;
-      --secondary-color: #a5ffb7; /* Cambiado de #bbe7e6 a #a5ffb7 */
+      --secondary-color: #beff7d; /* Cambiado de #a5ffb7 a #beff7d */
       --accent-color: #0d5257;
       --whatsapp-color: #25D366;
       --success-color: #00bf63;
@@ -193,21 +193,10 @@
       width: 100%;
       text-align: center;
       position: relative;
-      padding-bottom: 0.5rem;
     }
 
-    .slide-title:after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 3px;
-      background: var(--secondary-color);
-      border-radius: 3px;
-    }
-
+    /* Eliminado el pseudo-elemento :after que creaba la línea decorativa */
+    
     .slide.with-bg .slide-title {
       color: var(--primary-color);
     }
@@ -598,12 +587,12 @@
       padding: 1rem;
       border-radius: 8px;
       transition: var(--transition);
-      background-color: rgba(165, 255, 183, 0.2);
-      border: 1px solid rgba(165, 255, 183, 0.3);
+      background-color: rgba(190, 255, 125, 0.2); /* Cambiado a nuevo color */
+      border: 1px solid rgba(190, 255, 125, 0.3); /* Cambiado a nuevo color */
     }
 
     .checkbox-item:hover {
-      background-color: rgba(165, 255, 183, 0.3);
+      background-color: rgba(190, 255, 125, 0.3); /* Cambiado a nuevo color */
     }
 
     .checkbox-item input {
