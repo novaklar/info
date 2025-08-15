@@ -765,7 +765,6 @@
 </head>
 <body>
   <div class="onboarding-container" id="onboardingContainer">
-    <!-- Slide 1: Bienvenida -->
     <div class="slide">
       <div class="announcement-banner">
         <i class="fas fa-clock"></i> Horario de atención: 9:00 am a 10:00 pm
@@ -791,7 +790,6 @@
       </div>
     </div>
 
-    <!-- Slide 2: Información Novaklar -->
     <div class="slide with-bg">
       <div class="slide-content">
         <h1 class="slide-title">¿Qué es Novaklar?</h1>
@@ -808,7 +806,6 @@
       </div>
     </div>
 
-    <!-- Slide 3: Video Presentación -->
     <div class="slide with-bg">
       <div class="slide-content">
         <h1 class="slide-title">Conoce Novaklar</h1>
@@ -821,7 +818,6 @@
       </div>
     </div>
 
-    <!-- Slide 4: Revendedor -->
     <div class="slide with-bg">
       <div class="slide-content">
         <h1 class="slide-title"><i class="fas fa-store"></i> Revendedor</h1>
@@ -850,7 +846,6 @@
       </div>
     </div>
 
-    <!-- Slide 5: Promotor -->
     <div class="slide with-bg">
       <div class="slide-content">
         <h1 class="slide-title"><i class="fas fa-bullhorn"></i> Promotor</h1>
@@ -879,7 +874,6 @@
       </div>
     </div>
 
-    <!-- Slide 6: Reclutador -->
     <div class="slide with-bg">
       <div class="slide-content">
         <h1 class="slide-title"><i class="fas fa-users"></i> Reclutador</h1>
@@ -908,7 +902,6 @@
       </div>
     </div>
 
-    <!-- Slide 7: Modelo de Negocio -->
     <div class="slide with-bg">
       <div class="slide-content">
         <h1 class="slide-title">Modelo de Negocio</h1>
@@ -942,7 +935,6 @@
       </div>
     </div>
 
-    <!-- Slide 8: Requisitos -->
     <div class="slide with-bg">
       <div class="slide-content">
         <h1 class="slide-title">Requisitos para ingresar</h1>
@@ -973,7 +965,6 @@
       </div>
     </div>
 
-    <!-- Slide 9: Capacitación -->
     <div class="slide with-bg">
       <div class="slide-content">
         <h1 class="slide-title">Capacitación</h1>
@@ -981,8 +972,7 @@
           <p>Aprende todo lo necesario para tener éxito en tu rol con nuestro programa completo de capacitación:</p>
           
           <div class="video-container" id="trainingVideoContainer">
-            <!-- El video se mostrará aquí después de pasar el modal -->
-          </div>
+            </div>
         </div>
         <button class="btn" onclick="nextSlide()">
           Finalizar <i class="fas fa-arrow-right"></i>
@@ -990,7 +980,6 @@
       </div>
     </div>
 
-    <!-- Slide 10: Finalizar -->
     <div class="slide with-bg">
       <div class="slide-content">
         <h1 class="slide-title">¡Estás listo para comenzar!</h1>
@@ -1004,23 +993,8 @@
           
           <p class="center-text">Contáctanos ahora mismo para comenzar tu proceso de afiliación:</p>
           
-          <div class="contacts-grid">
-            <a href="https://wa.me/573216495733?text=Hola,%20te%20contacto%20desde%20la%20pagina%20web,%20ya%20complete%20la%20fase%201" class="contact-btn whatsapp-btn" target="_blank">
-              <i class="fab fa-whatsapp"></i> Ester
-            </a>
-            
-            <a href="https://wa.me/573027069241?text=Hola,%20te%20contacto%20desde%20la%20pagina%20web,%20ya%20complete%20la%20fase%201" class="contact-btn whatsapp-btn" target="_blank">
-              <i class="fab fa-whatsapp"></i> Brijith
-            </a>
-            
-            <a href="https://wa.me/573027069328?text=Hola,%20te%20contacto%20desde%20la%20pagina%20web,%20ya%20complete%20la%20fase%201" class="contact-btn whatsapp-btn" target="_blank">
-              <i class="fab fa-whatsapp"></i> Katherin
-            </a>
-            
-            <a href="https://wa.me/573027069188?text=Hola,%20te%20contacto%20desde%20la%20pagina%20web,%20ya%20complete%20la%20fase%201" class="contact-btn whatsapp-btn" target="_blank">
-              <i class="fab fa-whatsapp"></i> Neyereht
-            </a>
-          </div>
+          <div class="contacts-grid" id="finalSlideContacts">
+            </div>
           
           <p class="contact-note">Horario de atención: 9:00 am a 10:00 pm</p>
         </div>
@@ -1028,7 +1002,6 @@
     </div>
   </div>
 
-  <!-- Modal de confirmación -->
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal">
       <div class="modal-header">
@@ -1057,23 +1030,8 @@
       
       <p class="contacts-title">¿Necesitas ayuda?</p>
       
-      <div class="contacts-grid">
-        <a href="https://wa.me/573216495733" class="contact-btn whatsapp-btn" target="_blank">
-          <i class="fab fa-whatsapp"></i> Ester
-        </a>
-        
-        <a href="https://wa.me/573027069241" class="contact-btn whatsapp-btn" target="_blank">
-          <i class="fab fa-whatsapp"></i> Brijith
-        </a>
-        
-        <a href="https://wa.me/573027069328" class="contact-btn whatsapp-btn" target="_blank">
-          <i class="fab fa-whatsapp"></i> Katherin
-        </a>
-        
-        <a href="https://wa.me/573027069188" class="contact-btn whatsapp-btn" target="_blank">
-          <i class="fab fa-whatsapp"></i> Neyereht
-        </a>
-      </div>
+      <div class="contacts-grid" id="modalContacts">
+        </div>
     </div>
   </div>
 
@@ -1087,10 +1045,65 @@
     const modalContinueBtn = document.getElementById('modalContinueBtn');
     const trainingVideoContainer = document.getElementById('trainingVideoContainer');
 
+    // Mapeo de asesoras con sus días de descanso (0 = Domingo, 1 = Lunes, ..., 6 = Sábado)
+    const asesoras = {
+      luz: {
+        name: "Luz",
+        number: "3018205460",
+        restDays: [1, 4] // Lunes y Jueves
+      },
+      ester: {
+        name: "Ester",
+        number: "3137976150",
+        restDays: [6, 0] // Sábado y Domingo
+      },
+      brijith: {
+        name: "Brijith",
+        number: "3007352824",
+        restDays: [2, 5] // Martes y Viernes
+      },
+      katherin: {
+        name: "Katherin",
+        number: "3027069328",
+        restDays: [3, 5] // Miércoles y Viernes
+      },
+      neyereth: {
+        name: "Neyereht",
+        number: "3027069188",
+        restDays: [3, 5] // Miércoles y Viernes
+      }
+    };
+    
+    const defaultMessage = "Hola, te contacto desde la página web, ya completé la fase 1";
+    const encodedMessage = encodeURIComponent(defaultMessage);
+
+    // Renderizar botones de WhatsApp
+    function renderWhatsAppButtons(containerId) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = '';
+      const today = new Date().getDay();
+
+      const sortedAsesoras = [asesoras.luz, asesoras.ester, asesoras.brijith, asesoras.katherin, asesoras.neyereth];
+
+      sortedAsesoras.forEach(asesora => {
+        if (!asesora.restDays.includes(today)) {
+          const buttonHtml = `
+            <a href="https://wa.me/57${asesora.number}?text=${encodedMessage}" class="contact-btn whatsapp-btn" target="_blank">
+              <i class="fab fa-whatsapp"></i> ${asesora.name}
+            </a>
+          `;
+          container.innerHTML += buttonHtml;
+        }
+      });
+    }
+
     // Inicialización
     document.addEventListener('DOMContentLoaded', function() {
       setupEventListeners();
       goToSlide(0, false);
+      // Renderizar los botones iniciales en el modal y el último slide
+      renderWhatsAppButtons('modalContacts');
+      renderWhatsAppButtons('finalSlideContacts');
     });
 
     // Configurar event listeners
