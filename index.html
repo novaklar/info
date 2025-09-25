@@ -8,9 +8,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary-color: #147a80;
-      --secondary-color: #beff7d; /* Cambiado de #a5ffb7 a #beff7d */
-      --accent-color: #0d5257;
+      --primary-color: #00128f; /* Cambiado de #147a80 a #00128f */
+      --secondary-color: #6c91ff; /* Cambiado de #beff7d a #6c91ff */
+      --accent-color: #000e6e; /* Ajustado para combinar con nuevo color primario */
       --whatsapp-color: #25D366;
       --success-color: #00bf63;
       --warning-color: #ff3131;
@@ -21,8 +21,8 @@
       --border-radius: 12px;
       --text-light: #ffffff;
       --text-muted: #6b7280;
-      --bg-gradient: linear-gradient(135deg, #147a80 0%, #0d5257 100%);
-      --announcement-bg: linear-gradient(135deg, #ff4d4d, #990000);
+      --bg-gradient: linear-gradient(135deg, #00128f 0%, #000e6e 100%); /* Actualizado */
+      --announcement-bg: linear-gradient(135deg, #6c91ff, #00128f); /* Actualizado */
     }
 
     * {
@@ -180,7 +180,7 @@
       height: 60px;
       width: auto;
       max-width: 100%;
-      filter: invert(48%) sepia(13%) saturate(1518%) hue-rotate(145deg) brightness(90%) contrast(90%);
+      filter: invert(20%) sepia(90%) saturate(2000%) hue-rotate(230deg) brightness(70%) contrast(120%);
     }
 
     .slide-title {
@@ -194,8 +194,6 @@
       position: relative;
     }
 
-    /* Eliminado el pseudo-elemento :after que creaba la línea decorativa */
-    
     .slide.with-bg .slide-title {
       color: var(--primary-color);
     }
@@ -300,7 +298,7 @@
     }
 
     .highlight-box {
-      background: rgba(20, 122, 128, 0.08);
+      background: rgba(0, 18, 143, 0.08); /* Actualizado */
       padding: 1.2rem;
       border-radius: var(--border-radius);
       margin: 1.5rem 0;
@@ -586,12 +584,12 @@
       padding: 1rem;
       border-radius: 8px;
       transition: var(--transition);
-      background-color: rgba(190, 255, 125, 0.2); /* Cambiado a nuevo color */
-      border: 1px solid rgba(190, 255, 125, 0.3); /* Cambiado a nuevo color */
+      background-color: rgba(108, 145, 255, 0.2); /* Actualizado */
+      border: 1px solid rgba(108, 145, 255, 0.3); /* Actualizado */
     }
 
     .checkbox-item:hover {
-      background-color: rgba(190, 255, 125, 0.3); /* Cambiado a nuevo color */
+      background-color: rgba(108, 145, 255, 0.3); /* Actualizado */
     }
 
     .checkbox-item input {
@@ -624,13 +622,13 @@
       font-weight: 500;
       cursor: pointer;
       transition: var(--transition);
-      box-shadow: 0 4px 12px rgba(20, 122, 128, 0.3);
+      box-shadow: 0 4px 12px rgba(0, 18, 143, 0.3); /* Actualizado */
     }
 
     .modal-btn:hover {
       background-color: var(--accent-color);
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(20, 122, 128, 0.4);
+      box-shadow: 0 6px 20px rgba(0, 18, 143, 0.4); /* Actualizado */
     }
 
     .modal-btn:disabled {
@@ -665,37 +663,45 @@
       animation: fadeIn 0.5s ease forwards;
     }
 
-    /* Responsive */
+    /* Mejoras de responsive para móviles */
     @media (max-width: 768px) {
       .slide {
         padding: 1rem;
+        justify-content: flex-start;
+        padding-top: 4rem;
       }
       
       .slide-content {
         padding: 1.5rem 1rem;
-        max-height: 85vh;
+        max-height: 80vh;
+        margin-top: 2rem;
       }
       
       .slide-title {
         font-size: 1.5rem;
+        margin-bottom: 1rem;
       }
       
       .btn {
         padding: 0.9rem 1.2rem;
         min-width: 180px;
         font-size: 0.95rem;
+        margin-top: 1rem;
       }
       
       .contacts-grid, .images-grid {
         grid-template-columns: 1fr;
+        gap: 0.8rem;
       }
       
       .business-model-card {
         padding: 1.2rem;
+        margin-bottom: 1rem;
       }
       
       .modal {
         padding: 1.5rem;
+        margin: 1rem;
       }
       
       .modal-title {
@@ -705,26 +711,51 @@
       .announcement-banner {
         font-size: 0.8rem;
         padding: 0.7rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .slide-content {
-        padding: 1.2rem 0.8rem;
+        position: fixed;
+        z-index: 1000;
       }
       
-      .slide-title {
-        font-size: 1.3rem;
+      .logo-container {
         margin-bottom: 1rem;
       }
       
-      .btn {
-        padding: 0.8rem;
-        margin-top: 1rem;
+      .logo-container img {
+        height: 50px;
+      }
+      
+      .scrollable-content {
+        max-height: 50vh;
       }
       
       .images-grid img {
         height: 100px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .slide {
+        padding: 0.8rem;
+        padding-top: 3.5rem;
+      }
+      
+      .slide-content {
+        padding: 1.2rem 0.8rem;
+        max-height: 75vh;
+      }
+      
+      .slide-title {
+        font-size: 1.3rem;
+        margin-bottom: 0.8rem;
+      }
+      
+      .btn {
+        padding: 0.8rem;
+        margin-top: 0.8rem;
+        font-size: 0.9rem;
+      }
+      
+      .images-grid img {
+        height: 80px;
       }
       
       .announcement-banner {
@@ -735,11 +766,20 @@
       .modal {
         padding: 1.2rem;
       }
+      
+      .slide-description {
+        font-size: 0.9rem;
+      }
+      
+      .slide-content p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
     }
 
     @media (max-height: 600px) {
       .slide-content {
-        max-height: 80vh;
+        max-height: 70vh;
         padding: 1rem;
       }
       
@@ -754,12 +794,57 @@
       }
       
       .images-grid img {
-        height: 80px;
+        height: 70px;
       }
       
       .announcement-banner {
         padding: 0.5rem;
       }
+      
+      .scrollable-content {
+        max-height: 45vh;
+      }
+    }
+
+    /* Indicadores de progreso para móviles */
+    .slide-indicators {
+      position: fixed;
+      bottom: 1rem;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      z-index: 100;
+      padding: 0 1rem;
+    }
+
+    .indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.5);
+      transition: var(--transition);
+    }
+
+    .indicator.active {
+      background-color: var(--secondary-color);
+      transform: scale(1.2);
+    }
+
+    /* Mejoras de accesibilidad táctil */
+    .btn, .contact-btn {
+      min-height: 44px; /* Tamaño mínimo recomendado para elementos táctiles */
+    }
+
+    /* Mejoras de legibilidad en móviles */
+    .slide-content p, .slide-description {
+      text-align: left;
+      hyphens: auto;
+    }
+
+    .center-text {
+      text-align: center !important;
     }
   </style>
 </head>
@@ -796,7 +881,7 @@
         <div class="scrollable-content">
           <p>Novaklar es una empresa digital que transforma la forma de generar ingresos en línea. Desde 2023, hemos creado una comunidad que conecta a personas con oportunidades reales y accesibles, ofreciendo productos digitales como streaming, recargas, suscripciones y mucho más.</p>
           
-          <p>Nuestro modelo de trabajo es flexible, inclusivo y pensado especialmente para jóvenes, estudiantes y universitarios que buscan un ingreso pasivo. Puedes ser revendedor, promotor o reclutador, sin necesidad de inversión previa. En novaklar, creces a tu ritmo y con el respaldo de un equipo comprometido.</p>
+          <p>Nuestro modelo de trabajo es flexible, inclusivo y pensado especialmente para jóvenes, estudiantes y universitarios que buscan un ingreso pasivo. Puedes ser revendedor o promotor, sin necesidad de inversión previa. En novaklar, creces a tu ritmo y con el respaldo de un equipo comprometido.</p>
           
           <p>Es el complemento perfecto para personas con trabajos estables que buscan aumentar sus ingresos. Creemos en el poder de la tecnología para cambiar vidas, y cada día trabajamos para que más personas descubran su potencial en el mundo digital.</p>
         </div>
@@ -869,34 +954,6 @@
           </ul>
         </div>
         <button class="btn" onclick="nextSlide()">
-          Siguiente Rol <i class="fas fa-arrow-right"></i>
-        </button>
-      </div>
-    </div>
-
-    <div class="slide with-bg">
-      <div class="slide-content">
-        <h1 class="slide-title"><i class="fas fa-users"></i> Reclutador</h1>
-        <div class="scrollable-content">
-          <p>Amplía la red Novaklar invitando a nuevas personas y gana comisiones por sus primeras ventas. Perfecto para networkers y personas con amplios círculos sociales.</p>
-          
-          <p>Tu ingreso crece a medida que ayudas a otros a comenzar su camino en el mundo digital. Obtienes bonos por reclutamiento y porcentajes de las ventas de tu red.</p>
-          
-          <div class="highlight-box">
-            <strong>Ejemplo práctico:</strong> Si reclutas a Laura y ella vende una cuenta de Paramount por $10.000, tú ganas una comisión por esa venta y por las cuatro siguientes que realice, creando así un flujo de ingresos recurrente.
-          </div>
-          
-          <h3 class="section-title">Sistema de Pagos</h3>
-          <p>Como reclutador, recibes comisiones diarias cada vez que uno de tus reclutados realice una venta. Los pagos se envían automáticamente a tu cuenta bancaria registrada.</p>
-          
-          <ul class="benefits-list">
-            <li><i class="fas fa-check-circle"></i> Ingresos recurrentes</li>
-            <li><i class="fas fa-check-circle"></i> Bonos por reclutamiento</li>
-            <li><i class="fas fa-check-circle"></i> Crecimiento exponencial</li>
-            <li><i class="fas fa-check-circle"></i> Capacitación para tu equipo</li>
-          </ul>
-        </div>
-        <button class="btn" onclick="nextSlide()">
           Modelo de Negocio <i class="fas fa-arrow-right"></i>
         </button>
       </div>
@@ -906,7 +963,7 @@
       <div class="slide-content">
         <h1 class="slide-title">Modelo de Negocio</h1>
         <div class="scrollable-content">
-          <p>Cada rol dentro de Novaklar opera con un enfoque distinto. Estos son los tres modelos que usamos:</p>
+          <p>Cada rol dentro de Novaklar opera con un enfoque distinto. Estos son los modelos que usamos:</p>
           
           <div class="business-model-card">
             <div class="model-icon"><i class="fas fa-store"></i></div>
@@ -920,13 +977,6 @@
             <h3>Modelo de Afiliación por Comisión (Promotores)</h3>
             <p>Promocionan catálogos o enlaces y ganan una comisión por cada venta generada.</p>
             <p class="model-highlight">No manejan dinero del cliente. Reciben pagos diarios por medios digitales.</p>
-          </div>
-          
-          <div class="business-model-card">
-            <div class="model-icon"><i class="fas fa-users"></i></div>
-            <h3>Modelo de Red de Afiliados (Reclutadores)</h3>
-            <p>Invitan a nuevas personas y reciben comisiones cada vez que uno de sus afiliados hace una venta.</p>
-            <p class="model-highlight">Ingresos escalables según el rendimiento de su red.</p>
           </div>
         </div>
         <button class="btn" onclick="nextSlide()">
@@ -1057,11 +1107,6 @@
         number: "3137976150",
         restDays: [6, 0] // Sábado y Domingo
       },
-      brijith: {
-        name: "Brijith",
-        number: "3007352824",
-        restDays: [2, 5] // Martes y Viernes
-      },
       katherin: {
         name: "Katherin",
         number: "3027069328",
@@ -1083,7 +1128,7 @@
       container.innerHTML = '';
       const today = new Date().getDay();
 
-      const sortedAsesoras = [asesoras.luz, asesoras.ester, asesoras.brijith, asesoras.katherin, asesoras.neyereth];
+      const sortedAsesoras = [asesoras.luz, asesoras.ester, asesoras.katherin, asesoras.neyereth];
 
       sortedAsesoras.forEach(asesora => {
         if (!asesora.restDays.includes(today)) {
@@ -1240,8 +1285,8 @@
       // Cerrar el modal
       closeModal();
       
-      // Ir al slide de capacitación (slide 8)
-      goToSlide(8);
+      // Ir al slide de capacitación (slide 7)
+      goToSlide(7);
     }
 
     function loadTrainingVideo() {
