@@ -124,13 +124,25 @@
       color: var(--text-color);
     }
 
-    .slide-content p {
+    /* === CORRECCIÓN: Eliminar guiones de justificación (hyphenation) === */
+    .slide-content p,
+    .slide-description,
+    .highlight-box p,
+    .business-model-card p {
       text-align: justify;
       text-justify: inter-word;
       width: 100%;
-      margin-bottom: 1.5rem;
-      font-size: 0.95rem;
       line-height: 1.7;
+      
+      /* Propiedades para deshabilitar guiones */
+      hyphens: none !important; 
+      -webkit-hyphens: none !important;
+      -ms-hyphens: none !important;
+      -moz-hyphens: none !important;
+      word-wrap: break-word; 
+      
+      margin-bottom: 1.5rem; 
+      font-size: 0.95rem;
     }
 
     .slide-description {
@@ -305,6 +317,17 @@
       border-left: 4px solid var(--secondary-color);
       text-align: left;
       box-shadow: var(--card-shadow);
+    }
+
+    .highlight-box p {
+      text-align: justify;
+      text-justify: inter-word;
+      hyphens: none !important; /* Asegura que no haya guiones */
+      -webkit-hyphens: none !important;
+      -ms-hyphens: none !important;
+      -moz-hyphens: none !important;
+      word-wrap: break-word;
+      margin-bottom: 0; /* Ajuste para el párrafo interno */
     }
 
     .highlight-box strong {
@@ -658,23 +681,50 @@
       100% { transform: scale(1); }
     }
 
+    @keyframes scrollIndicator {
+      0% { transform: translateY(0); opacity: 0.7; }
+      50% { transform: translateY(10px); opacity: 1; }
+      100% { transform: translateY(0); opacity: 0.7; }
+    }
+
     /* Efecto de aparición para los slides */
     .slide-content {
       animation: fadeIn 0.5s ease forwards;
+    }
+
+    /* Indicador de scroll para el primer slide */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: var(--primary-color);
+      font-size: 0.8rem;
+      animation: scrollIndicator 2s infinite;
+      z-index: 10;
+    }
+
+    .scroll-indicator i {
+      margin-bottom: 5px;
+      font-size: 1.2rem;
     }
 
     /* Mejoras de responsive para móviles */
     @media (max-width: 768px) {
       .slide {
         padding: 1rem;
-        justify-content: flex-start;
+        justify-content: center;
         padding-top: 4rem;
       }
       
       .slide-content {
         padding: 1.5rem 1rem;
-        max-height: 80vh;
-        margin-top: 2rem;
+        max-height: 85vh;
+        margin-top: 0;
+        justify-content: center;
       }
       
       .slide-title {
@@ -730,6 +780,10 @@
       .images-grid img {
         height: 100px;
       }
+      
+      .scroll-indicator {
+        bottom: 10px;
+      }
     }
 
     @media (max-width: 480px) {
@@ -740,7 +794,7 @@
       
       .slide-content {
         padding: 1.2rem 0.8rem;
-        max-height: 75vh;
+        max-height: 80vh;
       }
       
       .slide-title {
@@ -775,11 +829,15 @@
         font-size: 0.9rem;
         line-height: 1.6;
       }
+      
+      .scroll-indicator {
+        font-size: 0.7rem;
+      }
     }
 
     @media (max-height: 600px) {
       .slide-content {
-        max-height: 70vh;
+        max-height: 75vh;
         padding: 1rem;
       }
       
@@ -803,6 +861,10 @@
       
       .scrollable-content {
         max-height: 45vh;
+      }
+      
+      .scroll-indicator {
+        display: none;
       }
     }
 
@@ -839,8 +901,11 @@
 
     /* Mejoras de legibilidad en móviles */
     .slide-content p, .slide-description {
-      text-align: left;
-      hyphens: auto;
+      text-align: justify;
+      hyphens: none; /* Asegurado para móviles también */
+      -webkit-hyphens: none;
+      -ms-hyphens: none;
+      -moz-hyphens: none;
     }
 
     .center-text {
@@ -872,6 +937,11 @@
         <button class="btn" onclick="nextSlide()">
           Comenzar <i class="fas fa-arrow-right"></i>
         </button>
+      </div>
+      
+      <div class="scroll-indicator" id="scrollIndicator">
+        <i class="fas fa-chevron-down"></i>
+        <span>Desliza para continuar</span>
       </div>
     </div>
 
@@ -1022,7 +1092,10 @@
           <p>Aprende todo lo necesario para tener éxito en tu rol con nuestro programa completo de capacitación:</p>
           
           <div class="video-container" id="trainingVideoContainer">
-            </div>
+            <iframe id="trainingVideo" src="about:blank" frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen></iframe>
+          </div>
         </div>
         <button class="btn" onclick="nextSlide()">
           Finalizar <i class="fas fa-arrow-right"></i>
@@ -1094,6 +1167,9 @@
     const modalOverlay = document.getElementById('modalOverlay');
     const modalContinueBtn = document.getElementById('modalContinueBtn');
     const trainingVideoContainer = document.getElementById('trainingVideoContainer');
+    const scrollIndicator = document.getElementById('scrollIndicator');
+    // Referencia al iframe del video de capacitación
+    const trainingVideoIframe = document.getElementById('trainingVideo');
 
     // Mapeo de asesoras con sus días de descanso (0 = Domingo, 1 = Lunes, ..., 6 = Sábado)
     const asesoras = {
@@ -1149,6 +1225,16 @@
       // Renderizar los botones iniciales en el modal y el último slide
       renderWhatsAppButtons('modalContacts');
       renderWhatsAppButtons('finalSlideContacts');
+      
+      // Ocultar el indicador de scroll después de 5 segundos
+      setTimeout(() => {
+        if (scrollIndicator) {
+          scrollIndicator.style.opacity = '0';
+          setTimeout(() => {
+            scrollIndicator.style.display = 'none';
+          }, 500);
+        }
+      }, 5000);
     });
 
     // Configurar event listeners
@@ -1198,6 +1284,16 @@
           nextSlide();
         }
       });
+      
+      // Detectar scroll vertical para ocultar el indicador
+      document.addEventListener('scroll', function() {
+        if (scrollIndicator && currentSlide === 0) {
+          scrollIndicator.style.opacity = '0';
+          setTimeout(() => {
+            scrollIndicator.style.display = 'none';
+          }, 500);
+        }
+      }, { passive: true });
     }
 
     // Debounce para mejorar rendimiento
@@ -1290,11 +1386,14 @@
     }
 
     function loadTrainingVideo() {
-      trainingVideoContainer.innerHTML = `
-        <iframe src="https://www.youtube.com/embed/7xWRpFFRzgg" frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen></iframe>
-      `;
+      // ID del video de capacitación: 7xWRpFFRzgg
+      const videoId = "7xWRpFFRzgg"; 
+      const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+      
+      // Se actualiza el src del iframe de capacitación para que se visualice
+      if (trainingVideoIframe) {
+        trainingVideoIframe.src = embedUrl;
+      }
     }
 
     // Manejar cambios de orientación
