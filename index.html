@@ -965,7 +965,8 @@
       <div class="slide-content">
         <h1 class="slide-title">Conoce Novaklar</h1>
         <div class="video-container">
-          <iframe src="https://www.youtube.com/embed/RGXrXUhM9kU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <!-- CAMBIO 1: Video actualizado para el slide "Conoce Novaklar" -->
+          <iframe src="https://www.youtube.com/embed/aX3OF6lMvzA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <button class="btn" onclick="nextSlide()">
           Ver Roles <i class="fas fa-arrow-right"></i>
@@ -1092,7 +1093,8 @@
           <p>Aprende todo lo necesario para tener éxito en tu rol con nuestro programa completo de capacitación:</p>
           
           <div class="video-container" id="trainingVideoContainer">
-            <iframe id="trainingVideo" src="about:blank" frameborder="0" 
+            <!-- CAMBIO 2: Video actualizado para el slide de capacitación -->
+            <iframe id="trainingVideo" src="https://www.youtube.com/embed/8GvK44JxUks" frameborder="0" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
             allowfullscreen></iframe>
           </div>
@@ -1172,9 +1174,10 @@
     const trainingVideoIframe = document.getElementById('trainingVideo');
 
     // Mapeo de asesoras con sus días de descanso (0 = Domingo, 1 = Lunes, ..., 6 = Sábado)
+    // CAMBIO 3: Cambiar "Luz" por "Alejandra"
     const asesoras = {
-      luz: {
-        name: "Luz",
+      alejandra: {
+        name: "Alejandra",
         number: "3018205460",
         restDays: [1, 4] // Lunes y Jueves
       },
@@ -1204,7 +1207,7 @@
       container.innerHTML = '';
       const today = new Date().getDay();
 
-      const sortedAsesoras = [asesoras.luz, asesoras.ester, asesoras.katherin, asesoras.neyereth];
+      const sortedAsesoras = [asesoras.alejandra, asesoras.ester, asesoras.katherin, asesoras.neyereth];
 
       sortedAsesoras.forEach(asesora => {
         if (!asesora.restDays.includes(today)) {
@@ -1386,14 +1389,8 @@
     }
 
     function loadTrainingVideo() {
-      // ID del video de capacitación: 7xWRpFFRzgg
-      const videoId = "7xWRpFFRzgg"; 
-      const embedUrl = `https://www.youtube.com/embed/${videoId}`;
-      
-      // Se actualiza el src del iframe de capacitación para que se visualice
-      if (trainingVideoIframe) {
-        trainingVideoIframe.src = embedUrl;
-      }
+      // Ya no es necesario cargar el video aquí porque ahora está embebido directamente
+      // en el HTML del slide de capacitación
     }
 
     // Manejar cambios de orientación
@@ -1410,4 +1407,3 @@
   </script>
 </body>
 </html>
-
