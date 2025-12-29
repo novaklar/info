@@ -1,36 +1,31 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Onboarding Afiliados | Novaklar</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --primary-color: #00128f; /* Cambiado de #147a80 a #00128f */
-      --secondary-color: #6c91ff; /* Cambiado de #beff7d a #6c91ff */
-      --accent-color: #000e6e; /* Ajustado para combinar con nuevo color primario */
+      --primary-color: #0d4c7f;
+      --secondary-color: #7fcfda;
+      --accent-color: #080a33;
       --whatsapp-color: #25D366;
       --success-color: #00bf63;
       --warning-color: #ff3131;
       --text-color: #333333;
-      --light-bg: #ffffff;
+      --light-bg: #f1efee;
       --card-shadow: 0 4px 12px rgba(0,0,0,0.08);
       --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
       --border-radius: 12px;
       --text-light: #ffffff;
       --text-muted: #6b7280;
-      --bg-gradient: linear-gradient(135deg, #00128f 0%, #000e6e 100%); /* Actualizado */
-      --announcement-bg: linear-gradient(135deg, #6c91ff, #00128f); /* Actualizado */
+      --bg-gradient: linear-gradient(135deg, #0d4c7f 0%, #080a33 100%);
+      --announcement-bg: linear-gradient(135deg, #7fcfda, #0d4c7f);
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
     body {
       font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
@@ -42,7 +37,10 @@
       touch-action: pan-y;
     }
 
-    /* Anuncio de horario */
+    /* Forzar color sobre todo el SVG inline (prioridad) */
+    .logo { height: 60px; width: auto; max-width: 100%; display: inline-block; }
+    .logo, .logo * { fill: var(--primary-color) !important; stroke: var(--primary-color) !important; }
+
     .announcement-banner {
       position: absolute;
       top: 0;
@@ -61,856 +59,180 @@
       gap: 0.5rem;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
-
-    .announcement-banner i {
-      font-size: 0.9rem;
-    }
+    .announcement-banner i { font-size: 0.9rem; }
 
     .onboarding-container {
-      display: flex;
-      height: 100vh;
-      width: 100vw;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
-      position: relative;
-      overscroll-behavior-x: contain;
+      display: flex; height: 100vh; width: 100vw; overflow-x: auto; scroll-snap-type: x mandatory;
+      scroll-behavior: smooth; -webkit-overflow-scrolling: touch; position: relative; overscroll-behavior-x: contain;
     }
 
-    .slide {
-      min-width: 100vw;
-      width: 100vw;
-      height: 100vh;
-      scroll-snap-align: start;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 1.5rem;
-      text-align: center;
-      flex-shrink: 0;
-      position: relative;
-      overflow: hidden;
-      background-color: var(--light-bg);
+    .slide { min-width: 100vw; width: 100vw; height: 100vh; scroll-snap-align: start; display: flex;
+      flex-direction: column; justify-content: center; align-items: center; padding: 1.5rem; text-align: center;
+      flex-shrink: 0; position: relative; overflow: hidden; background-color: var(--light-bg); }
+
+    .slide.with-bg { background: var(--bg-gradient); color: var(--text-light); }
+
+    .slide-content { width: 100%; max-width: 800px; height: auto; max-height: 90vh; margin: 0 auto;
+      padding: 2rem 1.5rem; display: flex; flex-direction: column; align-items: center; overflow: hidden;
+      text-align: center; background-color: var(--light-bg); border-radius: var(--border-radius);
+      box-shadow: var(--card-shadow); position: relative; }
+
+    /* Nuevo: tono con transparencia en el primer contenedor del slide 1 usando el color #7fcfda */
+    .slide:first-of-type .slide-content {
+      background: rgba(127, 207, 218, 0.12); /* tono semi-transparente de #7fcfda */
+      border: 1px solid rgba(127, 207, 218, 0.18);
     }
 
-    /* Estilo especial para slides con fondo */
-    .slide.with-bg {
-      background: var(--bg-gradient);
-      color: var(--text-light);
+    .slide.with-bg .slide-content { background-color: rgba(241, 239, 238, 0.95); color: var(--text-color); }
+
+    .slide-content p, .slide-description, .highlight-box p, .business-model-card p {
+      text-align: justify; text-justify: inter-word; width: 100%; line-height: 1.7;
+      hyphens: none !important; -webkit-hyphens: none !important; -ms-hyphens: none !important;
+      -moz-hyphens: none !important; word-wrap: break-word; margin-bottom: 1.5rem; font-size: 0.95rem;
     }
 
-    .slide-content {
-      width: 100%;
-      max-width: 800px;
-      height: auto;
-      max-height: 90vh;
-      margin: 0 auto;
-      padding: 2rem 1.5rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      overflow: hidden;
-      text-align: center;
-      background-color: var(--light-bg);
-      border-radius: var(--border-radius);
-      box-shadow: var(--card-shadow);
-      position: relative;
-    }
+    .slide-description { font-size: 1rem; margin-bottom: 1.5rem; color: inherit; line-height: 1.6; width: 100%; }
+    .slide-description.center-text { text-align: center !important; margin: 0 auto 1.5rem; max-width: 90%; }
 
-    .slide.with-bg .slide-content {
-      background-color: rgba(255, 255, 255, 0.95);
-      color: var(--text-color);
-    }
+    .scrollable-content { overflow-y: auto; flex-grow: 1; padding-right: 0.5rem; margin-bottom: 1rem;
+      -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: var(--primary-color) transparent; width: 100%; }
+    .scrollable-content::-webkit-scrollbar { width: 4px; }
+    .scrollable-content::-webkit-scrollbar-thumb { background-color: var(--primary-color); border-radius: 2px; }
+    .scrollable-content::-webkit-scrollbar-track { background-color: transparent; }
 
-    /* === CORRECCIÓN: Eliminar guiones de justificación (hyphenation) === */
-    .slide-content p,
-    .slide-description,
-    .highlight-box p,
-    .business-model-card p {
-      text-align: justify;
-      text-justify: inter-word;
-      width: 100%;
-      line-height: 1.7;
-      
-      /* Propiedades para deshabilitar guiones */
-      hyphens: none !important; 
-      -webkit-hyphens: none !important;
-      -ms-hyphens: none !important;
-      -moz-hyphens: none !important;
-      word-wrap: break-word; 
-      
-      margin-bottom: 1.5rem; 
-      font-size: 0.95rem;
-    }
+    .logo-container { margin-bottom: 1.5rem; flex-shrink: 0; }
 
-    .slide-description {
-      font-size: 1rem;
-      margin-bottom: 1.5rem;
-      color: inherit;
-      line-height: 1.6;
-      width: 100%;
-    }
-
-    .slide-description.center-text {
-      text-align: center !important;
-      margin: 0 auto 1.5rem;
-      max-width: 90%;
-    }
-
-    .scrollable-content {
-      overflow-y: auto;
-      flex-grow: 1;
-      padding-right: 0.5rem;
-      margin-bottom: 1rem;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: thin;
-      scrollbar-color: var(--primary-color) transparent;
-      width: 100%;
-    }
-
-    .scrollable-content::-webkit-scrollbar {
-      width: 4px;
-    }
-
-    .scrollable-content::-webkit-scrollbar-thumb {
-      background-color: var(--primary-color);
-      border-radius: 2px;
-    }
-
-    .scrollable-content::-webkit-scrollbar-track {
-      background-color: transparent;
-    }
-
-    .logo-container {
-      margin-bottom: 1.5rem;
-      flex-shrink: 0;
-    }
-
-    .logo-container img {
-      height: 60px;
-      width: auto;
-      max-width: 100%;
-      filter: invert(20%) sepia(90%) saturate(2000%) hue-rotate(230deg) brightness(70%) contrast(120%);
-    }
-
-    .slide-title {
-      font-size: 1.8rem;
-      margin-bottom: 1.5rem;
-      color: var(--primary-color);
-      font-weight: 600;
-      line-height: 1.3;
-      width: 100%;
-      text-align: center;
-      position: relative;
-    }
-
-    .slide.with-bg .slide-title {
-      color: var(--primary-color);
-    }
-
-    .slide-title i {
-      margin-right: 0.5rem;
-      color: var(--secondary-color);
-    }
+    .slide-title { font-size: 1.8rem; margin-bottom: 1.5rem; color: var(--primary-color); font-weight: 600;
+      line-height: 1.3; width: 100%; text-align: center; position: relative; }
+    .slide.with-bg .slide-title { color: var(--primary-color); }
+    .slide-title i { margin-right: 0.5rem; color: var(--secondary-color); }
 
     .btn {
-      background-color: var(--primary-color);
-      color: white;
-      border: none;
-      padding: 1rem 1.5rem;
-      border-radius: 50px;
-      font-size: 1rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: var(--transition);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 220px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      margin-top: 1.5rem;
-      width: 100%;
-      max-width: 300px;
-      position: relative;
-      overflow: hidden;
+      background-color: var(--primary-color); color: white; border: none; padding: 1rem 1.5rem; border-radius: 50px;
+      font-size: 1rem; font-weight: 500; cursor: pointer; transition: var(--transition); display: inline-flex;
+      align-items: center; justify-content: center; min-width: 220px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      margin-top: 1.5rem; width: 100%; max-width: 300px; position: relative; overflow: hidden;
     }
+    .btn:after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.2)); opacity: 0; transition: var(--transition); }
+    .btn:hover, .btn:focus { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); }
+    .btn:hover:after { opacity: 1; }
+    .btn:active { transform: translateY(1px); }
+    .btn i { margin-left: 0.5rem; transition: transform 0.3s ease; }
+    .btn:hover i { transform: translateX(3px); }
+    .finish-btn { background-color: var(--success-color); }
+    .finish-btn:hover { background-color: #009951; }
 
-    .btn:after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.2));
-      opacity: 0;
-      transition: var(--transition);
-    }
+    .video-container { position: relative; width: 100%; padding-bottom: 56.25%; margin: 1.5rem 0;
+      border-radius: var(--border-radius); overflow: hidden; background-color: #000; box-shadow: var(--card-shadow); }
+    .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
-    .btn:hover, .btn:focus {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-    }
+    .audio-container { width: 100%; margin: 1.5rem auto; max-width: 300px; }
+    .audio-container audio { width: 100%; }
 
-    .btn:hover:after {
-      opacity: 1;
-    }
+    .highlight-box { background: rgba(13, 76, 127, 0.08); padding: 1.2rem; border-radius: var(--border-radius);
+      margin: 1.5rem 0; border-left: 4px solid var(--secondary-color); text-align: left; box-shadow: var(--card-shadow); }
+    .highlight-box p { margin-bottom: 0; }
+    .highlight-box strong { color: var(--primary-color); font-weight: 600; }
 
-    .btn:active {
-      transform: translateY(1px);
-    }
+    .benefits-list, .requirements-list { margin: 1.5rem 0; text-align: left; width: 100%; }
+    .benefits-list li, .requirements-list li { margin-bottom: 1rem; display: flex; align-items: flex-start; font-size: 0.95rem; line-height: 1.6; }
+    .benefits-list i, .requirements-list i { color: var(--primary-color); margin-right: 0.8rem; font-size: 1rem; flex-shrink: 0; }
 
-    .btn i {
-      margin-left: 0.5rem;
-      transition: transform 0.3s ease;
-    }
+    .images-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.5rem 0; }
+    .images-grid img { width: 100%; height: 120px; object-fit: cover; border-radius: var(--border-radius); box-shadow: var(--card-shadow); transition: var(--transition); }
+    .images-grid img:hover { transform: translateY(-3px); box-shadow: 0 6px 16px rgba(0,0,0,0.12); }
 
-    .btn:hover i {
-      transform: translateX(3px);
-    }
+    .section-title { margin: 2rem 0 1rem; font-size: 1.3rem; color: var(--primary-color); font-weight: 600; text-align: left; width: 100%; }
+    .business-model-card { background: #ffffff; border-radius: var(--border-radius); padding: 1.5rem; margin-bottom: 1.5rem; width: 100%; box-shadow: var(--card-shadow); border-top: 4px solid var(--secondary-color); transition: var(--transition); text-align: left; }
+    .business-model-card:hover { transform: translateY(-5px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+    .model-icon { width: 50px; height: 50px; border-radius: 50%; background-color: var(--secondary-color); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; color: var(--primary-color); font-size: 1.5rem; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    .business-model-card h3 { margin-bottom: 1rem; font-size: 1.1rem; color: var(--primary-color); }
+    .business-model-card p { margin-bottom: 0.8rem; font-size: 0.9rem; color: var(--text-color); line-height: 1.6; }
+    .model-highlight { font-weight: 500; margin-top: 1rem !important; color: var(--primary-color) !important; font-style: italic; }
 
-    .finish-btn {
-      background-color: var(--success-color);
-    }
+    .contacts-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.5rem 0; width: 100%; }
+    .contact-btn { display: flex; align-items: center; justify-content: center; background-color: var(--whatsapp-color); color: white; padding: 1rem; border-radius: 50px; text-decoration: none; font-weight: 500; transition: var(--transition); width: 100%; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3); position: relative; overflow: hidden; }
+    .contact-btn i { margin-right: 0.8rem; font-size: 1.2rem; }
+    .contact-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4); }
+    .contact-note { font-size: 0.85rem; margin-top: 1rem; color: var(--text-muted); text-align: center; }
 
-    .finish-btn:hover {
-      background-color: #009951;
-    }
+    .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.8); display: flex; justify-content: center; align-items: center; z-index: 1000; opacity: 0; visibility: hidden; transition: var(--transition); padding: 1rem; backdrop-filter: blur(5px); }
+    .modal-overlay.active { opacity: 1; visibility: visible; }
+    .modal { background-color: white; border-radius: var(--border-radius); padding: 2rem; width: 100%; max-width: 500px; max-height: 90vh; overflow-y: auto; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); transform: translateY(20px); transition: var(--transition); border-top: 4px solid var(--primary-color); }
+    .modal-overlay.active .modal { transform: translateY(0); }
+    .modal-header { display: flex; flex-direction: column; align-items: center; margin-bottom: 1.5rem; text-align: center; }
+    .modal-title { font-size: 1.5rem; margin: 1rem 0 0; color: var(--primary-color); }
+    .modal-icon { width: 60px; height: 60px; border-radius: 50%; background-color: var(--secondary-color); display: flex; align-items: center; justify-content: center; color: var(--primary-color); font-size: 1.8rem; margin-bottom: 1rem; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    .modal-text { margin-bottom: 1.5rem; color: var(--text-color); text-align: center; line-height: 1.6; }
 
-    .video-container {
-      position: relative;
-      width: 100%;
-      padding-bottom: 56.25%;
-      margin: 1.5rem 0;
-      border-radius: var(--border-radius);
-      overflow: hidden;
-      background-color: #000;
-      box-shadow: var(--card-shadow);
-    }
+    .checkbox-group { margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.8rem; }
+    .checkbox-item { display: flex; align-items: center; cursor: pointer; padding: 1rem; border-radius: 8px; transition: var(--transition); background-color: rgba(127, 207, 218, 0.2); border: 1px solid rgba(127, 207, 218, 0.3); }
+    .checkbox-item:hover { background-color: rgba(127, 207, 218, 0.3); }
+    .checkbox-item input[type="checkbox"], .checkbox-item input[type="radio"] { margin-right: 1rem; width: 20px; height: 20px; cursor: pointer; accent-color: var(--secondary-color); }
+    .checkbox-item label { color: var(--text-color); font-weight: 500; flex: 1; cursor: pointer; }
 
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
+    .modal-btn { width: 100%; margin: 1.5rem auto 0; background-color: var(--primary-color); color: white; font-size: 1rem; display: flex; justify-content: center; align-items: center; padding: 1rem; border: none; border-radius: 50px; font-weight: 500; cursor: pointer; transition: var(--transition); box-shadow: 0 4px 12px rgba(13, 76, 127, 0.3); }
+    .modal-btn:hover { background-color: var(--accent-color); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(13, 76, 127, 0.4); }
+    .modal-btn:disabled { background-color: #cccccc; cursor: not-allowed; transform: none !important; box-shadow: none; }
 
-    .audio-container {
-      width: 100%;
-      margin: 1.5rem auto;
-      max-width: 300px;
-    }
+    .contacts-title { text-align: center; margin: 1.5rem 0 1rem; font-size: 1rem; color: var(--primary-color); font-weight: 500; }
 
-    .audio-container audio {
-      width: 100%;
-    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+    @keyframes scrollIndicator { 0% { transform: translateY(0); opacity: 0.7; } 50% { transform: translateY(10px); opacity: 1; } 100% { transform: translateY(0); opacity: 0.7; } }
 
-    .highlight-box {
-      background: rgba(0, 18, 143, 0.08); /* Actualizado */
-      padding: 1.2rem;
-      border-radius: var(--border-radius);
-      margin: 1.5rem 0;
-      border-left: 4px solid var(--secondary-color);
-      text-align: left;
-      box-shadow: var(--card-shadow);
-    }
+    .slide-content { animation: fadeIn 0.5s ease forwards; }
+    .scroll-indicator { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; color: var(--primary-color); font-size: 0.8rem; animation: scrollIndicator 2s infinite; z-index: 10; }
+    .scroll-indicator i { margin-bottom: 5px; font-size: 1.2rem; }
 
-    .highlight-box p {
-      text-align: justify;
-      text-justify: inter-word;
-      hyphens: none !important; /* Asegura que no haya guiones */
-      -webkit-hyphens: none !important;
-      -ms-hyphens: none !important;
-      -moz-hyphens: none !important;
-      word-wrap: break-word;
-      margin-bottom: 0; /* Ajuste para el párrafo interno */
-    }
-
-    .highlight-box strong {
-      color: var(--primary-color);
-      font-weight: 600;
-    }
-
-    .benefits-list {
-      margin: 1.5rem 0;
-      text-align: left;
-      width: 100%;
-    }
-
-    .benefits-list li {
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: flex-start;
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-
-    .benefits-list i {
-      color: var(--primary-color);
-      margin-right: 0.8rem;
-      font-size: 1rem;
-      margin-top: 0.2rem;
-      flex-shrink: 0;
-    }
-
-    .requirements-list {
-      margin: 1.5rem 0;
-      text-align: left;
-      width: 100%;
-    }
-
-    .requirements-list li {
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      font-size: 0.95rem;
-      font-weight: 500;
-    }
-
-    .requirements-list i {
-      color: var(--primary-color);
-      margin-right: 0.8rem;
-      font-size: 1.2rem;
-    }
-
-    .images-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-      margin: 1.5rem 0;
-    }
-
-    .images-grid img {
-      width: 100%;
-      height: 120px;
-      object-fit: cover;
-      border-radius: var(--border-radius);
-      box-shadow: var(--card-shadow);
-      transition: var(--transition);
-    }
-
-    .images-grid img:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.12);
-    }
-
-    .section-title {
-      margin: 2rem 0 1rem;
-      font-size: 1.3rem;
-      color: var(--primary-color);
-      font-weight: 600;
-      text-align: left;
-      width: 100%;
-    }
-
-    .business-model-card {
-      background: white;
-      border-radius: var(--border-radius);
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      width: 100%;
-      box-shadow: var(--card-shadow);
-      border-top: 4px solid var(--secondary-color);
-      transition: var(--transition);
-      text-align: left;
-    }
-
-    .business-model-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-    }
-
-    .model-icon {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background-color: var(--secondary-color);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1rem;
-      color: var(--primary-color);
-      font-size: 1.5rem;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-
-    .business-model-card h3 {
-      margin-bottom: 1rem;
-      font-size: 1.1rem;
-      color: var(--primary-color);
-    }
-
-    .business-model-card p {
-      margin-bottom: 0.8rem;
-      font-size: 0.9rem;
-      color: var(--text-color);
-      line-height: 1.6;
-    }
-
-    .model-highlight {
-      font-weight: 500;
-      margin-top: 1rem !important;
-      color: var(--primary-color) !important;
-      font-style: italic;
-    }
-
-    .contacts-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-      margin: 1.5rem 0;
-      width: 100%;
-    }
-
-    .contact-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: var(--whatsapp-color);
-      color: white;
-      padding: 1rem;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 500;
-      transition: var(--transition);
-      width: 100%;
-      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .contact-btn:after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.2));
-      opacity: 0;
-      transition: var(--transition);
-    }
-
-    .contact-btn i {
-      margin-right: 0.8rem;
-      font-size: 1.2rem;
-    }
-
-    .contact-btn:hover, .contact-btn:focus {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-    }
-
-    .contact-btn:hover:after {
-      opacity: 1;
-    }
-
-    .contact-note {
-      font-size: 0.85rem;
-      margin-top: 1rem;
-      color: var(--text-muted);
-      text-align: center;
-    }
-
-    /* Modal */
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(0, 0, 0, 0.8);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      opacity: 0;
-      visibility: hidden;
-      transition: var(--transition);
-      padding: 1rem;
-      backdrop-filter: blur(5px);
-    }
-
-    .modal-overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .modal {
-      background-color: white;
-      border-radius: var(--border-radius);
-      padding: 2rem;
-      width: 100%;
-      max-width: 500px;
-      max-height: 90vh;
-      overflow-y: auto;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-      transform: translateY(20px);
-      transition: var(--transition);
-      border-top: 4px solid var(--primary-color);
-    }
-
-    .modal-overlay.active .modal {
-      transform: translateY(0);
-    }
-
-    .modal-header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 1.5rem;
-      text-align: center;
-    }
-
-    .modal-title {
-      font-size: 1.5rem;
-      margin: 1rem 0 0;
-      color: var(--primary-color);
-    }
-
-    .modal-icon {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background-color: var(--secondary-color);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--primary-color);
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-
-    .modal-text {
-      margin-bottom: 1.5rem;
-      color: var(--text-color);
-      text-align: center;
-      line-height: 1.6;
-    }
-
-    .checkbox-group {
-      margin-bottom: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-    }
-
-    .checkbox-item {
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      padding: 1rem;
-      border-radius: 8px;
-      transition: var(--transition);
-      background-color: rgba(108, 145, 255, 0.2); /* Actualizado */
-      border: 1px solid rgba(108, 145, 255, 0.3); /* Actualizado */
-    }
-
-    .checkbox-item:hover {
-      background-color: rgba(108, 145, 255, 0.3); /* Actualizado */
-    }
-
-    .checkbox-item input {
-      margin-right: 1rem;
-      width: 20px;
-      height: 20px;
-      cursor: pointer;
-      accent-color: var(--secondary-color);
-    }
-
-    .checkbox-item label {
-      color: var(--text-color);
-      font-weight: 500;
-      flex: 1;
-      cursor: pointer;
-    }
-
-    .modal-btn {
-      width: 100%;
-      margin: 1.5rem auto 0;
-      background-color: var(--primary-color);
-      color: white;
-      font-size: 1rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 1rem;
-      border: none;
-      border-radius: 50px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: var(--transition);
-      box-shadow: 0 4px 12px rgba(0, 18, 143, 0.3); /* Actualizado */
-    }
-
-    .modal-btn:hover {
-      background-color: var(--accent-color);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 18, 143, 0.4); /* Actualizado */
-    }
-
-    .modal-btn:disabled {
-      background-color: #cccccc;
-      cursor: not-allowed;
-      transform: none !important;
-      box-shadow: none;
-    }
-
-    .contacts-title {
-      text-align: center;
-      margin: 1.5rem 0 1rem;
-      font-size: 1rem;
-      color: var(--primary-color);
-      font-weight: 500;
-    }
-
-    /* Animaciones */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-
-    @keyframes scrollIndicator {
-      0% { transform: translateY(0); opacity: 0.7; }
-      50% { transform: translateY(10px); opacity: 1; }
-      100% { transform: translateY(0); opacity: 0.7; }
-    }
-
-    /* Efecto de aparición para los slides */
-    .slide-content {
-      animation: fadeIn 0.5s ease forwards;
-    }
-
-    /* Indicador de scroll para el primer slide */
-    .scroll-indicator {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      color: var(--primary-color);
-      font-size: 0.8rem;
-      animation: scrollIndicator 2s infinite;
-      z-index: 10;
-    }
-
-    .scroll-indicator i {
-      margin-bottom: 5px;
-      font-size: 1.2rem;
-    }
-
-    /* Mejoras de responsive para móviles */
     @media (max-width: 768px) {
-      .slide {
-        padding: 1rem;
-        justify-content: center;
-        padding-top: 4rem;
-      }
-      
-      .slide-content {
-        padding: 1.5rem 1rem;
-        max-height: 85vh;
-        margin-top: 0;
-        justify-content: center;
-      }
-      
-      .slide-title {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-      }
-      
-      .btn {
-        padding: 0.9rem 1.2rem;
-        min-width: 180px;
-        font-size: 0.95rem;
-        margin-top: 1rem;
-      }
-      
-      .contacts-grid, .images-grid {
-        grid-template-columns: 1fr;
-        gap: 0.8rem;
-      }
-      
-      .business-model-card {
-        padding: 1.2rem;
-        margin-bottom: 1rem;
-      }
-      
-      .modal {
-        padding: 1.5rem;
-        margin: 1rem;
-      }
-      
-      .modal-title {
-        font-size: 1.3rem;
-      }
-      
-      .announcement-banner {
-        font-size: 0.8rem;
-        padding: 0.7rem;
-        position: fixed;
-        z-index: 1000;
-      }
-      
-      .logo-container {
-        margin-bottom: 1rem;
-      }
-      
-      .logo-container img {
-        height: 50px;
-      }
-      
-      .scrollable-content {
-        max-height: 50vh;
-      }
-      
-      .images-grid img {
-        height: 100px;
-      }
-      
-      .scroll-indicator {
-        bottom: 10px;
-      }
+      .slide { padding: 1rem; justify-content: center; padding-top: 4rem; }
+      .slide-content { padding: 1.5rem 1rem; max-height: 85vh; margin-top: 0; justify-content: center; }
+      .slide-title { font-size: 1.5rem; margin-bottom: 1rem; }
+      .btn { padding: 0.9rem 1.2rem; min-width: 180px; font-size: 0.95rem; margin-top: 1rem; }
+      .contacts-grid, .images-grid { grid-template-columns: 1fr; gap: 0.8rem; }
+      .business-model-card { padding: 1.2rem; margin-bottom: 1rem; }
+      .modal { padding: 1.5rem; margin: 1rem; }
+      .modal-title { font-size: 1.3rem; }
+      .announcement-banner { font-size: 0.8rem; padding: 0.7rem; position: fixed; z-index: 1000; }
+      .logo-container { margin-bottom: 1rem; }
+      .logo { height: 50px; }
+      .scrollable-content { max-height: 50vh; }
+      .images-grid img { height: 100px; }
+      .scroll-indicator { bottom: 10px; }
     }
 
     @media (max-width: 480px) {
-      .slide {
-        padding: 0.8rem;
-        padding-top: 3.5rem;
-      }
-      
-      .slide-content {
-        padding: 1.2rem 0.8rem;
-        max-height: 80vh;
-      }
-      
-      .slide-title {
-        font-size: 1.3rem;
-        margin-bottom: 0.8rem;
-      }
-      
-      .btn {
-        padding: 0.8rem;
-        margin-top: 0.8rem;
-        font-size: 0.9rem;
-      }
-      
-      .images-grid img {
-        height: 80px;
-      }
-      
-      .announcement-banner {
-        padding: 0.6rem;
-        font-size: 0.75rem;
-      }
-      
-      .modal {
-        padding: 1.2rem;
-      }
-      
-      .slide-description {
-        font-size: 0.9rem;
-      }
-      
-      .slide-content p {
-        font-size: 0.9rem;
-        line-height: 1.6;
-      }
-      
-      .scroll-indicator {
-        font-size: 0.7rem;
-      }
+      .slide { padding: 0.8rem; padding-top: 3.5rem; }
+      .slide-content { padding: 1.2rem 0.8rem; max-height: 80vh; }
+      .slide-title { font-size: 1.3rem; margin-bottom: 0.8rem; }
+      .btn { padding: 0.8rem; margin-top: 0.8rem; font-size: 0.9rem; }
+      .images-grid img { height: 80px; }
+      .announcement-banner { padding: 0.6rem; font-size: 0.75rem; }
+      .modal { padding: 1.2rem; }
+      .slide-description { font-size: 0.9rem; }
+      .slide-content p { font-size: 0.9rem; line-height: 1.6; }
+      .scroll-indicator { font-size: 0.7rem; }
     }
 
     @media (max-height: 600px) {
-      .slide-content {
-        max-height: 75vh;
-        padding: 1rem;
-      }
-      
-      .slide-title {
-        margin-bottom: 0.8rem;
-        font-size: 1.3rem;
-      }
-      
-      .btn {
-        padding: 0.7rem;
-        margin-top: 0.8rem;
-      }
-      
-      .images-grid img {
-        height: 70px;
-      }
-      
-      .announcement-banner {
-        padding: 0.5rem;
-      }
-      
-      .scrollable-content {
-        max-height: 45vh;
-      }
-      
-      .scroll-indicator {
-        display: none;
-      }
+      .slide-content { max-height: 75vh; padding: 1rem; }
+      .slide-title { margin-bottom: 0.8rem; font-size: 1.3rem; }
+      .btn { padding: 0.7rem; margin-top: 0.8rem; }
+      .images-grid img { height: 70px; }
+      .announcement-banner { padding: 0.5rem; }
+      .scrollable-content { max-height: 45vh; }
+      .scroll-indicator { display: none; }
     }
 
-    /* Indicadores de progreso para móviles */
-    .slide-indicators {
-      position: fixed;
-      bottom: 1rem;
-      left: 0;
-      right: 0;
-      display: flex;
-      justify-content: center;
-      gap: 0.5rem;
-      z-index: 100;
-      padding: 0 1rem;
-    }
+    .slide-indicators { position: fixed; bottom: 1rem; left: 0; right: 0; display: flex; justify-content: center; gap: 0.5rem; z-index: 100; padding: 0 1rem; }
+    .indicator { width: 8px; height: 8px; border-radius: 50%; background-color: rgba(255, 255, 255, 0.5); transition: var(--transition); }
+    .indicator.active { background-color: var(--secondary-color); transform: scale(1.2); }
 
-    .indicator {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background-color: rgba(255, 255, 255, 0.5);
-      transition: var(--transition);
-    }
-
-    .indicator.active {
-      background-color: var(--secondary-color);
-      transform: scale(1.2);
-    }
-
-    /* Mejoras de accesibilidad táctil */
-    .btn, .contact-btn {
-      min-height: 44px; /* Tamaño mínimo recomendado para elementos táctiles */
-    }
-
-    /* Mejoras de legibilidad en móviles */
-    .slide-content p, .slide-description {
-      text-align: justify;
-      hyphens: none; /* Asegurado para móviles también */
-      -webkit-hyphens: none;
-      -ms-hyphens: none;
-      -moz-hyphens: none;
-    }
-
-    .center-text {
-      text-align: center !important;
-    }
+    .btn, .contact-btn { min-height: 44px; }
+    .slide-content p, .slide-description { text-align: justify; hyphens: none; -webkit-hyphens: none; -ms-hyphens: none; -moz-hyphens: none; }
+    .center-text { text-align: center !important; }
   </style>
 </head>
 <body>
@@ -919,26 +241,25 @@
       <div class="announcement-banner">
         <i class="fas fa-clock"></i> Horario de atención: 9:00 am a 10:00 pm
       </div>
-      
+
       <div class="slide-content">
-        <div class="logo-container">
-          <img src="https://raw.githubusercontent.com/novaklar/web/refs/heads/main/novaklar1.svg" alt="Novaklar Logo" class="logo">
+        <div class="logo-container" id="logoContainer" aria-hidden="false">
+          <!-- SVG inline se cargará aquí -->
         </div>
+
         <h1 class="slide-title">¡Bienvenido a Novaklar!</h1>
-        <p class="slide-description center-text">
-          La plataforma que transforma la forma de generar ingresos en línea
-        </p>
+        <p class="slide-description center-text">La plataforma que transforma la forma de generar ingresos en línea</p>
+
         <div class="audio-container">
           <audio controls>
-            <source src="https://raw.githubusercontent.com/novaklar/info/main/aud1o.mp3" type="audio/mpeg">
+            <source src="https://raw.githubusercontent.com/novaklar/info/main/aud1o.mp3" type="audio/mpeg" />
             Tu navegador no soporta el elemento de audio.
           </audio>
         </div>
-        <button class="btn" onclick="nextSlide()">
-          Comenzar <i class="fas fa-arrow-right"></i>
-        </button>
+
+        <button class="btn" onclick="nextSlide()">Comenzar <i class="fas fa-arrow-right"></i></button>
       </div>
-      
+
       <div class="scroll-indicator" id="scrollIndicator">
         <i class="fas fa-chevron-down"></i>
         <span>Desliza para continuar</span>
@@ -950,14 +271,10 @@
         <h1 class="slide-title">¿Qué es Novaklar?</h1>
         <div class="scrollable-content">
           <p>Novaklar es una empresa digital que transforma la forma de generar ingresos en línea. Desde 2023, hemos creado una comunidad que conecta a personas con oportunidades reales y accesibles, ofreciendo productos digitales como streaming, recargas, suscripciones y mucho más.</p>
-          
           <p>Nuestro modelo de trabajo es flexible, inclusivo y pensado especialmente para jóvenes, estudiantes y universitarios que buscan un ingreso pasivo. Puedes ser revendedor o promotor, sin necesidad de inversión previa. En novaklar, creces a tu ritmo y con el respaldo de un equipo comprometido.</p>
-          
           <p>Es el complemento perfecto para personas con trabajos estables que buscan aumentar sus ingresos. Creemos en el poder de la tecnología para cambiar vidas, y cada día trabajamos para que más personas descubran su potencial en el mundo digital.</p>
         </div>
-        <button class="btn" onclick="nextSlide()">
-          Continuar <i class="fas fa-arrow-right"></i>
-        </button>
+        <button class="btn" onclick="nextSlide()">Continuar <i class="fas fa-arrow-right"></i></button>
       </div>
     </div>
 
@@ -965,12 +282,9 @@
       <div class="slide-content">
         <h1 class="slide-title">Conoce Novaklar</h1>
         <div class="video-container">
-          <!-- CAMBIO 1: Video actualizado para el slide "Conoce Novaklar" -->
           <iframe src="https://www.youtube.com/embed/aX3OF6lMvzA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-        <button class="btn" onclick="nextSlide()">
-          Ver Roles <i class="fas fa-arrow-right"></i>
-        </button>
+        <button class="btn" onclick="nextSlide()">Ver Roles <i class="fas fa-arrow-right"></i></button>
       </div>
     </div>
 
@@ -979,16 +293,10 @@
         <h1 class="slide-title"><i class="fas fa-store"></i> Revendedor</h1>
         <div class="scrollable-content">
           <p>Vende productos digitales directamente al cliente sin necesidad de invertir previamente. Solo pagas cuando ya tienes una venta confirmada, lo que elimina cualquier riesgo financiero inicial.</p>
-          
           <p>Gestionas tus propias ventas y estableces relaciones directas con tus clientes. Tienes control completo sobre tus márgenes de ganancia.</p>
-          
-          <div class="highlight-box">
-            <strong>Ejemplo práctico:</strong> Si un cliente compra una cuenta de HBO Max por $10.000, tú la adquieres por $5.000 y ganas $5.000 de ganancia inmediata sin tener que comprar el producto por adelantado.
-          </div>
-          
+          <div class="highlight-box"><strong>Ejemplo práctico:</strong> Si un cliente compra una cuenta de HBO Max por $10.000, tú la adquieres por $5.000 y ganas $5.000 de ganancia inmediata sin tener que comprar el producto por adelantado.</div>
           <h3 class="section-title">Sistema de Pagos</h3>
           <p>Como revendedor, recibes el pago directamente de tus clientes. Con una parte de ese dinero adquieres el producto en nuestra plataforma para entregarlo a tu cliente, quedándote con tu ganancia.</p>
-          
           <ul class="benefits-list">
             <li><i class="fas fa-check-circle"></i> Sin inversión inicial</li>
             <li><i class="fas fa-check-circle"></i> Margen de ganancia del 50% en promedio</li>
@@ -996,9 +304,7 @@
             <li><i class="fas fa-check-circle"></i> Productos digitales de alta demanda</li>
           </ul>
         </div>
-        <button class="btn" onclick="nextSlide()">
-          Siguiente Rol <i class="fas fa-arrow-right"></i>
-        </button>
+        <button class="btn" onclick="nextSlide()">Siguiente Rol <i class="fas fa-arrow-right"></i></button>
       </div>
     </div>
 
@@ -1007,16 +313,10 @@
         <h1 class="slide-title"><i class="fas fa-bullhorn"></i> Promotor</h1>
         <div class="scrollable-content">
           <p>Promociona productos a través de enlaces o redes sociales sin necesidad de manejar el proceso de venta completo. Ideal para quienes tienen audiencia digital o habilidades en marketing.</p>
-          
           <p>Ganas comisiones por cada venta generada a través de tus enlaces únicos. No necesitas atender consultas ni procesar pagos, todo es automático.</p>
-          
-          <div class="highlight-box">
-            <strong>Ejemplo práctico:</strong> Si alguien compra Amazon Prime por $10.000 desde tu catálogo o enlace de afiliado, recibes $4.000 de comisión automáticamente, sin tener que atender consultas o procesar pagos.
-          </div>
-          
+          <div class="highlight-box"><strong>Ejemplo práctico:</strong> Si alguien compra Amazon Prime por $10.000 desde tu catálogo o enlace de afiliado, recibes $4.000 de comisión automáticamente, sin tener que atender consultas o procesar pagos.</div>
           <h3 class="section-title">Sistema de Pagos</h3>
           <p>Como promotor, recibes tus comisiones diariamente directamente en tu cuenta bancaria (Nequi, Daviplata, Bancolombia, etc.). Los pagos se procesan automáticamente por cada venta generada.</p>
-          
           <ul class="benefits-list">
             <li><i class="fas fa-check-circle"></i> Comisiones automáticas</li>
             <li><i class="fas fa-check-circle"></i> Sin atención al cliente</li>
@@ -1024,9 +324,7 @@
             <li><i class="fas fa-check-circle"></i> Herramientas de seguimiento</li>
           </ul>
         </div>
-        <button class="btn" onclick="nextSlide()">
-          Modelo de Negocio <i class="fas fa-arrow-right"></i>
-        </button>
+        <button class="btn" onclick="nextSlide()">Modelo de Negocio <i class="fas fa-arrow-right"></i></button>
       </div>
     </div>
 
@@ -1035,24 +333,10 @@
         <h1 class="slide-title">Modelo de Negocio</h1>
         <div class="scrollable-content">
           <p>Cada rol dentro de Novaklar opera con un enfoque distinto. Estos son los modelos que usamos:</p>
-          
-          <div class="business-model-card">
-            <div class="model-icon"><i class="fas fa-store"></i></div>
-            <h3>Modelo de Reventa Directa (Revendedores)</h3>
-            <p>Compran productos a precio interno y los venden al cliente final con ganancia propia. Ellos gestionan el cobro y la entrega.</p>
-            <p class="model-highlight">Ingresos controlados 100% por el revendedor.</p>
-          </div>
-          
-          <div class="business-model-card">
-            <div class="model-icon"><i class="fas fa-bullhorn"></i></div>
-            <h3>Modelo de Afiliación por Comisión (Promotores)</h3>
-            <p>Promocionan catálogos o enlaces y ganan una comisión por cada venta generada.</p>
-            <p class="model-highlight">No manejan dinero del cliente. Reciben pagos diarios por medios digitales.</p>
-          </div>
+          <div class="business-model-card"><div class="model-icon"><i class="fas fa-store"></i></div><h3>Modelo de Reventa Directa (Revendedores)</h3><p>Compran productos a precio interno y los venden al cliente final con ganancia propia. Ellos gestionan el cobro y la entrega.</p><p class="model-highlight">Ingresos controlados 100% por el revendedor.</p></div>
+          <div class="business-model-card"><div class="model-icon"><i class="fas fa-bullhorn"></i></div><h3>Modelo de Afiliación por Comisión (Promotores)</h3><p>Promocionan catálogos o enlaces y ganan una comisión por cada venta generada.</p><p class="model-highlight">No manejan dinero del cliente. Reciben pagos diarios por medios digitales.</p></div>
         </div>
-        <button class="btn" onclick="nextSlide()">
-          Requisitos <i class="fas fa-arrow-right"></i>
-        </button>
+        <button class="btn" onclick="nextSlide()">Requisitos <i class="fas fa-arrow-right"></i></button>
       </div>
     </div>
 
@@ -1061,18 +345,13 @@
         <h1 class="slide-title">Requisitos para ingresar</h1>
         <div class="scrollable-content">
           <p>¿Qué necesitas para trabajar con Novaklar?</p>
-          
           <ul class="requirements-list">
             <li><i class="fas fa-check-circle"></i> Tener mínimo 13 años</li>
             <li><i class="fas fa-check-circle"></i> Vivir en Colombia</li>
             <li><i class="fas fa-check-circle"></i> Tener una cuenta activa en Nequi, Daviplata, Bancolombia o Movii</li>
             <li><i class="fas fa-check-circle"></i> Ser responsable, respetuoso y cumplido con los clientes</li>
           </ul>
-          
-          <div class="highlight-box">
-            <p>No necesitas experiencia previa ni invertir dinero. ¡Solo ganas y compromiso!</p>
-          </div>
-
+          <div class="highlight-box"><p>No necesitas experiencia previa ni invertir dinero. ¡Solo ganas y compromiso!</p></div>
           <div class="images-grid">
             <img src="https://raw.githubusercontent.com/novaklar/info/refs/heads/main/16.png" alt="Requisitos Novaklar">
             <img src="https://raw.githubusercontent.com/novaklar/info/refs/heads/main/17.png" alt="Requisitos Novaklar">
@@ -1080,9 +359,7 @@
             <img src="https://raw.githubusercontent.com/novaklar/info/refs/heads/main/19.png" alt="Requisitos Novaklar">
           </div>
         </div>
-        <button class="btn" onclick="openModal()">
-          Acceder a Capacitación <i class="fas fa-graduation-cap"></i>
-        </button>
+        <button class="btn" onclick="openModal()">Acceder a Capacitación <i class="fas fa-graduation-cap"></i></button>
       </div>
     </div>
 
@@ -1091,17 +368,9 @@
         <h1 class="slide-title">Capacitación</h1>
         <div class="scrollable-content">
           <p>Aprende todo lo necesario para tener éxito en tu rol con nuestro programa completo de capacitación:</p>
-          
-          <div class="video-container" id="trainingVideoContainer">
-            <!-- CAMBIO 2: Video actualizado para el slide de capacitación -->
-            <iframe id="trainingVideo" src="https://www.youtube.com/embed/8GvK44JxUks" frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen></iframe>
-          </div>
+          <div class="video-container" id="trainingVideoContainer"><iframe id="trainingVideo" src="https://www.youtube.com/embed/8GvK44JxUks" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
         </div>
-        <button class="btn" onclick="nextSlide()">
-          Finalizar <i class="fas fa-arrow-right"></i>
-        </button>
+        <button class="btn" onclick="nextSlide()">Finalizar <i class="fas fa-arrow-right"></i></button>
       </div>
     </div>
 
@@ -1109,18 +378,9 @@
       <div class="slide-content">
         <h1 class="slide-title">¡Estás listo para comenzar!</h1>
         <div class="scrollable-content">
-          <div class="audio-container">
-            <audio controls autoplay>
-              <source src="https://raw.githubusercontent.com/novaklar/reclutamiento/main/luvvoice.com-20250714-KGWYSW.mp3" type="audio/mpeg">
-              Tu navegador no soporta el elemento de audio.
-            </audio>
-          </div>
-          
+          <div class="audio-container"><audio controls autoplay><source src="https://raw.githubusercontent.com/novaklar/reclutamiento/main/luvvoice.com-20250714-KGWYSW.mp3" type="audio/mpeg">Tu navegador no soporta el elemento de audio.</audio></div>
           <p class="center-text">Contáctanos ahora mismo para comenzar tu proceso de afiliación:</p>
-          
-          <div class="contacts-grid" id="finalSlideContacts">
-            </div>
-          
+          <div class="contacts-grid" id="finalSlideContacts"></div>
           <p class="contact-note">Horario de atención: 9:00 am a 10:00 pm</p>
         </div>
       </div>
@@ -1133,277 +393,209 @@
         <div class="modal-icon"><i class="fas fa-graduation-cap"></i></div>
         <h2 class="modal-title">Confirmar Acceso</h2>
       </div>
-      <p class="modal-text">
-        Para acceder a la capacitación, confirma que:
-      </p>
-      
-      <div class="checkbox-group">
-        <div class="checkbox-item">
-          <input type="checkbox" id="confirmInfo" onchange="checkConditions()">
-          <label for="confirmInfo">He revisado toda la información</label>
+      <p class="modal-text">Selecciona tu rol:</p>
+
+      <div class="checkbox-group" id="roleOptions">
+        <div class="checkbox-item" onclick="selectRoleOption('revendedor')">
+          <input type="radio" id="roleRevendedor" name="role" value="revendedor" onchange="checkRoleSelection()">
+          <label for="roleRevendedor">Revendedor</label>
         </div>
-        
-        <div class="checkbox-item">
-          <input type="checkbox" id="confirmRole" onchange="checkConditions()">
-          <label for="confirmRole">He seleccionado un rol</label>
+        <div class="checkbox-item" onclick="selectRoleOption('promotor')">
+          <input type="radio" id="rolePromotor" name="role" value="promotor" onchange="checkRoleSelection()">
+          <label for="rolePromotor">Promotor</label>
         </div>
       </div>
-      
-      <button class="btn modal-btn" id="modalContinueBtn" disabled onclick="continueToTraining()">
-        ✅ Acceder a Capacitación
-      </button>
-      
+
+      <button class="btn modal-btn" id="modalContinueBtn" disabled onclick="continueToTraining()">✅ Acceder a Capacitación</button>
+
       <p class="contacts-title">¿Necesitas ayuda?</p>
-      
-      <div class="contacts-grid" id="modalContacts">
-        </div>
+      <div class="contacts-grid" id="modalContacts"></div>
     </div>
   </div>
 
   <script>
-    // Variables globales
+    // Carga el SVG desde raw.githubusercontent y fuerza color en todos sus elementos
+    (function loadAndForceColorSvg() {
+      const cloudSvgUrl = 'https://raw.githubusercontent.com/novaklar/web/refs/heads/main/cloud.svg';
+      const desiredColor = '#0d4c7f';
+      const container = document.getElementById('logoContainer');
+      if (!container) return;
+
+      fetch(cloudSvgUrl)
+        .then(res => {
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          return res.text();
+        })
+        .then(svgText => {
+          // Parsear el SVG como documento
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(svgText, 'image/svg+xml');
+          const svgEl = doc.querySelector('svg');
+
+          if (!svgEl) {
+            // fallback: insertar como imagen normal
+            container.innerHTML = '<img src="' + cloudSvgUrl + '" alt="Novaklar Logo" class="logo" />';
+            return;
+          }
+
+          // Asegurar aria-label y clase
+          svgEl.setAttribute('aria-label', svgEl.getAttribute('aria-label') || 'Novaklar Logo');
+          svgEl.classList.add('logo');
+
+          // Recorre todos los nodos hijos del SVG y fuerza fill/stroke y elimina estilos conflictivos
+          const all = svgEl.querySelectorAll('*');
+          all.forEach(el => {
+            try {
+              const style = el.getAttribute('style');
+              if (style && /fill\s*:/i.test(style)) {
+                const cleanedStyle = style.split(';').map(s => s.trim()).filter(s => !/^fill\s*:/i.test(s) && s !== '').join('; ');
+                if (cleanedStyle) el.setAttribute('style', cleanedStyle);
+                else el.removeAttribute('style');
+              }
+            } catch (e) {}
+            try { el.setAttribute('fill', desiredColor); } catch(e) {}
+            try { el.style.fill = desiredColor; } catch(e) {}
+            try { el.setAttribute('stroke', desiredColor); } catch(e) {}
+            try { el.style.stroke = desiredColor; } catch(e) {}
+          });
+
+          try { svgEl.setAttribute('fill', desiredColor); } catch(e) {}
+          try { svgEl.style.fill = desiredColor; } catch(e) {}
+          try { svgEl.setAttribute('stroke', desiredColor); } catch(e) {}
+          try { svgEl.style.stroke = desiredColor; } catch(e) {}
+
+          const serializer = new XMLSerializer();
+          const inlineSvg = serializer.serializeToString(svgEl);
+          container.innerHTML = inlineSvg;
+        })
+        .catch(err => {
+          console.error('Error cargando SVG:', err);
+          container.innerHTML = '<img src="' + cloudSvgUrl + '" alt="Novaklar Logo" class="logo" />';
+        });
+    })();
+
+    // --- Resto de la app ---
     let currentSlide = 0;
     let selectedRole = null;
     const slides = document.querySelectorAll('.slide');
     const onboardingContainer = document.getElementById('onboardingContainer');
     const modalOverlay = document.getElementById('modalOverlay');
     const modalContinueBtn = document.getElementById('modalContinueBtn');
-    const trainingVideoContainer = document.getElementById('trainingVideoContainer');
     const scrollIndicator = document.getElementById('scrollIndicator');
-    // Referencia al iframe del video de capacitación
-    const trainingVideoIframe = document.getElementById('trainingVideo');
 
-    // Mapeo de asesoras con sus días de descanso (0 = Domingo, 1 = Lunes, ..., 6 = Sábado)
-    // CAMBIO 3: Cambiar "Luz" por "Alejandra"
     const asesoras = {
-      alejandra: {
-        name: "Alejandra",
-        number: "3018205460",
-        restDays: [1, 4] // Lunes y Jueves
-      },
-      ester: {
-        name: "Ester",
-        number: "3137976150",
-        restDays: [6, 0] // Sábado y Domingo
-      },
-      katherin: {
-        name: "Katherin",
-        number: "3027069328",
-        restDays: [3, 5] // Miércoles y Viernes
-      },
-      neyereth: {
-        name: "Neyereht",
-        number: "3027069188",
-        restDays: [3, 5] // Miércoles y Viernes
-      }
+      alejandra: { name: "Alejandra", number: "3018205460", restDays: [1, 4] },
+      ester:     { name: "Ester",     number: "3137976150", restDays: [6, 0] },
+      katherin:  { name: "Katherin",  number: "3027069328", restDays: [3, 5] },
+      neyereth:  { name: "Neyereht",  number: "3027069188", restDays: [3, 5] }
     };
-    
-    const defaultMessage = "Hola, te contacto desde la página web, ya completé la fase 1";
-    const encodedMessage = encodeURIComponent(defaultMessage);
 
-    // Renderizar botones de WhatsApp
     function renderWhatsAppButtons(containerId) {
       const container = document.getElementById(containerId);
+      if (!container) return;
       container.innerHTML = '';
       const today = new Date().getDay();
-
       const sortedAsesoras = [asesoras.alejandra, asesoras.ester, asesoras.katherin, asesoras.neyereth];
+      const roleFromStorage = localStorage.getItem('novaklarSelectedRole');
+      const role = selectedRole || roleFromStorage || 'promotor';
 
       sortedAsesoras.forEach(asesora => {
         if (!asesora.restDays.includes(today)) {
-          const buttonHtml = `
-            <a href="https://wa.me/57${asesora.number}?text=${encodedMessage}" class="contact-btn whatsapp-btn" target="_blank">
-              <i class="fab fa-whatsapp"></i> ${asesora.name}
-            </a>
-          `;
+          const message = `hola ${asesora.name}, ya finalice la fase 1 de reclutamiento y quiero ser ${role}`;
+          const encodedMessage = encodeURIComponent(message);
+          const buttonHtml = `<a href="https://wa.me/57${asesora.number}?text=${encodedMessage}" class="contact-btn whatsapp-btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> ${asesora.name}</a>`;
           container.innerHTML += buttonHtml;
         }
       });
     }
 
-    // Inicialización
     document.addEventListener('DOMContentLoaded', function() {
       setupEventListeners();
       goToSlide(0, false);
-      // Renderizar los botones iniciales en el modal y el último slide
+      const storedRole = localStorage.getItem('novaklarSelectedRole');
+      if (storedRole) {
+        selectedRole = storedRole;
+        const radio = document.querySelector(`input[name="role"][value="${storedRole}"]`);
+        if (radio) radio.checked = true;
+        modalContinueBtn.disabled = false;
+      }
       renderWhatsAppButtons('modalContacts');
       renderWhatsAppButtons('finalSlideContacts');
-      
-      // Ocultar el indicador de scroll después de 5 segundos
-      setTimeout(() => {
-        if (scrollIndicator) {
-          scrollIndicator.style.opacity = '0';
-          setTimeout(() => {
-            scrollIndicator.style.display = 'none';
-          }, 500);
-        }
-      }, 5000);
+      setTimeout(() => { if (scrollIndicator) { scrollIndicator.style.opacity = '0'; setTimeout(()=> scrollIndicator.style.display='none',500); } }, 5000);
     });
 
-    // Configurar event listeners
     function setupEventListeners() {
-      // Touch events para navegación en móviles
-      let touchStartX = 0;
-      let touchEndX = 0;
-      let isScrolling = false;
-      
-      onboardingContainer.addEventListener('touchstart', function(e) {
-        touchStartX = e.touches[0].clientX;
-        isScrolling = false;
-      }, { passive: true });
-      
-      onboardingContainer.addEventListener('touchmove', function(e) {
-        if (Math.abs(e.touches[0].clientX - touchStartX) > 5) {
-          isScrolling = true;
-        }
-      }, { passive: true });
-      
-      onboardingContainer.addEventListener('touchend', function(e) {
+      let touchStartX = 0, touchEndX = 0, isScrolling = false;
+      onboardingContainer.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; isScrolling = false; }, { passive: true });
+      onboardingContainer.addEventListener('touchmove', e => { if (Math.abs(e.touches[0].clientX - touchStartX) > 5) isScrolling = true; }, { passive: true });
+      onboardingContainer.addEventListener('touchend', e => {
         if (!isScrolling) return;
         touchEndX = e.changedTouches[0].clientX;
-        handleSwipe();
+        const threshold = 50;
+        if (touchStartX - touchEndX > threshold) nextSlide(); else if (touchEndX - touchStartX > threshold) prevSlide();
       }, { passive: true });
-      
-      // Detectar scroll manual
+
       onboardingContainer.addEventListener('scroll', debounce(function() {
         const newSlide = Math.round(this.scrollLeft / window.innerWidth);
-        if (newSlide !== currentSlide) {
-          currentSlide = newSlide;
-        }
+        if (newSlide !== currentSlide) currentSlide = newSlide;
       }, 100), { passive: true });
-      
-      // Cerrar modal
-      modalOverlay.addEventListener('click', function(e) {
-        if (e.target === modalOverlay) {
-          closeModal();
-        }
-      });
-      
-      // Teclado
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'ArrowLeft') {
-          prevSlide();
-        } else if (e.key === 'ArrowRight') {
-          nextSlide();
-        }
-      });
-      
-      // Detectar scroll vertical para ocultar el indicador
-      document.addEventListener('scroll', function() {
-        if (scrollIndicator && currentSlide === 0) {
-          scrollIndicator.style.opacity = '0';
-          setTimeout(() => {
-            scrollIndicator.style.display = 'none';
-          }, 500);
-        }
-      }, { passive: true });
+
+      modalOverlay.addEventListener('click', e => { if (e.target === modalOverlay) closeModal(); });
+      document.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') prevSlide(); else if (e.key === 'ArrowRight') nextSlide(); });
+      document.addEventListener('scroll', () => { if (scrollIndicator && currentSlide === 0) { scrollIndicator.style.opacity = '0'; setTimeout(()=> scrollIndicator.style.display='none',500); } }, { passive: true });
     }
 
-    // Debounce para mejorar rendimiento
-    function debounce(func, wait) {
-      let timeout;
-      return function() {
-        const context = this, args = arguments;
-        clearTimeout(timeout);
-        timeout = setTimeout(function() {
-          func.apply(context, args);
-        }, wait);
-      };
-    }
+    function debounce(func, wait) { let timeout; return function() { const context=this, args=arguments; clearTimeout(timeout); timeout = setTimeout(()=> func.apply(context,args), wait); }; }
 
-    // Manejar gesto de deslizamiento
-    function handleSwipe() {
-      const threshold = 50;
-      if (touchStartX - touchEndX > threshold) {
-        nextSlide();
-      } else if (touchEndX - touchStartX > threshold) {
-        prevSlide();
-      }
-    }
+    function nextSlide() { if (currentSlide < slides.length - 1) { currentSlide++; goToSlide(currentSlide); } }
+    function prevSlide() { if (currentSlide > 0) { currentSlide--; goToSlide(currentSlide); } }
 
-    // Navegación entre slides
-    function nextSlide() {
-      if (currentSlide < slides.length - 1) {
-        currentSlide++;
-        goToSlide(currentSlide);
-      }
-    }
-
-    function prevSlide() {
-      if (currentSlide > 0) {
-        currentSlide--;
-        goToSlide(currentSlide);
-      }
-    }
-
-    function goToSlide(index, smooth = true) {
-      if (index >= 0 && index < slides.length) {
+    function goToSlide(index, smooth=true) {
+      if (index >=0 && index < slides.length) {
         currentSlide = index;
-        onboardingContainer.scrollTo({
-          left: index * window.innerWidth,
-          behavior: smooth ? 'smooth' : 'auto'
-        });
+        onboardingContainer.scrollTo({ left: index * window.innerWidth, behavior: smooth ? 'smooth' : 'auto' });
+        if (index === slides.length - 1) renderWhatsAppButtons('finalSlideContacts');
       }
     }
 
-    // Modal functions
     function openModal() {
-      // Reset checkboxes
-      document.getElementById('confirmInfo').checked = false;
-      document.getElementById('confirmRole').checked = false;
-      modalContinueBtn.disabled = true;
-      
+      const stored = localStorage.getItem('novaklarSelectedRole');
+      if (stored) {
+        const radio = document.querySelector(`input[name="role"][value="${stored}"]`);
+        if (radio) radio.checked = true;
+        modalContinueBtn.disabled = false;
+      } else {
+        document.getElementById('roleRevendedor').checked = false;
+        document.getElementById('rolePromotor').checked = false;
+        modalContinueBtn.disabled = true;
+      }
       modalOverlay.classList.add('active');
       document.body.style.overflow = 'hidden';
     }
 
-    function closeModal() {
-      modalOverlay.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    function checkConditions() {
-      const confirmInfo = document.getElementById('confirmInfo').checked;
-      const confirmRole = document.getElementById('confirmRole').checked;
-      
-      modalContinueBtn.disabled = !(confirmInfo && confirmRole);
-    }
+    function closeModal() { modalOverlay.classList.remove('active'); document.body.style.overflow = ''; }
+    function checkRoleSelection() { const checked = document.querySelector('input[name="role"]:checked'); modalContinueBtn.disabled = !checked; }
+    function selectRoleOption(value) { const radio = document.querySelector(`input[name="role"][value="${value}"]`); if (radio) { radio.checked = true; checkRoleSelection(); } }
 
     function continueToTraining() {
-      const confirmInfo = document.getElementById('confirmInfo').checked;
-      const confirmRole = document.getElementById('confirmRole').checked;
-      
-      if (!confirmInfo || !confirmRole) {
-        alert('Debes aceptar todas las condiciones para continuar.');
-        return;
-      }
-      
-      // Cargar el video de capacitación
-      loadTrainingVideo();
-      
-      // Cerrar el modal
+      const checked = document.querySelector('input[name="role"]:checked');
+      if (!checked) { alert('Debes seleccionar un rol para continuar.'); return; }
+      selectedRole = checked.value;
+      localStorage.setItem('novaklarSelectedRole', selectedRole);
       closeModal();
-      
-      // Ir al slide de capacitación (slide 7)
-      goToSlide(7);
+
+      let trainingIndex = 0;
+      slides.forEach((s, idx) => {
+        const h = s.querySelector('.slide-title');
+        if (h && h.textContent && h.textContent.trim().toLowerCase().includes('capacit')) trainingIndex = idx;
+      });
+      goToSlide(trainingIndex);
+      renderWhatsAppButtons('finalSlideContacts');
+      renderWhatsAppButtons('modalContacts');
     }
 
-    function loadTrainingVideo() {
-      // Ya no es necesario cargar el video aquí porque ahora está embebido directamente
-      // en el HTML del slide de capacitación
-    }
-
-    // Manejar cambios de orientación
-    window.addEventListener('orientationchange', function() {
-      setTimeout(() => {
-        goToSlide(currentSlide, false);
-      }, 300);
-    });
-
-    // Manejar cambios de tamaño de ventana
-    window.addEventListener('resize', debounce(function() {
-      goToSlide(currentSlide, false);
-    }, 300));
+    window.addEventListener('orientationchange', () => setTimeout(()=> goToSlide(currentSlide, false), 300));
+    window.addEventListener('resize', debounce(()=> goToSlide(currentSlide, false), 300));
   </script>
 </body>
 </html>
