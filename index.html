@@ -280,21 +280,20 @@
 
     <div class="slide with-bg">
       <div class="slide-content">
-        <h1 class="slide-title">Conoce Novaklar</h1>
-        <div class="video-container">
-          <iframe src="https://www.youtube.com/embed/aX3OF6lMvzA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <button class="btn" onclick="nextSlide()">Ver Roles <i class="fas fa-arrow-right"></i></button>
-      </div>
-    </div>
-
-    <div class="slide with-bg">
-      <div class="slide-content">
         <h1 class="slide-title"><i class="fas fa-store"></i> Revendedor</h1>
+
+        <!-- Audio añadido para Revendedor -->
+        <div class="audio-container">
+          <audio controls>
+            <source src="https://raw.githubusercontent.com/novaklar/info/main/revendedor.mp3" type="audio/mpeg" />
+            Tu navegador no soporta el elemento de audio.
+          </audio>
+        </div>
+
         <div class="scrollable-content">
           <p>Vende productos digitales directamente al cliente sin necesidad de invertir previamente. Solo pagas cuando ya tienes una venta confirmada, lo que elimina cualquier riesgo financiero inicial.</p>
           <p>Gestionas tus propias ventas y estableces relaciones directas con tus clientes. Tienes control completo sobre tus márgenes de ganancia.</p>
-          <div class="highlight-box"><strong>Ejemplo práctico:</strong> Si un cliente compra una cuenta de HBO Max por $10.000, tú la adquieres por $5.000 y ganas $5.000 de ganancia inmediata sin tener que comprar el producto por adelantado.</div>
+          <div class="highlight-box"><strong>Ejemplo práctico:</strong> Si un cliente compra una cuenta de HBO Max por $10.000, tú la adquieres por $6.000 y ganas $4.000 de ganancia inmediata sin tener que comprar el producto por adelantado.</div>
           <h3 class="section-title">Sistema de Pagos</h3>
           <p>Como revendedor, recibes el pago directamente de tus clientes. Con una parte de ese dinero adquieres el producto en nuestra plataforma para entregarlo a tu cliente, quedándote con tu ganancia.</p>
           <ul class="benefits-list">
@@ -311,10 +310,19 @@
     <div class="slide with-bg">
       <div class="slide-content">
         <h1 class="slide-title"><i class="fas fa-bullhorn"></i> Promotor</h1>
+
+        <!-- Audio añadido para Promotor -->
+        <div class="audio-container">
+          <audio controls>
+            <source src="https://raw.githubusercontent.com/novaklar/info/main/promotor.mp3" type="audio/mpeg" />
+            Tu navegador no soporta el elemento de audio.
+          </audio>
+        </div>
+
         <div class="scrollable-content">
           <p>Promociona productos a través de enlaces o redes sociales sin necesidad de manejar el proceso de venta completo. Ideal para quienes tienen audiencia digital o habilidades en marketing.</p>
           <p>Ganas comisiones por cada venta generada a través de tus enlaces únicos. No necesitas atender consultas ni procesar pagos, todo es automático.</p>
-          <div class="highlight-box"><strong>Ejemplo práctico:</strong> Si alguien compra Amazon Prime por $10.000 desde tu catálogo o enlace de afiliado, recibes $4.000 de comisión automáticamente, sin tener que atender consultas o procesar pagos.</div>
+          <div class="highlight-box"><strong>Ejemplo práctico:</strong> Si alguien compra Amazon Prime por $10.000 desde tu catálogo o enlace de afiliado, recibes aproximadamente el 40% del valor total de la venta de comisión automáticamente, sin tener que atender consultas o procesar pagos.</div>
           <h3 class="section-title">Sistema de Pagos</h3>
           <p>Como promotor, recibes tus comisiones diariamente directamente en tu cuenta bancaria (Nequi, Daviplata, Bancolombia, etc.). Los pagos se procesan automáticamente por cada venta generada.</p>
           <ul class="benefits-list">
@@ -355,30 +363,19 @@
           <div class="images-grid">
             <img src="https://raw.githubusercontent.com/novaklar/info/refs/heads/main/16.png" alt="Requisitos Novaklar">
             <img src="https://raw.githubusercontent.com/novaklar/info/refs/heads/main/17.png" alt="Requisitos Novaklar">
-            <img src="https://raw.githubusercontent.com/novaklar/info/refs/heads/main/18.png" alt="Requisitos Novaklar">
             <img src="https://raw.githubusercontent.com/novaklar/info/refs/heads/main/19.png" alt="Requisitos Novaklar">
           </div>
         </div>
-        <button class="btn" onclick="openModal()">Acceder a Capacitación <i class="fas fa-graduation-cap"></i></button>
+        <!-- Botón modificado: Finalizar proceso (abre modal) -->
+        <button class="btn" onclick="openModal()">Finalizar proceso <i class="fas fa-check-circle"></i></button>
       </div>
     </div>
 
-    <div class="slide with-bg">
-      <div class="slide-content">
-        <h1 class="slide-title">Capacitación</h1>
-        <div class="scrollable-content">
-          <p>Aprende todo lo necesario para tener éxito en tu rol con nuestro programa completo de capacitación:</p>
-          <div class="video-container" id="trainingVideoContainer"><iframe id="trainingVideo" src="https://www.youtube.com/embed/8GvK44JxUks" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-        </div>
-        <button class="btn" onclick="nextSlide()">Finalizar <i class="fas fa-arrow-right"></i></button>
-      </div>
-    </div>
-
+    <!-- Slide final -->
     <div class="slide with-bg">
       <div class="slide-content">
         <h1 class="slide-title">¡Estás listo para comenzar!</h1>
         <div class="scrollable-content">
-          <div class="audio-container"><audio controls autoplay><source src="https://raw.githubusercontent.com/novaklar/reclutamiento/main/luvvoice.com-20250714-KGWYSW.mp3" type="audio/mpeg">Tu navegador no soporta el elemento de audio.</audio></div>
           <p class="center-text">Contáctanos ahora mismo para comenzar tu proceso de afiliación:</p>
           <div class="contacts-grid" id="finalSlideContacts"></div>
           <p class="contact-note">Horario de atención: 9:00 am a 10:00 pm</p>
@@ -406,7 +403,8 @@
         </div>
       </div>
 
-      <button class="btn modal-btn" id="modalContinueBtn" disabled onclick="continueToTraining()">✅ Acceder a Capacitación</button>
+      <!-- Texto del botón del modal actualizado -->
+      <button class="btn modal-btn" id="modalContinueBtn" disabled onclick="continueToTraining()">✅ Finalizar proceso</button>
 
       <p class="contacts-title">¿Necesitas ayuda?</p>
       <div class="contacts-grid" id="modalContacts"></div>
@@ -578,18 +576,15 @@
     function selectRoleOption(value) { const radio = document.querySelector(`input[name="role"][value="${value}"]`); if (radio) { radio.checked = true; checkRoleSelection(); } }
 
     function continueToTraining() {
+      // Nota: ahora finalizamos el proceso y llevamos al último slide
       const checked = document.querySelector('input[name="role"]:checked');
       if (!checked) { alert('Debes seleccionar un rol para continuar.'); return; }
       selectedRole = checked.value;
       localStorage.setItem('novaklarSelectedRole', selectedRole);
       closeModal();
 
-      let trainingIndex = 0;
-      slides.forEach((s, idx) => {
-        const h = s.querySelector('.slide-title');
-        if (h && h.textContent && h.textContent.trim().toLowerCase().includes('capacit')) trainingIndex = idx;
-      });
-      goToSlide(trainingIndex);
+      // Llevar al último slide (slide final)
+      goToSlide(slides.length - 1);
       renderWhatsAppButtons('finalSlideContacts');
       renderWhatsAppButtons('modalContacts');
     }
